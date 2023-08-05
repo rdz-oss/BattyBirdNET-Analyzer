@@ -61,7 +61,7 @@ This model requires the config.py settings to be at SAMPLE_RATE: int = 144000 an
 ``` sh
 loss: 0.0019 - prec: 0.9641 - val_loss: 0.0017 - val_prec: 0.9715
 ```
-This looks rather good again yet it is only preliminary so do not rely on the classifications for important things - such as biodiversity assessments. It might still generate a few useful candidates for expert identification, however.
+This looks rather good again yet it is only preliminary so do not rely on the classifications for important things.
 This model requires the config.py settings to be at SAMPLE_RATE: int = 240000 and SIG_LENGTH: float = 0.6 .
 
 ## Usage
@@ -124,7 +124,9 @@ The data for North American bats comes from the NABAT machine learning data set.
  python3 train.py --i ../path/to/data --o ./path/to/file-name-you-want.tflite
 ```
 
-This expects that your training data is container in subfolders that have the following name structure 'Lantin name_Common name' such as e.g. 'Antrozous pallidus_Pallid bat'. The labels are parsed from the folder names. You can also have folders for 'noise' or 'background'.
+This expects that your training data is contained in subfolders that have the following name structure 'Lantin name_Common name' such as e.g. 'Antrozous pallidus_Pallid bat'. The labels are parsed from the folder names. You can also have folders for 'noise' or 'background'.
+
+The cross training itself uses the framework provided by BirdNET-Analyzer originally intended for fine tuneing the model to local bird calls or other wildlife in the human audible range. Essentially, it puts a thin layer of a linear classifier on the output of the BirdNET artificial neural network. Appears to also work for bats if sampling frequencies are adjusted.
 
 ## References and thanks
 
