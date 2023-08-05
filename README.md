@@ -1,25 +1,4 @@
-
-<style type="text/css">
-  body {
-    background-color:  #fdf6e3;
-    color: #268bd2;
-  }
-  p {
-    background-color:  #fdf6e3;
-    color: #586e75;
-  }
-  ul {
-    background-color:  #fdf6e3;
-    color: #586e75;
-  }
-  code {
-    background-color:  #93a1a1;
-    color: #6c71c4 ;
-  }
-
-</style>
-
-<h1 style="text-align: center;">BattyBirdNET-Analyzer</h1>
+# BattyBirdNET-Analyzer
 
 
 ## Purpose
