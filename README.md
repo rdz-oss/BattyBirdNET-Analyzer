@@ -50,10 +50,19 @@ LICENSE: http://creativecommons.org/licenses/by-nc-sa/4.0/
 ## Classifiers
 The available classifiers include:
 
-- **"nabat-100-144kHz-200epochs.tflite"** which has been trained on max. 100 calls from all the species in the NABAT data set. It has not been formally evaluated (as yet), yet the training stopped when:
+- **"nabat-100-144kHz-200epochs.tflite"** which has been trained on max. 100 calls for each of the species in the NABAT data set. It has not been formally evaluated (as yet), yet the training stopped when:
 ``` sh
 loss: 0.0034 - prec: 0.9564 - val_loss: 0.0032 - val_prec: 0.9631
 ```
+This looks rather good yet it is only preliminary so do not rely on the classifications for important things - such as biodiversity assessments. It might still generate a few useful candidates for expert identification, however.
+This model requires the config.py settings to be at SAMPLE_RATE: int = 144000 and SIG_LENGTH: float = 1.0 .
+
+- **"nabat-100-240kHz-200epochs.tflite"** which has been trained on max. 100 calls for each of the species in the NABAT data set at a sampling rate of 240000Hz. It has not been formally evaluated (as yet), yet the training stopped when:
+``` sh
+loss: 0.0019 - prec: 0.9641 - val_loss: 0.0017 - val_prec: 0.9715
+```
+This looks rather good again yet it is only preliminary so do not rely on the classifications for important things - such as biodiversity assessments. It might still generate a few useful candidates for expert identification, however.
+This model requires the config.py settings to be at SAMPLE_RATE: int = 240000 and SIG_LENGTH: float = 0.6 .
 
 ## Usage
 In principle all the scripts inherited from BirdNET-Analyzer can work. Since you do not want to analyze bird calls, you will have to provide the necessary command line parameter. Also, at this time the georgaphical lat long parameters ar not (yet) enabled.
@@ -97,13 +106,42 @@ Here's a complete list of all command line arguments that make sense for bats ri
 
 ## Install
 
+You can follow the same procedure as for the BirdNET-Analyzer [see here](./README_BIRDNET_ANALYZER.adoc).
 
 ## Methods and data
 
+The detection works by cross learning from the bird detection network. This network works on 48000Hz and 3 second sampling. This will not work for bats as their calls go way higher in frequency rates. Since the network is designed to identify bird calls it is still usefull for cross training for bat calls once the frequency range is adjusted. There are three realistic candidates for such frequency rates
+
+* 144000 Hz at 1 second intervalls
+* 240000 Hz at 0.6 second intervalls
+* 360000 Hz at 0.4 second intervals
+
+All of which seem plausible enough for testing.Depends on the hardware (microphones) available to you and the calls of the bat species in your area. The above combinations arise form the expected input to the BirdNET artificial neural network ( 144000 = 48000 * 3).
+
+The data for North American bats comes from the NABAT machine learning data set. To cross train your own classifier set the config parameters in config.py and run e.g.
+
+```  sh
+ python3 train.py --i ../path/to/data --o ./path/to/file-name-you-want.tflite
+```
+
+This expects that your training data is container in subfolders that have the following name structure 'Lantin name_Common name' such as e.g. 'Antrozous pallidus_Pallid bat'. The labels are parsed from the folder names. You can also have folders for 'noise' or 'background'.
 
 ## References and thanks
 
+### Papers
 
-<p align="center">
-  <img src="./assets/BattyBirdNET-logo--.png" />
-</p>
+Gotthold, B., Khalighifar, A., Straw, B.R., and Reichert, B.E., 2022, 
+Training dataset for NABat Machine Learning V1.0: U.S. Geological Survey 
+data release, https://doi.org/10.5066/P969TX8F.
+
+Kahl, Stefan, et al. "BirdNET: A deep learning solution for avian diversity monitoring." Ecological Informatics 61 (2021): 101236.
+
+### Links
+
+https://www.sciencebase.gov/catalog/item/627ed4b2d34e3bef0c9a2f30
+
+https://github.com/kahst/BirdNET-Analyzer
+
+
+
+

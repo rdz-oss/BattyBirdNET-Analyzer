@@ -28,10 +28,10 @@ CUSTOM_CLASSIFIER = None
 # (batch size, 48000 kHz * 3 seconds) = (1, 144000)
 # Recordings will be resampled automatically.
 # For bats: 220000 for 3 sec, only SIG_LENGTH * SAMPLING_RATE = 144000 combinations will work
-SAMPLE_RATE: int = 144000
+SAMPLE_RATE: int = 240000
 
 # We're using 1-second chunks
-SIG_LENGTH: float = 1.0
+SIG_LENGTH: float = 0.6
 
 # Define overlap between consecutive chunks <3.0; 0 = no overlap
 SIG_OVERLAP: float = 0 
