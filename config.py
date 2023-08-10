@@ -8,8 +8,9 @@ RANDOM_SEED = 42
 ##########################
 # Model paths and config #
 ##########################
-
-#MODEL_PATH = 'checkpoints/V2.4/BirdNET_GLOBAL_6K_V2.4_Model' # This will load the protobuf model
+# These BirdNET  models are necessary also for detecting bats as we use their embeddings and classify
+# them to identify the bats.
+# MODEL_PATH = 'checkpoints/V2.4/BirdNET_GLOBAL_6K_V2.4_Model' # This will load the protobuf model
 MODEL_PATH = 'checkpoints/V2.4/BirdNET_GLOBAL_6K_V2.4_Model_FP32.tflite'
 MDATA_MODEL_PATH = 'checkpoints/V2.4/BirdNET_GLOBAL_6K_V2.4_MData_Model_FP16.tflite'
 LABELS_FILE = 'checkpoints/V2.4/BirdNET_GLOBAL_6K_V2.4_Labels.txt'
@@ -24,26 +25,28 @@ CUSTOM_CLASSIFIER = None
 # Audio settings #
 ##################
 
-# We use a sample rate of 48kHz, so the model input size is 
+# BirdNET uses a sample rate of 48kHz, so the model input size is
 # (batch size, 48000 kHz * 3 seconds) = (1, 144000)
 # Recordings will be resampled automatically.
-# For bats: 220000 for 3 sec, only SIG_LENGTH * SAMPLING_RATE = 144000 combinations will work
+# For bats we use: 144000 for 1 sec.
+# Note that only SIG_LENGTH * SAMPLING_RATE = 144000 combinations will work,
+# values possible e.g. 144000 240000 360000 check your classifier frequency!
 SAMPLE_RATE: int = 144000
 
 # We're using 1-second chunks
-SIG_LENGTH: float = 1.0
+SIG_LENGTH: float = 144000 / SAMPLE_RATE
 
-# Define overlap between consecutive chunks <3.0; 0 = no overlap
+# Define overlap between consecutive chunks < SIG_LENGTH; 0 = no overlap
 SIG_OVERLAP: float = SIG_LENGTH / 4.0
 
 # Define minimum length of audio chunk for prediction, 
-# chunks shorter than 3 seconds will be padded with zeros
+# chunks shorter than SIG_LENGTH seconds will be padded with zeros
 SIG_MINLEN: float = SIG_LENGTH / 3.0
 
 #####################
 # Metadata settings #
 #####################
-
+# These settings are currently not in use for bat detection
 LATITUDE = -1
 LONGITUDE = -1
 WEEK = -1
@@ -57,11 +60,15 @@ LOCATION_FILTER_THRESHOLD = 0.03
 # Note: Entries in this list have to match entries from the LABELS_FILE
 # We use the 2021 eBird taxonomy for species names (Clements list)
 CODES_FILE = 'eBird_taxonomy_codes_2021E.json'
-SPECIES_LIST_FILE = 'example/species_list.txt' 
+SPECIES_LIST_FILE = 'example/species_list.txt'
 
 # File input path and output path for selection tables
 INPUT_PATH: str = 'example/'
 OUTPUT_PATH: str = 'example/'
+
+# Used for bats - the files here are supposed to be analyzed by default setting
+INPUT_PATH_SAMPLES: str = 'put-your-files-here/'
+OUTPUT_PATH_SAMPLES: str = 'put-your-files-here/'
 
 ALLOWED_FILETYPES = ['wav', 'flac', 'mp3', 'ogg', 'm4a']
 
@@ -71,13 +78,13 @@ CPU_THREADS: int = 8
 TFLITE_THREADS: int = 6
 
 # False will output logits, True will convert to sigmoid activations
-APPLY_SIGMOID: bool = True 
+APPLY_SIGMOID: bool = True
 SIGMOID_SENSITIVITY: float = 1.0
 
 # Minimum confidence score to include in selection table 
 # (be aware: if APPLY_SIGMOID = False, this no longer represents 
 # probabilities and needs to be adjusted)
-MIN_CONFIDENCE: float = 0.5
+MIN_CONFIDENCE: float = 0.6
 
 # Number of samples to process at the same time. Higher values can increase
 # processing speed, but will also increase memory usage.
@@ -97,7 +104,7 @@ RESULT_TYPE = 'csv'
 TRAIN_DATA_PATH = 'train_data/'
 
 # Number of epochs to train for
-TRAIN_EPOCHS: int = 30
+TRAIN_EPOCHS: int = 100
 
 # Batch size for training
 TRAIN_BATCH_SIZE: int = 32
@@ -119,6 +126,7 @@ SPECIES_LIST: list[str] = []
 ERROR_LOG_FILE: str = 'error_log.txt'
 FILE_LIST = []
 FILE_STORAGE_PATH = ''
+
 
 ######################
 # Get and set config #
@@ -159,11 +167,13 @@ def getConfig():
         'LABELS': LABELS,
         'TRANSLATED_LABELS': TRANSLATED_LABELS,
         'SPECIES_LIST': SPECIES_LIST,
-        'ERROR_LOG_FILE': ERROR_LOG_FILE
+        'ERROR_LOG_FILE': ERROR_LOG_FILE,
+        'INPUT_PATH_SAMPLES': INPUT_PATH_SAMPLES,
+        'OUTPUT_PATH_SAMPLES': OUTPUT_PATH_SAMPLES
     }
 
-def setConfig(c):
 
+def setConfig(c):
     global RANDOM_SEED
     global MODEL_PATH
     global MDATA_MODEL_PATH
@@ -198,6 +208,8 @@ def setConfig(c):
     global TRANSLATED_LABELS
     global SPECIES_LIST
     global ERROR_LOG_FILE
+    global INPUT_PATH_SAMPLES
+    global OUTPUT_PATH_SAMPLES
 
     RANDOM_SEED = c['RANDOM_SEED']
     MODEL_PATH = c['MODEL_PATH']
@@ -233,3 +245,5 @@ def setConfig(c):
     TRANSLATED_LABELS = c['TRANSLATED_LABELS']
     SPECIES_LIST = c['SPECIES_LIST']
     ERROR_LOG_FILE = c['ERROR_LOG_FILE']
+    INPUT_PATH_SAMPLES = c['INPUT_PATH_SAMPLES']
+    OUTPUT_PATH_SAMPLES = c['OUTPUT_PATH_SAMPLES']
