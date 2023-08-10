@@ -34,11 +34,11 @@ SAMPLE_RATE: int = 144000
 SIG_LENGTH: float = 1.0
 
 # Define overlap between consecutive chunks <3.0; 0 = no overlap
-SIG_OVERLAP: float = 0 
+SIG_OVERLAP: float = SIG_LENGTH / 4.0
 
 # Define minimum length of audio chunk for prediction, 
 # chunks shorter than 3 seconds will be padded with zeros
-SIG_MINLEN: float = 1.0 
+SIG_MINLEN: float = SIG_LENGTH / 3.0
 
 #####################
 # Metadata settings #
@@ -77,7 +77,7 @@ SIGMOID_SENSITIVITY: float = 1.0
 # Minimum confidence score to include in selection table 
 # (be aware: if APPLY_SIGMOID = False, this no longer represents 
 # probabilities and needs to be adjusted)
-MIN_CONFIDENCE: float = 0.1 
+MIN_CONFIDENCE: float = 0.5
 
 # Number of samples to process at the same time. Higher values can increase
 # processing speed, but will also increase memory usage.
@@ -87,7 +87,7 @@ BATCH_SIZE: int = 1
 # Specifies the output format. 'table' denotes a Raven selection table,
 # 'audacity' denotes a TXT file with the same format as Audacity timeline labels
 # 'csv' denotes a CSV file with start, end, species and confidence.
-RESULT_TYPE = 'table'
+RESULT_TYPE = 'csv'
 
 #####################
 # Training settings #
@@ -97,7 +97,7 @@ RESULT_TYPE = 'table'
 TRAIN_DATA_PATH = 'train_data/'
 
 # Number of epochs to train for
-TRAIN_EPOCHS: int = 200
+TRAIN_EPOCHS: int = 30
 
 # Batch size for training
 TRAIN_BATCH_SIZE: int = 32

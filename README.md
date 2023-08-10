@@ -53,16 +53,16 @@ LICENSE: http://creativecommons.org/licenses/by-nc-sa/4.0/
 ## Classifiers
 The available classifiers include:
 
-- **"nabat-100-144kHz-200epochs.tflite"** which has been trained on max. 100 calls for each of the species in the NABAT data set. It has not been formally evaluated (as yet), yet the training stopped when:
+- **"nabat-100-144kHz.tflite"** which has been trained on max. 100 calls for each of the species in the NABAT data set. It has not been formally evaluated (as yet), yet the training stopped when:
 ``` sh
-loss: 0.0034 - prec: 0.9564 - val_loss: 0.0032 - val_prec: 0.9631
+loss: 0.0031 - prec: 0.9594 - val_loss: 0.0033 - val_prec: 0.9698
 ```
 This looks rather good yet it is only preliminary so do not rely on the classifications for important things - such as biodiversity assessments. It might still generate a few useful candidates for expert identification, however.
 This model requires the config.py settings to be at SAMPLE_RATE: int = 144000 and SIG_LENGTH: float = 1.0 .
 
-- **"nabat-100-240kHz-200epochs.tflite"** which has been trained on max. 100 calls for each of the species in the NABAT data set at a sampling rate of 240000Hz. It has not been formally evaluated (as yet), yet the training stopped when:
+- **"nabat-100-240kHz.tflite"** which has been trained on max. 100 calls for each of the species in the NABAT data set at a sampling rate of 240000Hz. It has not been formally evaluated (as yet), yet the training stopped when:
 ``` sh
-loss: 0.0019 - prec: 0.9641 - val_loss: 0.0017 - val_prec: 0.9715
+loss: 0.0021 - prec: 0.9631 - val_loss: 0.0020 - val_prec: 0.9698
 ```
 This looks rather good again yet it is only preliminary so do not rely on the classifications for important things.
 This model requires the config.py settings to be at SAMPLE_RATE: int = 240000 and SIG_LENGTH: float = 0.6 .
