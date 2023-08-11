@@ -15,6 +15,7 @@ MODEL_PATH = 'checkpoints/V2.4/BirdNET_GLOBAL_6K_V2.4_Model_FP32.tflite'
 MDATA_MODEL_PATH = 'checkpoints/V2.4/BirdNET_GLOBAL_6K_V2.4_MData_Model_FP16.tflite'
 LABELS_FILE = 'checkpoints/V2.4/BirdNET_GLOBAL_6K_V2.4_Labels.txt'
 TRANSLATED_LABELS_PATH = 'labels/V2.4'
+TRANSLATED_BAT_LABELS_PATH = 'labels/bats/'
 
 # Path to custom trained classifier
 # If None, no custom classifier will be used
@@ -68,7 +69,8 @@ OUTPUT_PATH: str = 'example/'
 
 # Used for bats - the files here are supposed to be analyzed by default setting
 INPUT_PATH_SAMPLES: str = 'put-your-files-here/'
-OUTPUT_PATH_SAMPLES: str = 'put-your-files-here/'
+OUTPUT_PATH_SAMPLES: str = 'put-your-files-here/results/'
+BAT_CLASSIFIER_LOCATION: str = 'checkpoints/bats/v1.0'
 
 ALLOWED_FILETYPES = ['wav', 'flac', 'mp3', 'ogg', 'm4a']
 
@@ -132,7 +134,7 @@ FILE_STORAGE_PATH = ''
 # Get and set config #
 ######################
 
-def getConfig():
+def get_config():
     return {
         'RANDOM_SEED': RANDOM_SEED,
         'MODEL_PATH': MODEL_PATH,
@@ -169,11 +171,13 @@ def getConfig():
         'SPECIES_LIST': SPECIES_LIST,
         'ERROR_LOG_FILE': ERROR_LOG_FILE,
         'INPUT_PATH_SAMPLES': INPUT_PATH_SAMPLES,
-        'OUTPUT_PATH_SAMPLES': OUTPUT_PATH_SAMPLES
+        'OUTPUT_PATH_SAMPLES': OUTPUT_PATH_SAMPLES,
+        'BAT_CLASSIFIER_LOCATION': BAT_CLASSIFIER_LOCATION,
+        'TRANSLATED_BAT_LABELS_PATH': TRANSLATED_BAT_LABELS_PATH
     }
 
 
-def setConfig(c):
+def set_config(c):
     global RANDOM_SEED
     global MODEL_PATH
     global MDATA_MODEL_PATH
@@ -210,6 +214,8 @@ def setConfig(c):
     global ERROR_LOG_FILE
     global INPUT_PATH_SAMPLES
     global OUTPUT_PATH_SAMPLES
+    global BAT_CLASSIFIER_LOCATION
+    global TRANSLATED_BAT_LABELS_PATH
 
     RANDOM_SEED = c['RANDOM_SEED']
     MODEL_PATH = c['MODEL_PATH']
@@ -247,3 +253,5 @@ def setConfig(c):
     ERROR_LOG_FILE = c['ERROR_LOG_FILE']
     INPUT_PATH_SAMPLES = c['INPUT_PATH_SAMPLES']
     OUTPUT_PATH_SAMPLES = c['OUTPUT_PATH_SAMPLES']
+    BAT_CLASSIFIER_LOCATION = c['BAT_CLASSIFIER_LOCATION']
+    TRANSLATED_BAT_LABELS_PATH = c['TRANSLATED_BAT_LABELS_PATH']

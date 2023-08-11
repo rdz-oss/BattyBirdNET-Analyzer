@@ -93,7 +93,7 @@ def trainModel(on_epoch_end=None):
         epochs=cfg.TRAIN_EPOCHS,
         batch_size=cfg.TRAIN_BATCH_SIZE,
         learning_rate=cfg.TRAIN_LEARNING_RATE,
-        on_epoch_end=on_epoch_end,
+        on_epoch_end=on_epoch_end
     )
 
     # Best validation precision (at minimum validation loss)
@@ -102,7 +102,17 @@ def trainModel(on_epoch_end=None):
     model.saveLinearClassifier(classifier, cfg.CUSTOM_CLASSIFIER, labels)
     print(f"...Done. Best top-1 precision: {best_val_prec}", flush=True)
 
+
     return history
+
+
+
+
+
+
+
+
+
 
 
 if __name__ == "__main__":

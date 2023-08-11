@@ -17,7 +17,7 @@ import species
 import utils
 
 
-def loadCodes():
+def load_codes():
     """Loads the eBird codes.
 
     Returns:
@@ -29,7 +29,7 @@ def loadCodes():
     return codes
 
 
-def saveResultFile(r: dict[str, list], path: str, afile_path: str):
+def save_result_file(r: dict[str, list], path: str, afile_path: str):
     """Saves the results to the hard drive.
 
     Args:
@@ -46,14 +46,14 @@ def saveResultFile(r: dict[str, list], path: str, afile_path: str):
 
     if cfg.RESULT_TYPE == "table":
         # Raven selection header
-        header = "Selection\tView\tChannel\tBegin Time (s)\tEnd Time (s)\tLow Freq (Hz)\tHigh Freq (Hz)\tSpecies Code\tCommon Name\tConfidence\n"
+        header = "Selection\tView\tChannel\tBegin Time (s)\tEnd Time (s)\tSpecies Code\tCommon Name\tConfidence\n"
         selection_id = 0
 
         # Write header
         out_string += header
 
         # Extract valid predictions for every timestamp
-        for timestamp in getSortedTimestamps(r):
+        for timestamp in get_sorted_timestamps(r):
             rstring = ""
             start, end = timestamp.split("-", 1)
 
@@ -61,12 +61,10 @@ def saveResultFile(r: dict[str, list], path: str, afile_path: str):
                 if c[1] > cfg.MIN_CONFIDENCE and (not cfg.SPECIES_LIST or c[0] in cfg.SPECIES_LIST):
                     selection_id += 1
                     label = cfg.TRANSLATED_LABELS[cfg.LABELS.index(c[0])]
-                    rstring += "{}\tSpectrogram 1\t1\t{}\t{}\t{}\t{}\t{}\t{}\t{:.4f}\n".format(
+                    rstring += "{}\tSpectrogram 1\t1\t{}\t{}\t{}\t{}\t{:.4f}\n".format(
                         selection_id,
                         start,
                         end,
-                        150,
-                        15000,
                         cfg.CODES[c[0]] if c[0] in cfg.CODES else c[0],
                         label.split("_", 1)[-1],
                         c[1],
@@ -77,7 +75,7 @@ def saveResultFile(r: dict[str, list], path: str, afile_path: str):
 
     elif cfg.RESULT_TYPE == "audacity":
         # Audacity timeline labels
-        for timestamp in getSortedTimestamps(r):
+        for timestamp in get_sorted_timestamps(r):
             rstring = ""
 
             for c in r[timestamp]:
@@ -90,10 +88,11 @@ def saveResultFile(r: dict[str, list], path: str, afile_path: str):
 
     elif cfg.RESULT_TYPE == "r":
         # Output format for R
-        header = "filepath,start,end,scientific_name,common_name,confidence,lat,lon,week,overlap,sensitivity,min_conf,species_list,model"
+        header = ("filepath,start,end,scientific_name,common_name,confidence,lat,lon,week,"
+                  "overlap,sensitivity,min_conf,species_list,model")
         out_string += header
 
-        for timestamp in getSortedTimestamps(r):
+        for timestamp in get_sorted_timestamps(r):
             rstring = ""
             start, end = timestamp.split("-", 1)
 
@@ -122,13 +121,14 @@ def saveResultFile(r: dict[str, list], path: str, afile_path: str):
 
     elif cfg.RESULT_TYPE == "kaleidoscope":
         # Output format for kaleidoscope
-        header = "INDIR,FOLDER,IN FILE,OFFSET,DURATION,scientific_name,common_name,confidence,lat,lon,week,overlap,sensitivity"
+        header = ("INDIR,FOLDER,IN FILE,OFFSET,DURATION,scientific_name,"
+                  "common_name,confidence,lat,lon,week,overlap,sensitivity")
         out_string += header
 
         folder_path, filename = os.path.split(afile_path)
         parent_folder, folder_name = os.path.split(folder_path)
 
-        for timestamp in getSortedTimestamps(r):
+        for timestamp in get_sorted_timestamps(r):
             rstring = ""
             start, end = timestamp.split("-", 1)
 
@@ -161,7 +161,7 @@ def saveResultFile(r: dict[str, list], path: str, afile_path: str):
         # Write header
         out_string += header
 
-        for timestamp in getSortedTimestamps(r):
+        for timestamp in get_sorted_timestamps(r):
             rstring = ""
 
             for c in r[timestamp]:
@@ -169,7 +169,8 @@ def saveResultFile(r: dict[str, list], path: str, afile_path: str):
 
                 if c[1] > cfg.MIN_CONFIDENCE and (not cfg.SPECIES_LIST or c[0] in cfg.SPECIES_LIST):
                     label = cfg.TRANSLATED_LABELS[cfg.LABELS.index(c[0])]
-                    rstring += "{},{},{},{},{:.4f}\n".format(start, end, label.split("_", 1)[0], label.split("_", 1)[-1], c[1])
+                    rstring += "{},{},{},{},{:.4f}\n".format(start, end, label.split("_", 1)[0],
+                                                             label.split("_", 1)[-1], c[1])
 
             # Write result string to file
             out_string += rstring
@@ -179,7 +180,7 @@ def saveResultFile(r: dict[str, list], path: str, afile_path: str):
         rfile.write(out_string)
 
 
-def getSortedTimestamps(results: dict[str, list]):
+def get_sorted_timestamps(results: dict[str, list]):
     """Sorts the results based on the segments.
 
     Args:
@@ -191,7 +192,7 @@ def getSortedTimestamps(results: dict[str, list]):
     return sorted(results, key=lambda t: float(t.split("-", 1)[0]))
 
 
-def getRawAudioFromFile(fpath: str):
+def get_raw_audio_from_file(fpath: str):
     """Reads an audio file.
 
     Reads the file and splits the signal into chunks.
@@ -231,7 +232,7 @@ def predict(samples):
     return prediction
 
 
-def analyzeFile(item):
+def analyze_file(item):
     """Analyzes a file.
 
     Predicts the scores for the file and saves the results.
@@ -254,7 +255,7 @@ def analyzeFile(item):
 
     try:
         # Open audio file and split into 3-second chunks
-        chunks = getRawAudioFromFile(fpath)
+        chunks = get_raw_audio_from_file(fpath)
 
     # If no chunks, show error and skip
     except Exception as ex:
@@ -284,7 +285,7 @@ def analyzeFile(item):
                 continue
 
             # Predict
-            p = predict(samples)
+            prediction = predict(samples)
 
             # Add to results
             for i in range(len(samples)):
@@ -292,7 +293,7 @@ def analyzeFile(item):
                 s_start, s_end = timestamps[i]
 
                 # Get prediction
-                pred = p[i]
+                pred = prediction[i]
 
                 # Assign scores to labels
                 p_labels = zip(cfg.LABELS, pred)
@@ -327,15 +328,15 @@ def analyzeFile(item):
             os.makedirs(rdir, exist_ok=True)
 
             if cfg.RESULT_TYPE == "table":
-                rtype = ".BirdNET.selection.table.txt"
+                rtype = "bat.selection.table.txt"
             elif cfg.RESULT_TYPE == "audacity":
-                rtype = ".BirdNET.results.txt"
+                rtype = "bat.results.txt"
             else:
-                rtype = ".BirdNET.results.csv"
+                rtype = "bat.results.csv"
 
-            saveResultFile(results, os.path.join(cfg.OUTPUT_PATH, rpath.rsplit(".", 1)[0] + rtype), fpath)
+            save_result_file(results, os.path.join(cfg.OUTPUT_PATH, rpath.rsplit(".", 1)[0] + rtype), fpath)
         else:
-            saveResultFile(results, cfg.OUTPUT_PATH, fpath)
+            save_result_file(results, cfg.OUTPUT_PATH, fpath)
 
     except Exception as ex:
         # Write error log
@@ -350,71 +351,45 @@ def analyzeFile(item):
     return True
 
 
-if __name__ == "__main__":
-    # Freeze support for executable
-    freeze_support()
+def set_analysis_location():
+    if args.area not in ["Bavaria", "EU", "Scotland", "UK", "USA"]:
+        exit(code="Unknown location option.")
+    else:
+        args.lat = -1
+        args.lon = -1
+        # args.locale = "en"
+    match args.area:
+        case "Bavaria":
+            cfg.CUSTOM_CLASSIFIER = cfg.BAT_CLASSIFIER_LOCATION + "/BattyBirdNET-Bavaria-144kHz.tflite"
+            cfg.LABELS_FILE = cfg.BAT_CLASSIFIER_LOCATION + "/BattyBirdNET-Bavaria-144kHz_Labels.txt"
+            cfg.LABELS = utils.readLines(cfg.LABELS_FILE)
+            args.locale = "de"
 
-    # Parse arguments
-    parser = argparse.ArgumentParser(description="Analyze audio files with BirdNET")
-    parser.add_argument(
-        "--i", default="example/", help="Path to input file or folder. If this is a file, --o needs to be a file too."
-    )
-    parser.add_argument(
-        "--o", default="example/", help="Path to output file or folder. If this is a file, --i needs to be a file too."
-    )
-    parser.add_argument("--lat", type=float, default=-1, help="Recording location latitude. Set -1 to ignore.")
-    parser.add_argument("--lon", type=float, default=-1, help="Recording location longitude. Set -1 to ignore.")
-    parser.add_argument(
-        "--week",
-        type=int,
-        default=-1,
-        help="Week of the year when the recording was made. Values in [1, 48] (4 weeks per month). Set -1 for year-round species list.",
-    )
-    parser.add_argument(
-        "--slist",
-        default="",
-        help='Path to species list file or folder. If folder is provided, species list needs to be named "species_list.txt". If lat and lon are provided, this list will be ignored.',
-    )
-    parser.add_argument(
-        "--sensitivity",
-        type=float,
-        default=1.0,
-        help="Detection sensitivity; Higher values result in higher sensitivity. Values in [0.5, 1.5]. Defaults to 1.0.",
-    )
-    parser.add_argument(
-        "--min_conf", type=float, default=0.1, help="Minimum confidence threshold. Values in [0.01, 0.99]. Defaults to 0.1."
-    )
-    parser.add_argument(
-        "--overlap", type=float, default=0.0, help="Overlap of prediction segments. Values in [0.0, 2.9]. Defaults to 0.0."
-    )
-    parser.add_argument(
-        "--rtype",
-        default="table",
-        help="Specifies output format. Values in ['table', 'audacity', 'r',  'kaleidoscope', 'csv']. Defaults to 'table' (Raven selection table).",
-    )
-    parser.add_argument("--threads", type=int, default=4, help="Number of CPU threads.")
-    parser.add_argument(
-        "--batchsize", type=int, default=1, help="Number of samples to process at the same time. Defaults to 1."
-    )
-    parser.add_argument(
-        "--locale",
-        default="en",
-        help="Locale for translated species common names. Values in ['af', 'de', 'it', ...] Defaults to 'en'.",
-    )
-    parser.add_argument(
-        "--sf_thresh",
-        type=float,
-        default=0.03,
-        help="Minimum species occurrence frequency threshold for location filter. Values in [0.01, 0.99]. Defaults to 0.03.",
-    )
-    parser.add_argument(
-        "--classifier",
-        default=None,
-        help="Path to custom trained classifier. Defaults to None. If set, --lat, --lon and --locale are ignored.",
-    )
+        case "EU":
+            cfg.CUSTOM_CLASSIFIER = cfg.BAT_CLASSIFIER_LOCATION + "/BattyBirdNET-EU-144kHz.tflite"
+            cfg.LABELS_FILE = cfg.BAT_CLASSIFIER_LOCATION + "/BattyBirdNET-EU-144kHz_Labels.txt"
+            cfg.LABELS = utils.readLines(cfg.LABELS_FILE)
 
-    args = parser.parse_args()
+        case "Scotland":
+            cfg.CUSTOM_CLASSIFIER = cfg.BAT_CLASSIFIER_LOCATION + "/BattyBirdNET-Scotland-144kHz.tflite"
+            cfg.LABELS_FILE = cfg.BAT_CLASSIFIER_LOCATION + "/BattyBirdNET-Scotland-144kHz_Labels.txt"
+            cfg.LABELS = utils.readLines(cfg.LABELS_FILE)
 
+        case "UK":
+            cfg.CUSTOM_CLASSIFIER = cfg.BAT_CLASSIFIER_LOCATION + "/BattyBirdNET-UK-144kHz.tflite"
+            cfg.LABELS_FILE = cfg.BAT_CLASSIFIER_LOCATION + "/BattyBirdNET-UK-144kHz_Labels.txt"
+            cfg.LABELS = utils.readLines(cfg.LABELS_FILE)
+
+        case "USA":
+            cfg.CUSTOM_CLASSIFIER = cfg.BAT_CLASSIFIER_LOCATION + "/BattyBirdNET-USA-144kHz.tflite"
+            cfg.LABELS_FILE = cfg.BAT_CLASSIFIER_LOCATION + "/BattyBirdNET-USA-144kHz_Labels.txt"
+            cfg.LABELS = utils.readLines(cfg.LABELS_FILE)
+
+        case _:
+            cfg.CUSTOM_CLASSIFIER = None
+
+
+def set_paths():
     # Set paths relative to script path (requested in #3)
     script_dir = os.path.dirname(os.path.abspath(sys.argv[0]))
     cfg.MODEL_PATH = os.path.join(script_dir, cfg.MODEL_PATH)
@@ -423,35 +398,108 @@ if __name__ == "__main__":
     cfg.MDATA_MODEL_PATH = os.path.join(script_dir, cfg.MDATA_MODEL_PATH)
     cfg.CODES_FILE = os.path.join(script_dir, cfg.CODES_FILE)
     cfg.ERROR_LOG_FILE = os.path.join(script_dir, cfg.ERROR_LOG_FILE)
+    cfg.BAT_CLASSIFIER_LOCATION = os.path.join(script_dir, cfg.BAT_CLASSIFIER_LOCATION)
+    cfg.INPUT_PATH = args.i
+    cfg.OUTPUT_PATH = args.o
 
-    # Load eBird codes, labels
-    cfg.CODES = loadCodes()
+
+def set_custom_classifier():
+    if args.classifier is None:
+        return
+    cfg.CUSTOM_CLASSIFIER = args.classifier  # we treat this as absolute path, so no need to join with dirname
+    cfg.LABELS_FILE = args.classifier.replace(".tflite", "_Labels.txt")  # same for labels file
+    cfg.LABELS = utils.readLines(cfg.LABELS_FILE)
+    args.lat = -1
+    args.lon = -1
+    # args.locale = "en"
+
+
+def add_parser_arguments():
+    parser.add_argument("--area",
+                        default="EU",
+                        help="Location. Values in ['Bavaria', 'EU', 'Scotland', 'UK' or 'USA']. Defaults to Bavaria.")
+
+    parser.add_argument("--sensitivity",
+                        type=float,
+                        default=1.0,
+                        help="Detection sensitivity; Higher values result in higher sensitivity. "
+                             "Values in [0.5, 1.5]. Defaults to 1.0."
+                        )
+    parser.add_argument("--min_conf",
+                        type=float,
+                        default=0.7,
+                        help="Minimum confidence threshold. Values in [0.01, 0.99]. Defaults to 0.1.")
+
+    parser.add_argument("--overlap",
+                        type=float,
+                        default=0.0,
+                        help="Overlap of prediction segments. Values in [0.0, 2.9]. Defaults to 0.0."
+                        )
+    parser.add_argument("--rtype",
+                        default="csv",
+                        help="Specifies output format. Values in ['table', 'audacity', 'r',  'kaleidoscope', 'csv']. "
+                             "Defaults to 'csv' (Raven selection table)."
+                        )
+    parser.add_argument("--threads",
+                        type=int,
+                        default=4,
+                        help="Number of CPU threads.")
+    parser.add_argument("--batchsize",
+                        type=int,
+                        default=1,
+                        help="Number of samples to process at the same time. Defaults to 1."
+                        )
+    parser.add_argument("--sf_thresh",
+                        type=float,
+                        default=0.03,
+                        help="Minimum species occurrence frequency threshold for location filter. "
+                             "Values in [0.01, 0.99]. Defaults to 0.03."
+                        )
+    parser.add_argument("--i",
+                        default=cfg.INPUT_PATH_SAMPLES,  # "put-your-files-here/",
+                        help="Path to input file or folder. If this is a file, --o needs to be a file too.")
+    parser.add_argument("--o",
+                        default=cfg.OUTPUT_PATH_SAMPLES,
+                        help="Path to output file or folder. If this is a file, --i needs to be a file too.")
+
+    parser.add_argument("--classifier",
+                        default=None,
+                        help="Path to custom trained classifier. Defaults to None. "
+                             "If set, --lat, --lon and --locale are ignored."
+                        )
+    parser.add_argument("--slist",
+                        default="",
+                        help='Path to species list file or folder. If folder is provided, species list needs to be '
+                             'named "species_list.txt". If lat and lon are provided, this list will be ignored.'
+                        )
+    parser.add_argument("--lat",
+                        type=float,
+                        default=-1,
+                        help="DISABLED. Set -1 to ignore.")
+    parser.add_argument("--lon",
+                        type=float,
+                        default=-1,
+                        help="DISABLED.  Set -1 to ignore.")
+    parser.add_argument("--week",
+                        type=int,
+                        default=-1,
+                        help="DISABLED. Set -1 for year-round species list."
+                        )
+    parser.add_argument("--locale",
+                        default="en",
+                        help="DISABLED. Defaults to 'en'."
+                        )
+
+
+def load_ebird_codes():
+    cfg.CODES = load_codes()
     cfg.LABELS = utils.readLines(cfg.LABELS_FILE)
 
-    # Set custom classifier?
-    if args.classifier is not None:
-        cfg.CUSTOM_CLASSIFIER = args.classifier  # we treat this as absolute path, so no need to join with dirname
-        cfg.LABELS_FILE = args.classifier.replace(".tflite", "_Labels.txt")  # same for labels file
-        cfg.LABELS = utils.readLines(cfg.LABELS_FILE)
-        args.lat = -1
-        args.lon = -1
-        args.locale = "en"
 
-    # Load translated labels
-    lfile = os.path.join(
-        cfg.TRANSLATED_LABELS_PATH, os.path.basename(cfg.LABELS_FILE).replace(".txt", "_{}.txt".format(args.locale))
-    )
-
-    if not args.locale in ["en"] and os.path.isfile(lfile):
-        cfg.TRANSLATED_LABELS = utils.readLines(lfile)
-    else:
-        cfg.TRANSLATED_LABELS = cfg.LABELS
-
-    ### Make sure to comment out appropriately if you are not using args. ###
-
-    # Load species list from location filter or provided list
+def load_species_list():
     cfg.LATITUDE, cfg.LONGITUDE, cfg.WEEK = args.lat, args.lon, args.week
     cfg.LOCATION_FILTER_THRESHOLD = max(0.01, min(0.99, float(args.sf_thresh)))
+    script_dir = os.path.dirname(os.path.abspath(sys.argv[0]))
 
     if cfg.LATITUDE == -1 and cfg.LONGITUDE == -1:
         if not args.slist:
@@ -466,39 +514,28 @@ if __name__ == "__main__":
     else:
         cfg.SPECIES_LIST_FILE = None
         cfg.SPECIES_LIST = species.getSpeciesList(cfg.LATITUDE, cfg.LONGITUDE, cfg.WEEK, cfg.LOCATION_FILTER_THRESHOLD)
-
     if not cfg.SPECIES_LIST:
         print(f"Species list contains {len(cfg.LABELS)} species")
     else:
         print(f"Species list contains {len(cfg.SPECIES_LIST)} species")
 
-    # Set input and output path
-    cfg.INPUT_PATH = args.i
-    cfg.OUTPUT_PATH = args.o
 
-    # Parse input files
+def parse_input_files():
     if os.path.isdir(cfg.INPUT_PATH):
         cfg.FILE_LIST = utils.collect_audio_files(cfg.INPUT_PATH)
         print(f"Found {len(cfg.FILE_LIST)} files to analyze")
     else:
         cfg.FILE_LIST = [cfg.INPUT_PATH]
 
-    # Set confidence threshold
+
+def set_analysis_parameters():
     cfg.MIN_CONFIDENCE = max(0.01, min(0.99, float(args.min_conf)))
-
-    # Set sensitivity
     cfg.SIGMOID_SENSITIVITY = max(0.5, min(1.0 - (float(args.sensitivity) - 1.0), 1.5))
-
-    # Set overlap
     cfg.SIG_OVERLAP = max(0.0, min(2.9, float(args.overlap)))
+    cfg.BATCH_SIZE = max(1, int(args.batchsize))
 
-    # Set result type
-    cfg.RESULT_TYPE = args.rtype.lower()
 
-    if not cfg.RESULT_TYPE in ["table", "audacity", "r", "kaleidoscope", "csv"]:
-        cfg.RESULT_TYPE = "table"
-
-    # Set number of threads
+def set_hardware_parameters():
     if os.path.isdir(cfg.INPUT_PATH):
         cfg.CPU_THREADS = max(1, int(args.threads))
         cfg.TFLITE_THREADS = 1
@@ -506,9 +543,40 @@ if __name__ == "__main__":
         cfg.CPU_THREADS = 1
         cfg.TFLITE_THREADS = max(1, int(args.threads))
 
-    # Set batch size
-    cfg.BATCH_SIZE = max(1, int(args.batchsize))
 
+def load_translated_labels():
+    cfg.TRANSLATED_LABELS_PATH = cfg.TRANSLATED_BAT_LABELS_PATH
+    lfile = os.path.join(cfg.TRANSLATED_LABELS_PATH,
+                         os.path.basename(cfg.LABELS_FILE).replace(".txt", "_{}.txt".format(args.locale))
+                         )
+    if args.locale not in ["en"] and os.path.isfile(lfile):
+        cfg.TRANSLATED_LABELS = utils.readLines(lfile)
+    else:
+        cfg.TRANSLATED_LABELS = cfg.LABELS
+
+
+def check_result_type():
+    cfg.RESULT_TYPE = args.rtype.lower()
+    if cfg.RESULT_TYPE not in ["table", "audacity", "r", "kaleidoscope", "csv"]:
+        cfg.RESULT_TYPE = "csv"
+        print("Unknown output option. Using csv output.")
+
+
+if __name__ == "__main__":
+    freeze_support()  # Freeze support for executable
+    parser = argparse.ArgumentParser(description="Analyze audio files with BattyBirdNET")
+    add_parser_arguments()
+    args = parser.parse_args()
+    set_paths()
+    load_ebird_codes()
+    set_custom_classifier()
+    check_result_type()
+    set_analysis_location()
+    load_translated_labels()
+    load_species_list()
+    parse_input_files()
+    set_analysis_parameters()
+    set_hardware_parameters()
     # Add config items to each file list entry.
     # We have to do this for Windows which does not
     # support fork() and thus each process has to
@@ -518,10 +586,10 @@ if __name__ == "__main__":
     # Analyze files
     if cfg.CPU_THREADS < 2:
         for entry in flist:
-            analyzeFile(entry)
+            analyze_file(entry)
     else:
         with Pool(cfg.CPU_THREADS) as p:
-            p.map(analyzeFile, flist)
+            p.map(analyze_file, flist)
 
     # A few examples to test
     # python3 analyze.py --i example/ --o example/ --slist example/ --min_conf 0.5 --threads 4
