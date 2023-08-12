@@ -81,7 +81,7 @@ This expects that your training data is contained in subfolders that have the fo
 
 
 ## Classifiers
-The classifiers are used together with BirdNET to identify the bats. The audio file you provide is resampled to 144kHz and presented to BirdNET in a sequences of one second. It can hence pick up frequencies of up to 144kHz/2  = 72kHz. While this is not as high as bats can go, it captures a large enough range for classifcation. The system can also be run at higher frequencies (see methods). Essentially, BirdNET believes that a bird made these one second bat sounds in three seconds. It generates a representation of the audio signal (embedding) which is then taken by the classifiers listed below to identify the bat. The classifier 'knows' that this is a bat and not a bird as BirdNET would believe.
+The classifiers are used together with BirdNET to identify the bats. The audio file you provide is resampled to 144kHz and presented to BirdNET in a sequences of one second. It can hence pick up frequencies of up to 144kHz/2  = 72kHz. While this is not as high as bats can go, it captures a large enough range for classifcation. The system can also be run at higher frequencies (see methods). Essentially, BirdNET believes that a bird made these one second bat sounds in three seconds. It generates a representation of the audio signal (embedding) which is then taken by the classifiers listed below to identify the bat. The classifier 'knows' that this is a bat and not a bird as BirdNET would believe. 
 
 | Classifier       |  Range      |     Training set size    | Validation loss and precision |
 |:-------|:------|:------| :------|
@@ -92,7 +92,6 @@ The classifiers are used together with BirdNET to identify the bats. The audio f
 | **UK** | Covers 16 species. | 1500+ calls. | val_loss: 0.0016 - val_prec: 0.9565
 
 Some occasional 'guests' are considered but definitely not all possible ones. The performance of the classifiers depends mostly on the quality and size of the data set used in training. The amount of samples for each species vary. So does the context of the calls. The BattyBirdNETs training data set contains free fly, hunting, social calls, calls during release and in enclosures. The amount of these vary for each species. To avoid overfitting, the classifiers were trained with noise.
-
 
 ## Install
 You can follow the same procedure as for the BirdNET-Analyzer [see here](./README_BIRDNET_ANALYZER.adoc). Just remember to use this repository.
@@ -107,7 +106,7 @@ There are several options available, most natably the area setting, e.g.
 ``` sh
 python3 bat_ident.py --area Scotland
 ```
-that uses a more area specific subset of bats and hence can reduce some classification erros. You can also set analysis related parameters such as 
+that uses a more area specific subset of bats and hence can reduce some classification erros. You can set the above classifiers via the '--area' flag. Further, you can also set analysis related parameters such as 
 
 ``` sh
 --min_conf  Minimum confidence threshold. Values in [0.01, 0.99]. Defaults to 0.1. 
