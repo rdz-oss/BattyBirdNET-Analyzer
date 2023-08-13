@@ -102,7 +102,7 @@ To identify bats, load your audio data into the folder named 'put-your-files-her
 python3 bat_ident.py
 ```
 is all you need to do to run an analysis on all autio files in that directory. Results will appear in a 'put-your-files-here/results' folder in .csv format. The audio files are analyzed and for each second one or two potential species are listed. These are the most likely bat species to made made the calls in that second.
-If you have an older version of python, you can upgrade or use the more verbose analyze.py
+You can also use the more verbose analyze.py
 ``` sh
 python3 analyze.py --i put-your-files-here/ --o put-your-files-here/results --classifier checkpoints/bats/v1.0/BattyBirdNET-Bavaria-144kHz.tflite
 ```
