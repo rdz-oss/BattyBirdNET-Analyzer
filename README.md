@@ -132,6 +132,13 @@ A more complex example might look like this
 python3 bat_ident.py --location Bavaria --i test_data/Bavaria --o test_data/Bavaria/results --min_conf 0.4 --overlap 0.3
 ```
 
+### Extracting identified segments
+One you ran bat_ident.py and have a resut file, you can obtain the segmented audio files sorted by detected species using 
+``` sh
+python3 segments.py --audio path/to/input/audio --results path/to/input/audio/results --o path/to/input/audio/segments
+```
+
+
 ## References
 
 ### Papers
