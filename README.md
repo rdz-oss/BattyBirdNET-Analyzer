@@ -133,11 +133,19 @@ python3 bat_ident.py --location Bavaria --i test_data/Bavaria --o test_data/Bava
 ```
 
 ### Extracting identified segments
-One you ran bat_ident.py and have a resut file, you can obtain the segmented audio files sorted by detected species using 
+One you ran bat_ident.py and have a result file, you can obtain the segmented audio files sorted by detected species using 
 ``` sh
 python3 segments.py --audio path/to/input/audio --results path/to/input/audio/results --o path/to/input/audio/segments
 ```
-
+If you have put your files in the folder 'put-your-files-here', the you can use
+``` sh
+python3 segments.py
+```
+If you use the above folder and know that you want to extract the segements, you can use
+``` sh
+python3 bat_ident.py --segment on
+```
+and it will generate the segemnts to 'put-your-files-here/segments'.
 
 ## References
 

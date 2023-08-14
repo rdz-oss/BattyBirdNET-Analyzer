@@ -13,6 +13,7 @@ import config as cfg
 import model
 import species
 import utils
+import subprocess
 
 def load_codes():
     """Loads the eBird codes.
@@ -435,6 +436,10 @@ def add_parser_arguments():
                         help="Minimum species occurrence frequency threshold for location filter. "
                              "Values in [0.01, 0.99]. Defaults to 0.03."
                         )
+    parser.add_argument("--segment",
+                        default="off",
+                        help="Generate audio files containing the detected segments. "
+                        )
     parser.add_argument("--i",
                         default=cfg.INPUT_PATH_SAMPLES,  # "put-your-files-here/",
                         help="Path to input file or folder. If this is a file, --o needs to be a file too.")
@@ -563,6 +568,8 @@ if __name__ == "__main__":
         with Pool(cfg.CPU_THREADS) as p:
             p.map(analyze_file, flist)
 
+    if args.segment == "on":
+        subprocess.run(["python3", "segments.py"])
     # A few examples to test
     # python3 analyze.py --i example/ --o example/ --slist example/ --min_conf 0.5 --threads 4
     # python3 analyze.py --i example/soundscape.wav --o example/soundscape.BirdNET.selection.table.txt --slist example/species_list.txt --threads 8

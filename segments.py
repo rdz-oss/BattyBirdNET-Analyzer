@@ -257,9 +257,9 @@ def extractSegments(item: tuple[tuple[str, list[dict]], float, dict[str]]):
 if __name__ == "__main__":
     # Parse arguments
     parser = argparse.ArgumentParser(description="Extract segments from audio files based on BirdNET detections.")
-    parser.add_argument("--audio", default="example/", help="Path to folder containing audio files.")
-    parser.add_argument("--results", default="example/", help="Path to folder containing result files.")
-    parser.add_argument("--o", default="example/", help="Output folder path for extracted segments.")
+    parser.add_argument("--audio", default="put-your-files-here/", help="Path to folder containing audio files.")
+    parser.add_argument("--results", default="put-your-files-here/results", help="Path to folder containing result files.")
+    parser.add_argument("--o", default="put-your-files-here/segments/", help="Output folder path for extracted segments.")
     parser.add_argument(
         "--min_conf", type=float, default=0.1, help="Minimum confidence threshold. Values in [0.01, 0.99]. Defaults to 0.1."
     )
