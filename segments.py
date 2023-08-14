@@ -63,8 +63,8 @@ def parseFolders(apath: str, rpath: str, allowed_result_filetypes: list[str] = [
     # Get all result files
     for root, _, files in os.walk(rpath):
         for f in files:
-            if f.rsplit(".", 1)[-1] in allowed_result_filetypes and ".BirdNET." in f:
-                data[f.split(".BirdNET.", 1)[0]]["result"] = os.path.join(root, f)
+            if f.rsplit(".", 1)[-1] in allowed_result_filetypes and ".bat." in f:
+                data[f.split(".bat.", 1)[0]]["result"] = os.path.join(root, f)
 
     # Convert to list
     flist = [f for f in data.values() if f["result"]]
@@ -205,7 +205,7 @@ def extractSegments(item: tuple[tuple[str, list[dict]], float, dict[str]]):
     afile = item[0][0]
     segments = item[0][1]
     seg_length = item[1]
-    cfg.setConfig(item[2])
+    cfg.set_config(item[2])
 
     # Status
     print(f"Extracting segments from {afile}")
@@ -290,7 +290,7 @@ if __name__ == "__main__":
     # We have to do this for Windows which does not
     # support fork() and thus each process has to
     # have its own config. USE LINUX!
-    flist = [(entry, max(cfg.SIG_LENGTH, float(args.seg_length)), cfg.getConfig()) for entry in cfg.FILE_LIST]
+    flist = [(entry, max(cfg.SIG_LENGTH, float(args.seg_length)), cfg.get_config()) for entry in cfg.FILE_LIST]
 
     # Extract segments
     if cfg.CPU_THREADS < 2:

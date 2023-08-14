@@ -7,31 +7,24 @@ import operator
 import os
 import sys
 from multiprocessing import Pool, freeze_support
-
 import numpy as np
-
 import audio
 import config as cfg
 import model
 import species
 import utils
 
-
 def load_codes():
     """Loads the eBird codes.
-
     Returns:
         A dictionary containing the eBird codes.
     """
     with open(cfg.CODES_FILE, "r") as cfile:
         codes = json.load(cfile)
-
     return codes
-
 
 def save_result_file(r: dict[str, list], path: str, afile_path: str):
     """Saves the results to the hard drive.
-
     Args:
         r: The dictionary with {segment: scores}.
         path: The path where the result should be saved.
@@ -48,7 +41,6 @@ def save_result_file(r: dict[str, list], path: str, afile_path: str):
         # Raven selection header
         header = "Selection\tView\tChannel\tBegin Time (s)\tEnd Time (s)\tSpecies Code\tCommon Name\tConfidence\n"
         selection_id = 0
-
         # Write header
         out_string += header
 
@@ -182,10 +174,8 @@ def save_result_file(r: dict[str, list], path: str, afile_path: str):
 
 def get_sorted_timestamps(results: dict[str, list]):
     """Sorts the results based on the segments.
-
     Args:
         results: The dictionary with {segment: scores}.
-
     Returns:
         Returns the sorted list of segments and their scores.
     """
@@ -194,12 +184,9 @@ def get_sorted_timestamps(results: dict[str, list]):
 
 def get_raw_audio_from_file(fpath: str):
     """Reads an audio file.
-
     Reads the file and splits the signal into chunks.
-
     Args:
         fpath: Path to the audio file.
-
     Returns:
         The signal split into a list of chunks.
     """
@@ -312,7 +299,6 @@ def analyze_file(item):
         # Write error log
         print(f"Error: Cannot analyze audio file {fpath}.\n", flush=True)
         utils.writeErrorLog(ex)
-
         return False
 
     # Save as selection table
@@ -330,9 +316,9 @@ def analyze_file(item):
             if cfg.RESULT_TYPE == "table":
                 rtype = "bat.selection.table.txt"
             elif cfg.RESULT_TYPE == "audacity":
-                rtype = "bat.results.txt"
+                rtype = ".bat.results.txt"
             else:
-                rtype = "bat.results.csv"
+                rtype = ".bat.results.csv"
 
             save_result_file(results, os.path.join(cfg.OUTPUT_PATH, rpath.rsplit(".", 1)[0] + rtype), fpath)
         else:
@@ -342,14 +328,11 @@ def analyze_file(item):
         # Write error log
         print(f"Error: Cannot save result for {fpath}.\n", flush=True)
         utils.writeErrorLog(ex)
-
         return False
 
     delta_time = (datetime.datetime.now() - start_time).total_seconds()
     print("Finished {} in {:.2f} seconds".format(fpath, delta_time), flush=True)
-
     return True
-
 
 def set_analysis_location():
     if args.area not in ["Bavaria", "EU", "Scotland", "UK", "USA"]:
@@ -388,7 +371,6 @@ def set_analysis_location():
     else:
         cfg.CUSTOM_CLASSIFIER = None
 
-
 def set_paths():
     # Set paths relative to script path (requested in #3)
     script_dir = os.path.dirname(os.path.abspath(sys.argv[0]))
@@ -402,7 +384,6 @@ def set_paths():
     cfg.INPUT_PATH = args.i
     cfg.OUTPUT_PATH = args.o
 
-
 def set_custom_classifier():
     if args.classifier is None:
         return
@@ -412,7 +393,6 @@ def set_custom_classifier():
     args.lat = -1
     args.lon = -1
     # args.locale = "en"
-
 
 def add_parser_arguments():
     parser.add_argument("--area",
@@ -490,11 +470,9 @@ def add_parser_arguments():
                         help="DISABLED. Defaults to 'en'."
                         )
 
-
 def load_ebird_codes():
     cfg.CODES = load_codes()
     cfg.LABELS = utils.readLines(cfg.LABELS_FILE)
-
 
 def load_species_list():
     cfg.LATITUDE, cfg.LONGITUDE, cfg.WEEK = args.lat, args.lon, args.week
@@ -519,7 +497,6 @@ def load_species_list():
     else:
         print(f"Species list contains {len(cfg.SPECIES_LIST)} species")
 
-
 def parse_input_files():
     if os.path.isdir(cfg.INPUT_PATH):
         cfg.FILE_LIST = utils.collect_audio_files(cfg.INPUT_PATH)
@@ -527,13 +504,11 @@ def parse_input_files():
     else:
         cfg.FILE_LIST = [cfg.INPUT_PATH]
 
-
 def set_analysis_parameters():
     cfg.MIN_CONFIDENCE = max(0.01, min(0.99, float(args.min_conf)))
     cfg.SIGMOID_SENSITIVITY = max(0.5, min(1.0 - (float(args.sensitivity) - 1.0), 1.5))
     cfg.SIG_OVERLAP = max(0.0, min(2.9, float(args.overlap)))
     cfg.BATCH_SIZE = max(1, int(args.batchsize))
-
 
 def set_hardware_parameters():
     if os.path.isdir(cfg.INPUT_PATH):
@@ -542,7 +517,6 @@ def set_hardware_parameters():
     else:
         cfg.CPU_THREADS = 1
         cfg.TFLITE_THREADS = max(1, int(args.threads))
-
 
 def load_translated_labels():
     cfg.TRANSLATED_LABELS_PATH = cfg.TRANSLATED_BAT_LABELS_PATH
@@ -554,13 +528,11 @@ def load_translated_labels():
     else:
         cfg.TRANSLATED_LABELS = cfg.LABELS
 
-
 def check_result_type():
     cfg.RESULT_TYPE = args.rtype.lower()
     if cfg.RESULT_TYPE not in ["table", "audacity", "r", "kaleidoscope", "csv"]:
         cfg.RESULT_TYPE = "csv"
         print("Unknown output option. Using csv output.")
-
 
 if __name__ == "__main__":
     freeze_support()  # Freeze support for executable
