@@ -12,6 +12,7 @@ from multiprocessing import freeze_support
 import bottle
 
 import analyze
+import bat_ident
 import config as cfg
 import species
 import utils
@@ -147,7 +148,7 @@ def handleRequest():
             cfg.SPECIES_LIST = []
 
         # Analyze file
-        success = analyze.analyzeFile((file_path, cfg.getConfig()))
+        success = analyze.analyzeFile((file_path, cfg.get_config()))
 
         # Parse results
         if success:
@@ -190,6 +191,42 @@ def handleRequest():
     finally:
         if file_path_tmp:
             os.unlink(file_path_tmp.name)
+def set_analysis_location():
+    if args.area not in ["Bavaria", "EU", "Scotland", "UK", "USA"]:
+        exit(code="Unknown location option.")
+    else:
+        args.lat = -1
+        args.lon = -1
+        # args.locale = "en"
+
+    if args.area == "Bavaria":
+        cfg.CUSTOM_CLASSIFIER = cfg.BAT_CLASSIFIER_LOCATION + "/BattyBirdNET-Bavaria-144kHz.tflite"
+        cfg.LABELS_FILE = cfg.BAT_CLASSIFIER_LOCATION + "/BattyBirdNET-Bavaria-144kHz_Labels.txt"
+        cfg.LABELS = utils.readLines(cfg.LABELS_FILE)
+        args.locale = "de"
+
+    elif args.area == "EU":
+        cfg.CUSTOM_CLASSIFIER = cfg.BAT_CLASSIFIER_LOCATION + "/BattyBirdNET-EU-144kHz.tflite"
+        cfg.LABELS_FILE = cfg.BAT_CLASSIFIER_LOCATION + "/BattyBirdNET-EU-144kHz_Labels.txt"
+        cfg.LABELS = utils.readLines(cfg.LABELS_FILE)
+
+    elif args.area == "Scotland":
+        cfg.CUSTOM_CLASSIFIER = cfg.BAT_CLASSIFIER_LOCATION + "/BattyBirdNET-Scotland-144kHz.tflite"
+        cfg.LABELS_FILE = cfg.BAT_CLASSIFIER_LOCATION + "/BattyBirdNET-Scotland-144kHz_Labels.txt"
+        cfg.LABELS = utils.readLines(cfg.LABELS_FILE)
+
+    elif args.area == "UK":
+        cfg.CUSTOM_CLASSIFIER = cfg.BAT_CLASSIFIER_LOCATION + "/BattyBirdNET-UK-144kHz.tflite"
+        cfg.LABELS_FILE = cfg.BAT_CLASSIFIER_LOCATION + "/BattyBirdNET-UK-144kHz_Labels.txt"
+        cfg.LABELS = utils.readLines(cfg.LABELS_FILE)
+
+    elif args.area == "USA":
+        cfg.CUSTOM_CLASSIFIER = cfg.BAT_CLASSIFIER_LOCATION + "/BattyBirdNET-USA-144kHz.tflite"
+        cfg.LABELS_FILE = cfg.BAT_CLASSIFIER_LOCATION + "/BattyBirdNET-USA-144kHz_Labels.txt"
+        cfg.LABELS = utils.readLines(cfg.LABELS_FILE)
+
+    else:
+        cfg.CUSTOM_CLASSIFIER = None
 
 
 if __name__ == "__main__":
@@ -211,9 +248,12 @@ if __name__ == "__main__":
         default="en",
         help="Locale for translated species common names. Values in ['af', 'de', 'it', ...] Defaults to 'en'.",
     )
+    parser.add_argument("--area",
+                        default="EU",
+                        help="Location. Values in ['Bavaria', 'EU', 'Scotland', 'UK' or 'USA']. Defaults to Bavaria.")
 
     args = parser.parse_args()
-
+    set_analysis_location()
     # Load eBird codes, labels
     cfg.CODES = analyze.loadCodes()
     cfg.LABELS = utils.readLines(cfg.LABELS_FILE)
@@ -242,7 +282,6 @@ if __name__ == "__main__":
 
     # Set result type
     cfg.RESULT_TYPE = "audacity"
-
     # Set number of TFLite threads
     cfg.TFLITE_THREADS = max(1, int(args.threads))
 
