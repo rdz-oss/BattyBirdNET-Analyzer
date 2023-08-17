@@ -147,6 +147,17 @@ python3 bat_ident.py --segment on
 ```
 and it will generate the segemnts to 'put-your-files-here/segments'.
 
+### REST API
+You can start an API service to analyze your bat calls locally or remotely. You set the area once when you start the API service
+``` sh
+python3 python3 server.py --area EU
+```
+e.g. using the client.py or from your remote/local application
+``` sh
+python3 python3 client.py --i path/to/ausio.wav
+```
+
+
 ## References
 
 ### Papers
