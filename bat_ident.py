@@ -373,6 +373,7 @@ def set_analysis_location():
         cfg.CUSTOM_CLASSIFIER = cfg.BAT_CLASSIFIER_LOCATION + "/BattyBirdNET-Sweden-144kHz.tflite"
         cfg.LABELS_FILE = cfg.BAT_CLASSIFIER_LOCATION + "/BattyBirdNET-Sweden-144kHz_Labels.txt"
         cfg.LABELS = utils.readLines(cfg.LABELS_FILE)
+        args.locale = "se"
 
     else:
         cfg.CUSTOM_CLASSIFIER = None
