@@ -1,0 +1,19 @@
+Barbastella barbastellus_Barbastell
+Eptesicus nilssonii_Nordfladdermus
+Eptesicus serotinus_Sydfladdermus
+Myotis bechsteinii_Bechsteins fladdermus
+Myotis brandtii_Taigafladdermus
+Myotis dasycneme_Dammfladdermus
+Myotis daubentonii_Vattenfladdermus
+Myotis myotis_Större musöra
+Myotis mystacinus_Mustaschfladdermus
+Myotis nattereri_Fransfladdermus
+NOISE
+Nyctalus leisleri_Mindre brunfladdermus
+Nyctalus noctula_Större brunfladdermus
+Pipistrellus kuhlii_Parkpipistrell
+Pipistrellus nathusii_Trollpipistrell
+Pipistrellus pipistrellus_Sydpipistrell
+Pipistrellus pygmaeus_Dvärgpipistrell
+Plecotus spec._Brunlångöra
+Vespertilio murinus_Gråskimlig fladdermus

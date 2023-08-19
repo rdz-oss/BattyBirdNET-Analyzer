@@ -336,7 +336,7 @@ def analyze_file(item):
     return True
 
 def set_analysis_location():
-    if args.area not in ["Bavaria", "EU", "Scotland", "UK", "USA"]:
+    if args.area not in ["Bavaria", "Sweden", "EU", "Scotland", "UK", "USA"]:
         exit(code="Unknown location option.")
     else:
         args.lat = -1
@@ -369,6 +369,11 @@ def set_analysis_location():
         cfg.LABELS_FILE = cfg.BAT_CLASSIFIER_LOCATION + "/BattyBirdNET-USA-144kHz_Labels.txt"
         cfg.LABELS = utils.readLines(cfg.LABELS_FILE)
 
+    elif args.area == "Sweden":
+        cfg.CUSTOM_CLASSIFIER = cfg.BAT_CLASSIFIER_LOCATION + "/BattyBirdNET-Sweden-144kHz.tflite"
+        cfg.LABELS_FILE = cfg.BAT_CLASSIFIER_LOCATION + "/BattyBirdNET-Sweden-144kHz_Labels.txt"
+        cfg.LABELS = utils.readLines(cfg.LABELS_FILE)
+
     else:
         cfg.CUSTOM_CLASSIFIER = None
 
@@ -398,7 +403,7 @@ def set_custom_classifier():
 def add_parser_arguments():
     parser.add_argument("--area",
                         default="EU",
-                        help="Location. Values in ['Bavaria', 'EU', 'Scotland', 'UK' or 'USA']. Defaults to Bavaria.")
+                        help="Location. Values in ['Bavaria', 'EU', 'Sweden','Scotland', 'UK' or 'USA']. Defaults to Bavaria.")
 
     parser.add_argument("--sensitivity",
                         type=float,
