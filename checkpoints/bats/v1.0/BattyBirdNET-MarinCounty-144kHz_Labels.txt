@@ -1,0 +1,16 @@
+Antrozous pallidus_Pallid bat
+Corynorhinus townsendii_Townsend's big-eared bat
+Eptesicus fuscus_Big brown bat
+Eumops perotis_Greater mastiff bat
+Lasionycteris noctivagans_Silver-haired bat
+Lasiurus blossevillii_Western red bat
+Lasiurus cinereus_Hoary bat
+Myotis californicus_California bat
+Myotis evotis_Western long-eared bat
+Myotis lucifugus_Little brown bat
+Myotis thysanodes_Fringed bat
+Myotis volans_Long-legged bat
+Myotis yumanensis_Yuma bat
+NOISE
+Parastrellus hesperus_Canyon bat
+Tadarida brasiliensis_Brazilian free-tailed bat
