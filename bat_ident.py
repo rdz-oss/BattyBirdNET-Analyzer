@@ -171,6 +171,7 @@ def save_result_file(r: dict[str, list], path: str, afile_path: str):
     # Save as file
     with open(path, "w", encoding="utf-8") as rfile:
         rfile.write(out_string)
+    return out_string
 
 
 def get_sorted_timestamps(results: dict[str, list]):
@@ -321,9 +322,15 @@ def analyze_file(item):
             else:
                 rtype = ".bat.results.csv"
 
-            save_result_file(results, os.path.join(cfg.OUTPUT_PATH, rpath.rsplit(".", 1)[0] + rtype), fpath)
+            out_string = save_result_file(results, os.path.join(cfg.OUTPUT_PATH, rpath.rsplit(".", 1)[0] + rtype), fpath)
         else:
-            save_result_file(results, cfg.OUTPUT_PATH, fpath)
+            out_string = save_result_file(results, cfg.OUTPUT_PATH, fpath)
+            # Save as file
+        with open(cfg.OUTPUT_PATH + "Results.csv", "a", encoding="utf-8") as rfile:
+            postString = out_string.split("\n", 1)[1]
+            # rfile.write(fpath.join(postString.splitlines(True)))
+            rfile.write("\n"+fpath+"\n")
+            rfile.write(postString)
 
     except Exception as ex:
         # Write error log
