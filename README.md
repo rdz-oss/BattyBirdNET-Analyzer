@@ -87,7 +87,9 @@ The classifiers are used together with BirdNET to identify the bats. The audio f
 |:-------|:------|:------| :------|
 |**EU** | Covers 29 species. |  2200+ calls. | val_loss: 0.0017 - val_prec: 0.9605
 |**Bavaria** | Covers 24 species. |  2000+ calls  |  val_loss: 0.0016 - val_prec: 0.9675
+|**Sweden** | Covers 18 species. |    |  val_loss: 0.0013 - val_prec: 0.9335
 |**USA** | Covers 34 species. | max. 200 calls/species.  |  val_loss: 0.0081 - val_prec: 0.9396
+|**MarinCounty** | California |   |  val_loss: 0.0080 - val_prec: 0.9266
 |**Scotland** | Covers 10 species. |  1200+ calls. | val_loss: 0.0044 - val_prec: 0.9474
 | **UK** | Covers 16 species. | 1500+ calls. | val_loss: 0.0016 - val_prec: 0.9565
 
@@ -132,7 +134,7 @@ A more complex example might look like this
 python3 bat_ident.py --location Bavaria --i test_data/Bavaria --o test_data/Bavaria/results --min_conf 0.4 --overlap 0.3
 ```
 
-### Extracting identified segments
+### Extracting identified segments and plotting spectrograms
 Once you ran bat_ident.py and have a result file, you can obtain the segmented audio files sorted by detected species using 
 ``` sh
 python3 segments.py --audio path/to/input/audio --results path/to/input/audio/results --o path/to/input/audio/segments
@@ -145,7 +147,11 @@ If you use the above folder and know that you want to extract the segements at t
 ``` sh
 python3 bat_ident.py --segment on
 ```
-and it will generate the segemnts to 'put-your-files-here/segments'.
+and it will generate the segemnts to 'put-your-files-here/segments'. If you have installed the rogram 'sox' on your system (or sox.exe, a command line tool) and it is in your shells path variable, you can segment and generate .png images of the corresponding diagramy by using
+``` sh
+python3 bat_ident.py --spectrum on
+```
+
 
 ### REST API - Online service
 You can start an API service to analyze your bat calls locally or remotely. You set the area and other parameters once when you start the API service that can then answer http requests

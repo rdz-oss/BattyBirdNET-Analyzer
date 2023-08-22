@@ -14,6 +14,8 @@ import model
 import species
 import utils
 import subprocess
+import pathlib
+
 
 def load_codes():
     """Loads the eBird codes.
@@ -459,6 +461,10 @@ def add_parser_arguments():
                         default="off",
                         help="Generate audio files containing the detected segments. "
                         )
+    parser.add_argument("--spectrum",
+                        default="off",
+                        help="Generate mel spectrograms files containing the detected segments. "
+                        )
     parser.add_argument("--i",
                         default=cfg.INPUT_PATH_SAMPLES,  # "put-your-files-here/",
                         help="Path to input file or folder. If this is a file, --o needs to be a file too.")
@@ -587,9 +593,24 @@ if __name__ == "__main__":
         with Pool(cfg.CPU_THREADS) as p:
             p.map(analyze_file, flist)
 
-    if args.segment == "on":
+    if args.segment == "on" or args.spectrum == "on":
         subprocess.run(["python3", "segments.py"])
+
+        if args.spectrum == "on":
+            # iterate through the segements folder subfolders, call the plotter
+            print("Spectrums in progress ...")
+            script_dir = os.path.dirname(os.path.abspath(sys.argv[0]))
+            root_dir = pathlib.Path(os.path.join(script_dir, args.i + "/segments"))
+            for dir_name in os.listdir(root_dir):
+                f = os.path.join(root_dir, dir_name)
+                if not os.path.isfile(f):
+                    print("Spectrum in progres for: " + f)
+                    cmd = ['python3', "batchspec.py", f, f]
+                    subprocess.run(cmd)
     # A few examples to test
     # python3 analyze.py --i example/ --o example/ --slist example/ --min_conf 0.5 --threads 4
     # python3 analyze.py --i example/soundscape.wav --o example/soundscape.BirdNET.selection.table.txt --slist example/species_list.txt --threads 8
     # python3 analyze.py --i example/ --o example/ --lat 42.5 --lon -76.45 --week 4 --sensitivity 1.0 --rtype table --locale de
+
+
+
