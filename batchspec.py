@@ -61,7 +61,7 @@ def main(source_directory, dest_directory, sox_path):
         file_output_path = dest_directory / (file.stem + '.png')
 
         print('Processing {}'.format(file.name))
-        subprocess.run([sox_path, file.absolute(), '-n', 'spectrogram', '-o', file_output_path])
+        subprocess.run([sox_path, file.absolute(), '-n', 'spectrogram', '-o', file_output_path, '-X', '2000'])
 
     print('DONE')
 
