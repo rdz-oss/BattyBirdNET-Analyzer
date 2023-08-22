@@ -98,6 +98,8 @@ Some occasional 'guests' are considered but definitely not all possible ones. Th
 ## Install
 You can follow the same procedure as for the BirdNET-Analyzer [see here](./README_BIRDNET_ANALYZER.adoc). Just remember to use this repository.
 
+If you want to generate spectrograms, you need to install 'sox' for your platform and make sur it is in your systems PATH variable.
+
 ## Usage
 To identify bats, load your audio data into the folder named 'put-your-files-here'. The files can be in .wav (recommended), .flac, .mp3, .ogg or .m4a format.  The analysis is set to standard settings that should work for most by default. If you are fine with the EU classfier and hava python 3.10 version installed (check with python3 --version), then
 ``` sh
