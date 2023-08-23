@@ -44,6 +44,41 @@ def validate(value, msg):
         raise gr.Error(msg)
 
 
+def runBatchAnalysis(
+    output_path,
+    confidence,
+    sensitivity,
+    overlap,
+    species_list_choice,
+    locale,
+    batch_size,
+    threads,
+    input_dir,
+    output_type_radio,
+    progress=gr.Progress(),
+):
+    validate(input_dir, "Please select a directory.")
+    batch_size = int(batch_size)
+    threads = int(threads)
+
+    return runAnalysis(
+        species_list_choice,
+        None,
+        output_path,
+        confidence,
+        sensitivity,
+        overlap,
+        output_type_radio,
+        "en" if not locale else locale,
+        batch_size,
+        threads,
+        input_dir,
+        progress,
+    )
+
+
+
+
 def runSingleFileAnalysis(input_path,
                           confidence,
                           sensitivity,
@@ -484,6 +519,79 @@ def build_single_analysis_tab():
                                   outputs=output_dataframe,
                                   )
 
+
+def build_multi_analysis_tab():
+    with gr.Tab("Multiple files"):
+        input_directory_state = gr.State()
+        output_directory_predict_state = gr.State()
+        with gr.Row():
+            with gr.Column():
+                select_directory_btn = gr.Button("Select directory (recursive)")
+                directory_input = gr.Matrix(interactive=False, elem_classes="mh-200", headers=["Subpath", "Length"])
+
+                def select_directory_on_empty():
+                    res = select_directory()
+
+                    return res if res[1] else [res[0], [["No files found"]]]
+
+                select_directory_btn.click(
+                    select_directory_on_empty, outputs=[input_directory_state, directory_input], show_progress=True
+                )
+
+            with gr.Column():
+                select_out_directory_btn = gr.Button("Select output directory.")
+                selected_out_textbox = gr.Textbox(
+                    label="Output directory",
+                    interactive=False,
+                    placeholder="If not selected, the input directory will be used.",
+                )
+
+                def select_directory_wrapper():
+                    return (select_directory(collect_files=False),) * 2
+
+                select_out_directory_btn.click(
+                    select_directory_wrapper,
+                    outputs=[output_directory_predict_state, selected_out_textbox],
+                    show_progress=False,
+                )
+
+        confidence_slider, sensitivity_slider, overlap_slider = sample_sliders()
+        species_list_radio = species_lists(False)
+
+        output_type_radio = gr.Radio(
+            list(OUTPUT_TYPE_MAP.keys()),
+            value="Raven selection table",
+            label="Result type",
+            info="Specifies output format.",
+        )
+
+        with gr.Row():
+            batch_size_number = gr.Number(
+                precision=1, label="Batch size", value=1, info="Number of samples to process at the same time."
+            )
+            threads_number = gr.Number(precision=1, label="Threads", value=4, info="Number of CPU threads.")
+
+        locale_radio = locale()
+
+        start_batch_analysis_btn = gr.Button("Analyze")
+
+        result_grid = gr.Matrix(headers=["File", "Execution"], elem_classes="mh-200")
+
+        inputs = [
+            output_directory_predict_state,
+            confidence_slider,
+            sensitivity_slider,
+            overlap_slider,
+            species_list_radio,
+            locale_radio,
+            batch_size_number,
+            threads_number,
+            input_directory_state,
+            output_type_radio
+        ]
+
+        start_batch_analysis_btn.click(runBatchAnalysis, inputs=inputs, outputs=result_grid)
+
 def build_segments_tab():
     with gr.Tab("Segments"):
         audio_directory_state = gr.State()
@@ -559,6 +667,7 @@ if __name__ == "__main__":
         analytics_enabled=False,
     ) as demo:
         build_single_analysis_tab()
+        build_multi_analysis_tab()
         build_segments_tab()
 
     url = demo.queue(api_open=False).launch(prevent_thread_lock=True, quiet=True)[1]
