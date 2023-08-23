@@ -6,7 +6,7 @@ import gradio as gr
 import webview
 import analyze
 import config as cfg
-import species
+import segments
 import utils
 import logging
 logging.basicConfig(filename='bat_gui.log', encoding='utf-8', level=logging.DEBUG)
@@ -247,6 +247,64 @@ def runAnalysis(
                 result_list.append(result)
     return [[os.path.relpath(r[0], input_dir), r[1]] for r in result_list] if input_dir else cfg.OUTPUT_PATH
 
+def extractSegments_wrapper(entry):
+    return (entry[0][0], segments.extractSegments(entry))
+def extract_segments(audio_dir, result_dir, output_dir, min_conf, num_seq, seq_length, threads, progress=gr.Progress()):
+    validate(audio_dir, "No audio directory selected")
+
+    if not result_dir:
+        result_dir = audio_dir
+
+    if not output_dir:
+        output_dir = audio_dir
+
+    if progress is not None:
+        progress(0, desc="Searching files ...")
+
+
+    # Parse audio and result folders
+    cfg.FILE_LIST = segments.parseFolders(audio_dir, result_dir)
+
+    # Set output folder
+    cfg.OUTPUT_PATH = output_dir
+
+    # Set number of threads
+    cfg.CPU_THREADS = int(threads)
+
+    # Set confidence threshold
+    cfg.MIN_CONFIDENCE = max(0.01, min(0.99, min_conf))
+
+    # Parse file list and make list of segments
+    cfg.FILE_LIST = segments.parseFiles(cfg.FILE_LIST, max(1, int(num_seq)))
+
+    # Add config items to each file list entry.
+    # We have to do this for Windows which does not
+    # support fork() and thus each process has to
+    # have its own config. USE LINUX!
+    flist = [(entry, max(cfg.SIG_LENGTH, float(seq_length)), cfg.get_config()) for entry in cfg.FILE_LIST]
+
+    result_list = []
+
+    # Extract segments
+    if cfg.CPU_THREADS < 2:
+        for i, entry in enumerate(flist):
+            result = extractSegments_wrapper(entry)
+            result_list.append(result)
+
+            if progress is not None:
+                progress((i, len(flist)), total=len(flist), unit="files")
+    else:
+        with concurrent.futures.ProcessPoolExecutor(max_workers=cfg.CPU_THREADS) as executor:
+            futures = (executor.submit(extractSegments_wrapper, arg) for arg in flist)
+            for i, f in enumerate(concurrent.futures.as_completed(futures), start=1):
+                if progress is not None:
+                    progress((i, len(flist)), total=len(flist), unit="files")
+                result = f.result()
+
+                result_list.append(result)
+
+    return [[os.path.relpath(r[0], audio_dir), r[1]] for r in result_list]
+
 
 def select_file(filetypes=()):
     """Creates a file selection dialog.
@@ -257,6 +315,34 @@ def select_file(filetypes=()):
     """
     files = _WINDOW.create_file_dialog(webview.OPEN_DIALOG, file_types=filetypes)
     return files[0] if files else None
+
+def select_directory(collect_files=True):
+    """Shows a directory selection system dialog.
+
+    Uses the pywebview to create a system dialog.
+
+    Args:
+        collect_files: If True, also lists a files inside the directory.
+
+    Returns:
+        If collect_files==True, returns (directory path, list of (relative file path, audio length))
+        else just the directory path.
+        All values will be None of the dialog is cancelled.
+    """
+    dir_name = _WINDOW.create_file_dialog(webview.FOLDER_DIALOG)
+
+    if collect_files:
+        if not dir_name:
+            return None, None
+
+        files = utils.collect_audio_files(dir_name[0])
+
+        return dir_name[0], [
+            [os.path.relpath(file, dir_name[0]), format_seconds(librosa.get_duration(filename=file))] for file in files
+        ]
+
+    return dir_name[0] if dir_name else None
+
 
 def show_species_choice(choice: str):
     """Sets the visibility of the species list choices.
@@ -381,6 +467,74 @@ def build_single_analysis_tab():
                                   outputs=output_dataframe
                                   )
 
+def build_segments_tab():
+    with gr.Tab("Segments"):
+        audio_directory_state = gr.State()
+        result_directory_state = gr.State()
+        output_directory_state = gr.State()
+
+        def select_directory_to_state_and_tb():
+            return (select_directory(collect_files=False),) * 2
+
+        with gr.Row():
+            select_audio_directory_btn = gr.Button("Select audio directory (recursive)")
+            selected_audio_directory_tb = gr.Textbox(show_label=False, interactive=False)
+            select_audio_directory_btn.click(
+                select_directory_to_state_and_tb,
+                outputs=[selected_audio_directory_tb, audio_directory_state],
+                show_progress=False,
+            )
+
+        with gr.Row():
+            select_result_directory_btn = gr.Button("Select result directory")
+            selected_result_directory_tb = gr.Textbox(
+                show_label=False, interactive=False, placeholder="Same as audio directory if not selected"
+            )
+            select_result_directory_btn.click(
+                select_directory_to_state_and_tb,
+                outputs=[result_directory_state, selected_result_directory_tb],
+                show_progress=False,
+            )
+
+        with gr.Row():
+            select_output_directory_btn = gr.Button("Select output directory")
+            selected_output_directory_tb = gr.Textbox(
+                show_label=False, interactive=False, placeholder="Same as audio directory if not selected"
+            )
+            select_output_directory_btn.click(
+                select_directory_to_state_and_tb,
+                outputs=[selected_output_directory_tb, output_directory_state],
+                show_progress=False,
+            )
+
+        min_conf_slider = gr.Slider(
+            minimum=0.1, maximum=0.99, step=0.01, label="Minimum confidence", info="Minimum confidence threshold."
+        )
+        num_seq_number = gr.Number(
+            100, label="Max number of segments", info="Maximum number of randomly extracted segments per species."
+        )
+        seq_length_number = gr.Number(3.0, label="Sequence length", info="Length of extracted segments in seconds.")
+        threads_number = gr.Number(4, label="Threads", info="Number of CPU threads.")
+
+        extract_segments_btn = gr.Button("Extract segments")
+
+        result_grid = gr.Matrix(headers=["File", "Execution"], elem_classes="mh-200")
+
+        extract_segments_btn.click(
+            extract_segments,
+            inputs=[
+                audio_directory_state,
+                result_directory_state,
+                output_directory_state,
+                min_conf_slider,
+                num_seq_number,
+                seq_length_number,
+                threads_number,
+            ],
+            outputs=result_grid,
+        )
+
+
 if __name__ == "__main__":
     freeze_support()
     with gr.Blocks(
@@ -389,6 +543,7 @@ if __name__ == "__main__":
         analytics_enabled=False,
     ) as demo:
         build_single_analysis_tab()
+        build_segments_tab()
 
     url = demo.queue(api_open=False).launch(prevent_thread_lock=True, quiet=True)[1]
     _WINDOW = webview.create_window("BattyBirdNET-Analyzer", url.rstrip("/") +
