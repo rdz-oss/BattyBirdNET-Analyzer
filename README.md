@@ -101,6 +101,7 @@ You can follow the same procedure as for the BirdNET-Analyzer [see here](./READM
 If you want to generate spectrograms, you need to install 'sox' for your platform and make sure it is in your systems PATH variable.
 
 ## Usage
+### Clients analyze.py and bat_ident.py
 To identify bats, load your audio data into the folder named 'put-your-files-here'. The files can be in .wav (recommended), .flac, .mp3, .ogg or .m4a format.  The analysis is set to standard settings that should work for most by default. If you are fine with the EU classfier and hava python 3.10 version installed (check with python3 --version), then
 ``` sh
 python3 bat_ident.py
@@ -136,6 +137,17 @@ A more complex example might look like this
 python3 bat_ident.py --location Bavaria --i test_data/Bavaria --o test_data/Bavaria/results --min_conf 0.4 --overlap 0.3
 ```
 
+### Graphical user interface
+Currently singel file analysis is supported with English labels. You need to have pywebview and gradle installed, e.g. by
+``` sh
+pip3 install pywebview gradle
+```
+To start the GUI, use
+``` sh
+python3 bat_gui.py
+```
+it opens up a window and alternatively, you can use it from your browser on http://127.0.0.1:7860 .
+
 ### Extracting identified segments and plotting spectrograms
 Once you ran bat_ident.py and have a result file, you can obtain the segmented audio files sorted by detected species using 
 ``` sh
@@ -162,7 +174,7 @@ python3 server.py --area EU
 ```
 e.g. using the client.py or from your remote/local application
 ``` sh
-python3 client.py --i path/to/ausio.wav
+python3 client.py --i path/to/audio.wav
 ```
 
 
