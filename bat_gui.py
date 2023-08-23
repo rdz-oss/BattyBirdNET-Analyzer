@@ -426,7 +426,7 @@ def locale():
     label_files = os.listdir(os.path.join(os.path.dirname(sys.argv[0]), ORIGINAL_TRANSLATED_LABELS_PATH))
     options = ["EN"] + [label_file.rsplit("_", 1)[-1].split(".")[0].upper() for label_file in label_files]
 
-    return gr.Dropdown(options, value="EN", label="Locale", info="Locale for the translated species common names.")
+    return gr.Dropdown(options, value="EN", label="Locale", info="Locale for the translated species common names.",visible=False)
 
 def species_lists(opened=True):
     """Creates the gradio accordion for species selection.
@@ -550,9 +550,6 @@ def build_segments_tab():
             ],
             outputs=result_grid,
         )
-
-
-
 
 if __name__ == "__main__":
     freeze_support()
