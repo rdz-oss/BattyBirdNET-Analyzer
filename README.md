@@ -100,6 +100,8 @@ You can follow the same procedure as for the BirdNET-Analyzer [see here](./READM
 
 If you want to generate spectrograms, you need to install 'sox' for your platform and make sure it is in your systems PATH variable.
 
+To use the graphical UI, you will need to upse pip3 to install pywebview and gradle.
+
 ## Usage
 ### Clients analyze.py and bat_ident.py
 To identify bats, load your audio data into the folder named 'put-your-files-here'. The files can be in .wav (recommended), .flac, .mp3, .ogg or .m4a format.  The analysis is set to standard settings that should work for most by default. If you are fine with the EU classfier and hava python 3.10 version installed (check with python3 --version), then
