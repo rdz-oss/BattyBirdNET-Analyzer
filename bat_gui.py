@@ -4,11 +4,12 @@ import sys
 from multiprocessing import freeze_support
 import gradio as gr
 import webview
-import analyze
+import bat_ident
 import config as cfg
 import segments
 import utils
 import logging
+import librosa
 logging.basicConfig(filename='bat_gui.log', encoding='utf-8', level=logging.DEBUG)
 
 _WINDOW: webview.Window
@@ -30,8 +31,8 @@ ORIGINAL_LABELS_FILE = cfg.LABELS_FILE
 ORIGINAL_TRANSLATED_LABELS_PATH = cfg.TRANSLATED_BAT_LABELS_PATH # cfg.TRANSLATED_LABELS_PATH
 
 def analyzeFile_wrapper(entry):
-    return (entry[0], analyze.analyzeFile(entry))
-
+    #return (entry[0], analyze.analyzeFile(entry))
+    return (entry[0], bat_ident.analyze_file(entry))
 def validate(value, msg):
     """Checks if the value ist not falsy.
     If the value is falsy, an error will be raised.
@@ -105,14 +106,13 @@ def runAnalysis(
     logging.info('second level')
     if progress is not None:
         progress(0, desc="Preparing ...")
-    locale = locale.lower()
+    # locale = locale.lower()
     # Load eBird codes, labels
-    cfg.CODES = analyze.loadCodes()
-    cfg.LABELS = utils.readLines(ORIGINAL_LABELS_FILE)
+    #cfg.CODES = analyze.loadCodes()
+    # cfg.LABELS = utils.readLines(ORIGINAL_LABELS_FILE)
     cfg.LATITUDE, cfg.LONGITUDE, cfg.WEEK = -1, -1, -1
     cfg.LOCATION_FILTER_THRESHOLD = 0.03
     script_dir = os.path.dirname(os.path.abspath(sys.argv[0]))
-    print("Systempfad: " + script_dir)
     cfg.BAT_CLASSIFIER_LOCATION = os.path.join(script_dir, cfg.BAT_CLASSIFIER_LOCATION)
 
     if species_list_choice == "Bavaria":
@@ -176,7 +176,7 @@ def runAnalysis(
         locale = "en"
 
     # Load translated labels
-    lfile = os.path.join(cfg.TRANSLATED_LABELS_PATH,
+    lfile = os.path.join(cfg.TRANSLATED_BAT_LABELS_PATH,
                          os.path.basename(cfg.LABELS_FILE).replace(".txt", f"_{locale}.txt"))
     if not locale in ["en"] and os.path.isfile(lfile):
         cfg.TRANSLATED_LABELS = utils.readLines(lfile)
@@ -238,8 +238,10 @@ def runAnalysis(
             result = analyzeFile_wrapper(entry)
             result_list.append(result)
     else:
+        executor = None
         with concurrent.futures.ProcessPoolExecutor(max_workers=cfg.CPU_THREADS) as executor:
             futures = (executor.submit(analyzeFile_wrapper, arg) for arg in flist)
+
             for i, f in enumerate(concurrent.futures.as_completed(futures), start=1):
                 if progress is not None:
                     progress((i, len(flist)), total=len(flist), unit="files")
@@ -315,6 +317,22 @@ def select_file(filetypes=()):
     """
     files = _WINDOW.create_file_dialog(webview.OPEN_DIALOG, file_types=filetypes)
     return files[0] if files else None
+
+def format_seconds(secs: float):
+    """Formats a number of seconds into a string.
+
+    Formats the seconds into the format "h:mm:ss.ms"
+
+    Args:
+        secs: Number of seconds.
+
+    Returns:
+        A string with the formatted seconds.
+    """
+    hours, secs = divmod(secs, 3600)
+    minutes, secs = divmod(secs, 60)
+
+    return "{:2.0f}:{:02.0f}:{:06.3f}".format(hours, minutes, secs)
 
 def select_directory(collect_files=True):
     """Shows a directory selection system dialog.
@@ -440,7 +458,6 @@ def species_lists(opened=True):
 # Design main frame for analysis of a single file
 #
 def build_single_analysis_tab():
-    print("Building tab !")
     with gr.Tab("Single file"):
         audio_input = gr.Audio(type="filepath", label="file", elem_id="single_file_audio")
         confidence_slider, sensitivity_slider, overlap_slider = sample_sliders(False)
@@ -464,7 +481,7 @@ def build_single_analysis_tab():
         single_file_analyze = gr.Button("Analyze")
         single_file_analyze.click(runSingleFileAnalysis,
                                   inputs=inputs,
-                                  outputs=output_dataframe
+                                  outputs=output_dataframe,
                                   )
 
 def build_segments_tab():
@@ -533,6 +550,8 @@ def build_segments_tab():
             ],
             outputs=result_grid,
         )
+
+
 
 
 if __name__ == "__main__":

@@ -155,7 +155,7 @@ Once you ran bat_ident.py and have a result file, you can obtain the segmented a
 ``` sh
 python3 segments.py --audio path/to/input/audio --results path/to/input/audio/results --o path/to/input/audio/segments
 ```
-If you have put your files in the folder 'put-your-files-here', the you can use
+If you have put your files in the folder 'put-your-files-here', you can use
 ``` sh
 python3 segments.py
 ```
@@ -163,7 +163,7 @@ If you use the above folder and know that you want to extract the segements at t
 ``` sh
 python3 bat_ident.py --segment on
 ```
-and it will generate the segemnts to 'put-your-files-here/segments'. If you have installed the rogram 'sox' on your system (or sox.exe, a command line tool) and it is in your shells path variable, you can segment and generate .png images of the corresponding diagramy by using
+and it will generate the segments to 'put-your-files-here/segments'. If you have installed the program 'sox' on your system (or sox.exe, a command line tool) and it is in your shells 'Path' variable, you can segment and generate .png images of the corresponding diagramy by using
 ``` sh
 python3 bat_ident.py --spectrum on
 ```
