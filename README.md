@@ -140,7 +140,7 @@ python3 bat_ident.py --location Bavaria --i test_data/Bavaria --o test_data/Bava
 ```
 
 ### Graphical user interface
-Currently singel file analysis is supported with English labels. You need to have pywebview and gradle installed, e.g. by
+Currently single file and batch file analysis are supported with English labels. You need to have pywebview and gradle installed, e.g. by
 ``` sh
 pip3 install pywebview gradle
 ```
@@ -149,6 +149,7 @@ To start the GUI, use
 python3 bat_gui.py
 ```
 it opens up a window and alternatively, you can use it from your browser on http://127.0.0.1:7860 .
+Once you have analysis files, you can use the segmentats tab to extract segments. 
 
 ### Extracting identified segments and plotting spectrograms
 Once you ran bat_ident.py and have a result file, you can obtain the segmented audio files sorted by detected species using 
