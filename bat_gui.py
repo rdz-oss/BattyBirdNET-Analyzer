@@ -105,7 +105,7 @@ def runSingleFileAnalysis(input_path,
 def runAnalysis(
     species_list_choice: str,
     input_path: str,
-    output_path: str | None,
+    output_path: str ,
     confidence: float,
     sensitivity: float,
     overlap: float,
@@ -114,7 +114,7 @@ def runAnalysis(
     batch_size: int,
     threads: int,
     input_dir: str,
-    progress: gr.Progress | None,
+    progress: gr.Progress ,
 ):
     """Starts the analysis.
     Args:
