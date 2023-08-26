@@ -64,7 +64,8 @@ Also consider the references at the end of the page.
 
 ## Try online demo at huggingface.co
 If you have small (a few seconds) .wav or .flac recordings of bats you can try the online demo. It is hosted on a small
-container (2 vcpu) so you need to install your own system (see below) if you want to analyze larger data sets.
+container (2 vcpu) so you need to install your own system (see below) if you want to analyze larger data sets. This is for the 144kHz version that considers calls up to 72kHz.
+A higher frequency classifier is in progress.
 
 https://huggingface.co/spaces/Amazetl/BattyBirdNET-Analyze-Demo
 
