@@ -62,6 +62,13 @@ Also consider the references at the end of the page.
 | Perimyotis subflavus - Tricolored bat                 |
 | Tadarida brasiliensis - Brazilian free-tailed bat     | `                                              
 
+## Try on online demo on huggingface.co
+If you have small (a few seconds) .wav or .flac recordings of bats you can try the online demo. It is hosted on a small
+container (2 vcpu) so you need to install your own system (see below) if you want to analyze larger data sets.
+
+https://huggingface.co/spaces/Amazetl/BattyBirdNET-Analyze-Demo
+
+
 ## Methods and data
 The detection works by transfer learning from the bird detection network BirdNET v2.4. This network operates on 48000Hz and 3 second sampling intervals. This will not work for bats as their calls go much higher in frequency rates. Since the network is designed to identify bird calls it is still usefull for cross training for bat calls once the frequency range is adjusted. There are several realistic candidates for such frequency rates, including
 
