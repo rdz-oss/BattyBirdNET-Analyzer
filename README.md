@@ -3,7 +3,7 @@
 
 ## Purpose
 
-The purpose is to assist in the automated classification of bat calls. There are some excellent classifiers out there. However, most are for other animal groups, notably birds, or are limited in their use to researchers. The aim here is to provide a solid classifier for as many regions of the planet as possible that can be built into inexpensive systems for citizen scientists. It builds upon the work of the BirdNET open source product family that has a similar aim for birds. The BirdNET systems are using a sampling frequency that is too low to capture bat echo location calls. So here I use the system at significantly higher sampling rates and cross train a classifier on the BirdNET artificial neural networks to identify bats. Think of a bat as a bird singing three times as fast. Once such a cross trained bat network has the necessary performance, I intend to integrate it into the BirdNET-Pi framework in order to run them 24/7 in self-assembled recoding stations.
+The purpose is to assist in the automated classification of bat calls. There are some excellent classifiers out there. However, most are for other animal groups, notably birds, or are limited in their use to researchers. The aim here is to provide a solid classifier for as many regions of the planet as possible that can be built into inexpensive systems for citizen scientists. It builds upon the work of the BirdNET open source product family that has a similar aim for birds. The BirdNET systems are using a sampling frequency that is too low to capture bat echo location calls. So here I use the system at significantly higher sampling rates of 256kHz (default) and cross train a classifier on the BirdNET artificial neural networks to identify bats. Think of a bat as a bird singing three times as fast. Once such a cross trained bat network has the necessary performance, I intend to integrate it into the BirdNET-Pi framework in order to run them 24/7 in self-assembled recoding stations.
 You can most definitely already use the bat trained classifier with the analyzer scripts to assist (do not just rely on it for e.g. biodiversity assessments) in identifying bat calls.
 
 Key words: bat identification, bat detector, BirdNET-Analyzer, DNN, machine learning, transfer learning, biodiverity , monitoring
@@ -60,11 +60,12 @@ Also consider the references at the end of the page.
 | Nyctinomops macrotis - Big free-tailed bat            |
 | Parastrellus hesperus - Canyon bat                    |
 | Perimyotis subflavus - Tricolored bat                 |
-| Tadarida brasiliensis - Brazilian free-tailed bat     | `                                              
+| Tadarida brasiliensis - Brazilian free-tailed bat     |                                           
 
 ## Try online demo at huggingface.co
 If you have small (a few seconds) .wav or .flac recordings of bats you can try the online demo. It is hosted on a small
-container (2 vcpu) so you need to install your own system (see below) if you want to analyze larger data sets. This is for the 144kHz version that considers calls up to 72kHz.
+container (2 vcpu) so you need to install your own system (see below) if you want to analyze larger data sets. 
+This is for the 256kHz version that considers calls up to 128kHz.
 A higher frequency classifier is in progress.
 
 https://huggingface.co/spaces/Amazetl/BattyBirdNET-Analyze-Demo
@@ -81,9 +82,9 @@ The detection works by transfer learning from the bird detection network BirdNET
 * 288000 Hz at 0.5 second intervalls - bat sounds uo to 144kHz considered
 * 360000 Hz at 0.4 second intervals - bat sounds up to 180kHz considered
 
-All of which seem plausible enough for detecting most European and North American bat species. It depends on the hardware (microphones) available to you and the calls of the bat species in your area. The above combinations arise form the expected input to the BirdNET artificial neural network ( 144000 = 48000 * 3). An advantage that comes with this is that not single calls, but all calls  that occur within a second are used to identify the bat allowing for more context/correlation than many traditional bat classifiers consider. In general there is a trade-off between this context and the frequency range you allow for. The value fo BattyBirdNET is set to a compromise for cost and range of many bat species (20-72kHz).
+All of which seem plausible enough for detecting most European and North American bat species. It depends on the hardware (microphones) available to you and the calls of the bat species in your area. The above combinations arise form the expected input to the BirdNET artificial neural network ( 144000 = 48000 * 3). An advantage that comes with this is that not single calls, but all calls  that occur within a second are used to identify the bat allowing for more context/correlation than many traditional bat classifiers consider. In general there is a trade-off between this context and the frequency range you allow for. The value fo BattyBirdNET at 256kHz is set to a compromise for cost and range of many bat species and available microphones.
 
-The data for North American bats comes from the NABAT machine learning data set. The data for Europe was assembled from the Animal Sound Archive Berlin and the ChiroVox databse. It contains echolocation as well as social and distress calls in different quantities for each species.
+The data for North American bats comes from the NABAT machine learning data set. The data for Europe was assembled from the Animal Sound Archive Berlin, the ChiroVox database and the xeno-canto database. It contains echolocation as well as social and distress calls in different quantities for each species.
 
 The cross training / transfer learning itself uses the framework provided by BirdNET-Analyzer originally intended for fine tuneing the model to local bird calls or other wildlife in the human audible range. Essentially, it puts a thin layer of a linear classifier on the output of the BirdNET artificial neural network. Appears to also work for bats if sampling frequencies are adjusted. To cross train your own classifier on top of BirdNET set the config parameters in config.py and run e.g.
 ```  sh
@@ -93,21 +94,17 @@ This expects that your training data is contained in subfolders that have the fo
 
 
 ## Classifiers
-The classifiers are used together with BirdNET to identify the bats. The audio file you provide is resampled to 144kHz and presented to BirdNET in a sequences of one second. It can hence pick up frequencies of up to 144kHz/2  = 72kHz. While this is not as high as bats can go, it captures a large enough range to attempt a first classifcation. The system can also be run at higher frequencies (see methods). Essentially, BirdNET believes that a bird made these one second bat sounds in three seconds. It generates a representation of the audio signal (embedding) which is then taken by the classifiers listed below to identify the bat. The classifier 'knows' that this is a bat and not a bird as BirdNET would believe. 
+The classifiers are used together with BirdNET to identify the bats. The audio file you provide is resampled to 256 kHz and presented to BirdNET in a sequences of 0.5625 seconds. It can hence pick up frequencies of up to 256kHz/2  = 128kHz. The system can also be run at higher frequencies (see methods). Essentially, BirdNET believes that a bird made these half second bat sounds in three seconds. It generates a representation of the audio signal (embedding) which is then taken by the classifiers listed below to identify the bat. The classifier 'knows' that this is a bat and not a bird as BirdNET would believe. The classifiers are trained with cricket and environmental noise. This reduces their precision, but makes them more robust against environmental noises.
 
 | Classifier       |  Range      |     Training set size    | Validation loss and precision |
 |:-------|:------|:------| :------|
-|**EU** | Covers 29 species. |  2200+ calls. | val_loss: 0.0017 - val_prec: 0.9605
-|**Bavaria** | Covers 24 species. |  2000+ calls  |  val_loss: 0.0016 - val_prec: 0.9675
-|**Sweden** | Covers 18 species. |    |  val_loss: 0.0013 - val_prec: 0.9335
-|**USA** | Covers 34 species. | max. 200 calls/species.  |  val_loss: 0.0081 - val_prec: 0.9396
-|**MarinCounty** | California |   |  val_loss: 0.0080 - val_prec: 0.9266
-|**Scotland** | Covers 10 species. |  1200+ calls. | val_loss: 0.0044 - val_prec: 0.9474
-| **UK** | Covers 16 species. | 1500+ calls. | val_loss: 0.0016 - val_prec: 0.9565
+|**EU** | Covers 29 species. |  2200+ calls. | 
+|**Bavaria** | Covers 24 species. |  2000+ calls  |  
+|**USA** | Covers 34 species. | max. 200 calls/species.  |  
+|**Scotland** | Covers 10 species. |  1200+ calls. | 
+| **UK** | Covers 16 species. | 1500+ calls. | 
 
 Some occasional 'guests' are considered but definitely not all possible ones. The performance of the classifiers depends mostly on the quality and size of the data set used in training. The amount of samples for each species vary. So does the context of the calls. The BattyBirdNETs training data set contains free fly, hunting, social calls, calls during release and in enclosures. The amount of these vary for each species. To avoid overfitting, the classifiers were trained with noise.
-
-You can download the data used for training the EU-144kHz classifiers here: https://huggingface.co/datasets/Amazetl/BattyBirdNet-144kHz-v1.0 
 The UK, Sweden, Scotland, Bavaria classifiers are trained on subsets of this data set. For the US data, see the lik to the NABAT data site below.
 
 ## Install
@@ -219,6 +216,8 @@ https://www.chirovox.org/
 https://www.sciencebase.gov/catalog/item/627ed4b2d34e3bef0c9a2f30
 
 https://github.com/kahst/BirdNET-Analyzer
+
+https://xeno-canto.org/
 
 
 
