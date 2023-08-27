@@ -62,11 +62,10 @@ Also consider the references at the end of the page.
 | Perimyotis subflavus - Tricolored bat                 |
 | Tadarida brasiliensis - Brazilian free-tailed bat     |                                           
 
-## Try online demo at huggingface.co
+## Try the demo at huggingface.co !
 If you have small (a few seconds) .wav or .flac recordings of bats you can try the online demo. It is hosted on a small
 container (2 vcpu) so you need to install your own system (see below) if you want to analyze larger data sets. 
 This is for the 256kHz version that considers calls up to 128kHz.
-A higher frequency classifier is in progress.
 
 https://huggingface.co/spaces/Amazetl/BattyBirdNET-Analyze-Demo
 
@@ -78,7 +77,6 @@ https://huggingface.co/spaces/macaodha/batdetect2
 The detection works by transfer learning from the bird detection network BirdNET v2.4. This network operates on 48000Hz and 3 second sampling intervals. This will not work for bats as their calls go much higher in frequency rates. Since the network is designed to identify bird calls it is still usefull for cross training for bat calls once the frequency range is adjusted. There are several realistic candidates for such frequency rates, including
 
 * 144000 Hz at 1 second intervalls - bat sound up to 72kHz considered
-* 240000 Hz at 0.6 second intervalls - bat sounds up to 120kHz considered
 * 288000 Hz at 0.5 second intervalls - bat sounds uo to 144kHz considered
 * 360000 Hz at 0.4 second intervals - bat sounds up to 180kHz considered
 
