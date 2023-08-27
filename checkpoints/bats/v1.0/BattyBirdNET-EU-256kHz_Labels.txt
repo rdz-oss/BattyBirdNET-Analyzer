@@ -1,0 +1,30 @@
+Barbastella barbastellus_Western barbastelle
+Eptesicus nilssonii_Northern bat
+Eptesicus serotinus_Serotine bat
+Hypsugo savii_Savis pipistrelle
+Miniopterus schreibersii_Common bent-wing bat
+Myotis alcathoe_Alcathoe bat
+Myotis bechsteinii_Bechsteins bat
+Myotis brandtii_Brandt bat
+Myotis capaccinii_Long-fingered bat
+Myotis dasycneme_Pond bat
+Myotis daubentonii_Daubentons bat
+Myotis emarginatus_Geoffroys bat
+Myotis myotis_Greater mouse-eared bat
+Myotis mystacinus_Whiskered bat
+Myotis nattereri_Natterers bat
+NOISE
+Nyctalus lasiopterus_Greater noctule bat
+Nyctalus leisleri_Lesser noctule
+Nyctalus noctula_Common noctule
+Pipistrellus kuhlii_Kuhls pipistrelle
+Pipistrellus maderensis_Madeira pipistrelle
+Pipistrellus nathusii_Nathusius pipistrelle
+Pipistrellus pipistrellus_Common pipistrelle
+Pipistrellus pygmaeus_Soprano pipistrelle
+Plecotus spec._Long eared bat
+Rhinolophus blasii_Blasius horseshoe bat
+Rhinolophus ferrumequinum_Greater horseshoe bat
+Rhinolophus hipposideros_Lesser horseshoe bat
+Tadarida teniotis_European free-tailed bat
+Vespertilio murinus_Parti-coloured bat

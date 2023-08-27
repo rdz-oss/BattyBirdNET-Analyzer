@@ -32,7 +32,7 @@ CUSTOM_CLASSIFIER = None
 # For bats we use: 144000 for 1 sec.
 # Note that only SIG_LENGTH * SAMPLING_RATE = 144000 combinations will work,
 # values possible e.g. 144000 240000 360000 check your classifier frequency!
-SAMPLE_RATE: int = 144000
+SAMPLE_RATE: int = 256000
 
 # We're using 1-second chunks
 SIG_LENGTH: float = 144000 / SAMPLE_RATE
