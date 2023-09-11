@@ -90,6 +90,18 @@ The cross training / transfer learning itself uses the framework provided by Bir
 ```
 This expects that your training data is contained in subfolders that have the following name structure 'Lantin name_Common name' such as e.g. 'Antrozous pallidus_Pallid bat'. The labels are parsed from the folder names. You can also have folders for 'noise' or 'background'.
 
+### Data sets
+The Bavaria data is under the http://creativecommons.org/licenses/by-nc-sa/4.0/  license. You are welcome to use it accordingly, e.g.
+for teaching and research,OSS software and systems as well as for other non-commercial purposes. 
+The Bavaria data set also encompasses UK and nordic species.
+
+If you have data, consider contacting me as the classifiers can only be as good as the data sets they are trained with.
+Help us reach the goal of at least 100  samples (3 second recordings) per species!
+ 
+![Samples per species ](./assets/Bavaria-256kHz-100.png "Samples per species in Bavaria-256kHz-100 data set.")
+
+Currently, you can download the data [ here ](https://cloud.h2887844.stratoserver.net/s/Txpq4GyembeWDa3) (subject to change) using the password "BattyBirdNET-data".
+There are 1700 samples at 256kHz summing up to (compressed) 5.5 GB, uncompressed about 8.6 GB.
 
 ## Classifiers
 The classifiers are used together with BirdNET to identify the bats. The audio file you provide is resampled to 256 kHz and presented to BirdNET in a sequences of 0.5625 seconds. It can hence pick up frequencies of up to 256kHz/2  = 128kHz. The system can also be run at higher frequencies (see methods). Essentially, BirdNET believes that a bird made these half second bat sounds in three seconds. It generates a representation of the audio signal (embedding) which is then taken by the classifiers listed below to identify the bat. The classifier 'knows' that this is a bat and not a bird as BirdNET would believe. The classifiers are trained with cricket and environmental noise. This reduces their precision, but makes them more robust against environmental noises.
