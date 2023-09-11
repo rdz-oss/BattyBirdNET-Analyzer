@@ -93,7 +93,8 @@ This expects that your training data is contained in subfolders that have the fo
 ### Data sets
 The Bavaria data is under the http://creativecommons.org/licenses/by-nc-sa/4.0/  license. You are welcome to use it accordingly, e.g.
 for teaching and research,OSS software and systems as well as for other non-commercial purposes. 
-The Bavaria data set also encompasses UK and nordic species.
+The Bavaria data set also encompasses UK and nordic species. The data is a random selection of up to 100 samples per species
+from data from xeno-canto, chirovox, animal sound library berlin, as well as individuals (R. Zinck (GER), K. Richards (UK)).
 
 If you have data, consider contacting me as the classifiers can only be as good as the data sets they are trained with.
 Help us reach the goal of at least 100  samples (3 second recordings) per species!
