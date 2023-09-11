@@ -98,7 +98,7 @@ The Bavaria data set also encompasses UK and nordic species.
 If you have data, consider contacting me as the classifiers can only be as good as the data sets they are trained with.
 Help us reach the goal of at least 100  samples (3 second recordings) per species!
  
-![Samples per species ](./assets/Bavaria-256kHz-100.png "Samples per species in Bavaria-256kHz-100 data set.")
+![Samples per species ](./assets/Bavaria-256kHz-100.png?raw=true "Samples per species in Bavaria-256kHz-100 data set.")
 
 Currently, you can download the data [ here ](https://cloud.h2887844.stratoserver.net/s/Txpq4GyembeWDa3) (subject to change) using the password "BattyBirdNET-data".
 There are 1700 samples at 256kHz summing up to (compressed) 5.5 GB, uncompressed about 8.6 GB.
