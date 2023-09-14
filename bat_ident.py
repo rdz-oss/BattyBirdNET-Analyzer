@@ -346,8 +346,8 @@ def analyze_file(item):
 
 def set_analysis_location(kHz = 256):
 
-    if args.area not in ["Bavaria", "Sweden", "EU", "Scotland", "UK", "USA","MarinCounty"]:
-        exit(code="Unknown location option.")
+    if args.area not in ["Bavaria",  "USA"]:
+        exit(code="Unknown location option or disabled during classifier improvement.")
     else:
         args.lat = -1
         args.lon = -1
@@ -363,11 +363,11 @@ def set_analysis_location(kHz = 256):
             cfg.CUSTOM_CLASSIFIER = cfg.BAT_CLASSIFIER_LOCATION + "/BattyBirdNET-Bavaria-144kHz.tflite"
             cfg.LABELS_FILE = cfg.BAT_CLASSIFIER_LOCATION + "/BattyBirdNET-Bavaria-144kHz_Labels.txt"
         else:
-            cfg.CUSTOM_CLASSIFIER = cfg.BAT_CLASSIFIER_LOCATION + "/BattyBirdNET-Bavaria-256kHz.tflite"
-            cfg.LABELS_FILE = cfg.BAT_CLASSIFIER_LOCATION + "/BattyBirdNET-Bavaria-256kHz_Labels.txt"
+            cfg.CUSTOM_CLASSIFIER = cfg.BAT_CLASSIFIER_LOCATION + "/BattyBirdNET-Bavaria-256kHz-100.tflite"
+            cfg.LABELS_FILE = cfg.BAT_CLASSIFIER_LOCATION + "/BattyBirdNET-Bavaria-256kHz-100_Labels.txt"
 
         cfg.LABELS = utils.readLines(cfg.LABELS_FILE)
-        args.locale = "de"
+        args.locale = "en"
 
     elif args.area == "EU":
         if args.kHz == 144:
@@ -462,7 +462,7 @@ def add_parser_arguments():
                         help="Sampling rate. Values in ['144', '256']. "
                              "Defaults to 256kHz.")
     parser.add_argument("--area",
-                        default="EU",
+                        default="Bavaria",
                         help="Location. Values in ['Bavaria', 'EU', 'Sweden','Scotland', 'UK', 'USA', 'MarinCounty']. "
                              "Defaults to Bavaria.")
 

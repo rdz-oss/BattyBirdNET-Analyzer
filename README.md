@@ -25,37 +25,37 @@ LICENSE: http://creativecommons.org/licenses/by-nc-sa/4.0/
 Also consider the references at the end of the page.
 
 ## Which species are covered ?
-| North America                                         | Europe & UK                                    |
-|:------------------------------------------------------|:-----------------------------------------------|
-| Antrozous pallidus - Pallid bat                       | Barbastella barbastellus - Western barbastelle   
-| Corynorhinus rafinesquii - Rafinesque's big-eared bat | Eptesicus nilssonii - Northern bat               
-| Corynorhinus townsendii - Townsend's big-eared bat    | Eptesicus serotinus - Serotine bat               
-| Eptesicus fuscus - Big brown bat                      | Hypsugo savii - Savis pipistrelle                
-| Euderma maculatum - Spotted bat                       | Miniopterus schreibersii - Common bent-wing bat  
-| Eumops floridanus - Florida bonneted                  | Myotis alcathoe - Alcathoe bat                   
-| Eumops perotis - Greater mastiff bat                  | Myotis bechsteinii - Bechsteins bat              
-| Idionycteris phyllotis - Allen's big-eared bat        | Myotis brandtii - Brandt bat                     
-| Lasionycteris noctivagans - Silver-haired bat         | Myotis capaccinii - Long-fingered bat            
-| Lasiurus blossevillii - Western red bat               | Myotis dasycneme - Pond bat                      
-| Lasiurus borealis - Eastern red bat                   | Myotis daubentonii - Daubentons bat              
-| Lasiurus cinereus - Hoary bat                         | Myotis emarginatus - Geoffroys bat               
-| Lasiurus intermedius - Northern yellow bat            | Myotis myotis - Greater mouse-eared bat          
-| Lasiurus seminolus - Seminole bat                     | Myotis mystacinus - Whiskered bat                
-| Lasiurus xanthinus - Western yellow bat               | Myotis nattereri - Natterers bat                 
-| Myotis austroriparius - Southeastern myotis           | Nyctalus lasiopterus - Greater noctule bat       
-| Myotis californicus - California bat                  | Nyctalus leisleri - Lesser noctule               
-| Myotis ciliolabrum - Western small-footed myotis      | Nyctalus noctula - Common noctule                
-| Myotis evotis - Western long-eared bat                | Pipistrellus kuhlii - Kuhls pipistrelle          
-| Myotis grisescens - Gray bat                          | Pipistrellus maderensis - Madeira pipistrelle    
-| Myotis leibii - Eastern small-footed bat              | Pipistrellus nathusii - Nathusius pipistrelle    
-| Myotis lucifugus - Little brown bat                   | Pipistrellus pipistrellus - Common pipistrelle   
-| Myotis septentrionalis - Northern long-eared bat      | Pipistrellus pygmaeus - Soprano pipistrelle      
-| Myotis sodalis - Indiana bat                          | Plecotus spec. - Long eared bat                  
-| Myotis thysanodes - Fringed bat                       | Rhinolophus blasii - Blasius horseshoe bat       
-| Myotis velifer - Cave bat                             | Rhinolophus ferrumequinum - Greater horseshoe bat
-| Myotis volans - Long-legged bat                       | Rhinolophus hipposideros - Lesser horseshoe bat  
-| Myotis yumanensis - Yuma bat                          | Tadarida teniotis - European free-tailed bat     
-| Nycticeius humeralis - Evening bat                    | Vespertilio murinus - Parti-coloured bat         
+| North America                                         | Europe & UK  (collecting data)                    |
+|:------------------------------------------------------|:--------------------------------------------------|
+| Antrozous pallidus - Pallid bat                       | Barbastella barbastellus - Western barbastelle    
+| Corynorhinus rafinesquii - Rafinesque's big-eared bat | Eptesicus nilssonii - Northern bat                
+| Corynorhinus townsendii - Townsend's big-eared bat    | Eptesicus serotinus - Serotine bat                
+| Eptesicus fuscus - Big brown bat                      | Hypsugo savii - Savis pipistrelle                 
+| Euderma maculatum - Spotted bat                       | Miniopterus schreibersii - Common bent-wing bat   
+| Eumops floridanus - Florida bonneted                  | Myotis alcathoe - Alcathoe bat                    
+| Eumops perotis - Greater mastiff bat                  | Myotis bechsteinii - Bechsteins bat               
+| Idionycteris phyllotis - Allen's big-eared bat        | Myotis brandtii - Brandt bat                      
+| Lasionycteris noctivagans - Silver-haired bat         | ( Myotis capaccinii - Long-fingered bat )         
+| Lasiurus blossevillii - Western red bat               | Myotis dasycneme - Pond bat                       
+| Lasiurus borealis - Eastern red bat                   | Myotis daubentonii - Daubentons bat               
+| Lasiurus cinereus - Hoary bat                         | Myotis emarginatus - Geoffroys bat                
+| Lasiurus intermedius - Northern yellow bat            | Myotis myotis - Greater mouse-eared bat           
+| Lasiurus seminolus - Seminole bat                     | Myotis mystacinus - Whiskered bat                 
+| Lasiurus xanthinus - Western yellow bat               | Myotis nattereri - Natterers bat                  
+| Myotis austroriparius - Southeastern myotis           | ( Nyctalus lasiopterus - Greater noctule bat )    
+| Myotis californicus - California bat                  | Nyctalus leisleri - Lesser noctule                
+| Myotis ciliolabrum - Western small-footed myotis      | Nyctalus noctula - Common noctule                 
+| Myotis evotis - Western long-eared bat                | Pipistrellus kuhlii - Kuhls pipistrelle           
+| Myotis grisescens - Gray bat                          | ( Pipistrellus maderensis - Madeira pipistrelle ) 
+| Myotis leibii - Eastern small-footed bat              | Pipistrellus nathusii - Nathusius pipistrelle     
+| Myotis lucifugus - Little brown bat                   | Pipistrellus pipistrellus - Common pipistrelle    
+| Myotis septentrionalis - Northern long-eared bat      | Pipistrellus pygmaeus - Soprano pipistrelle       
+| Myotis sodalis - Indiana bat                          | Plecotus spec. - Long eared bat                   
+| Myotis thysanodes - Fringed bat                       | ( Rhinolophus blasii - Blasius horseshoe bat  )   
+| Myotis velifer - Cave bat                             | Rhinolophus ferrumequinum - Greater horseshoe bat 
+| Myotis volans - Long-legged bat                       | Rhinolophus hipposideros - Lesser horseshoe bat   
+| Myotis yumanensis - Yuma bat                          | ( Tadarida teniotis - European free-tailed bat )  
+| Nycticeius humeralis - Evening bat                    | Vespertilio murinus - Parti-coloured bat          
 | Nyctinomops femorosaccus - Pocketed free-tailed bat   |
 | Nyctinomops macrotis - Big free-tailed bat            |
 | Parastrellus hesperus - Canyon bat                    |
@@ -65,7 +65,8 @@ Also consider the references at the end of the page.
 ## Try the demo at huggingface.co !
 If you have small (a few seconds) .wav or .flac recordings of bats you can try the online demo. It is hosted on a small
 container (2 vcpu) so you need to install your own system (see below) if you want to analyze larger data sets. 
-This is for the 256kHz version that considers calls up to 128kHz.
+There are 144kHz and 256kHz classifiers. The basic demo runs on 144kHz. When testing a new version, I will
+however enable a 256kHz version (for Bavaria).
 
 https://huggingface.co/spaces/Amazetl/BattyBirdNET-Analyze-Demo
 
@@ -105,7 +106,18 @@ Currently, you can download the data [ here ](https://cloud.h2887844.stratoserve
 There are 1700 samples at 256kHz summing up to (compressed) 5.5 GB, uncompressed about 8.6 GB.
 
 ## Classifiers
-The classifiers are used together with BirdNET to identify the bats. The audio file you provide is resampled to 256 kHz and presented to BirdNET in a sequences of 0.5625 seconds. It can hence pick up frequencies of up to 256kHz/2  = 128kHz. The system can also be run at higher frequencies (see methods). Essentially, BirdNET believes that a bird made these half second bat sounds in three seconds. It generates a representation of the audio signal (embedding) which is then taken by the classifiers listed below to identify the bat. The classifier 'knows' that this is a bat and not a bird as BirdNET would believe. The classifiers are trained with cricket and environmental noise. This reduces their precision, but makes them more robust against environmental noises.
+The classifiers are used together with BirdNET to identify the bats. The audio file you provide is resampled to 256 kHz 
+and presented to BirdNET in a sequences of 0.5625 seconds. 
+It can hence pick up frequencies of up to 256kHz/2  = 128kHz. 
+The system can also be run at higher frequencies (see methods). 
+Essentially, BirdNET believes that a bird made these half second bat sounds in three seconds. 
+It generates a representation of the audio signal (embedding) which is then taken by the classifiers 
+listed below to identify the bat. The classifier 'knows' that this is a bat and not a bird as 
+BirdNET would believe. The classifiers are trained with cricket and environmental noise. 
+This reduces their precision, but makes them more robust against environmental noises.
+
+As they are in development, not all regions will be available at all times. The 144kHz classifiers can be activated
+in bat_ident.py using the argument --kHz 144 .
 
 | Classifier       |  Range      |     Training set size    | Validation loss and precision |
 |:-------|:------|:------| :------|
