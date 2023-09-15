@@ -62,17 +62,24 @@ Also consider the references at the end of the page.
 | Perimyotis subflavus - Tricolored bat                 |
 | Tadarida brasiliensis - Brazilian free-tailed bat     |                                           
 
-## Try the demo at huggingface.co !
-If you have small (a few seconds) .wav or .flac recordings of bats you can try the online demo. It is hosted on a small
-container (2 vcpu) so you need to install your own system (see below) if you want to analyze larger data sets. 
-There are 144kHz and 256kHz classifiers. The basic demo runs on 144kHz. When testing a new version, I will
-however enable a 256kHz version (for Bavaria).
+[//]: # (## Try the demo at huggingface.co !)
 
-https://huggingface.co/spaces/Amazetl/BattyBirdNET-Analyze-Demo
+[//]: # (If you have small &#40;a few seconds&#41; .wav or .flac recordings of bats you can try the online demo. It is hosted on a small)
 
-If you are from the UK, you can crosscheck e.g. with batdetect2
+[//]: # (container &#40;2 vcpu&#41; so you need to install your own system &#40;see below&#41; if you want to analyze larger data sets. )
 
-https://huggingface.co/spaces/macaodha/batdetect2
+[//]: # (There are 144kHz and 256kHz classifiers. The basic demo runs on 144kHz. When testing a new version, I will)
+
+[//]: # (however enable a 256kHz version &#40;for Bavaria&#41;.)
+
+[//]: # ()
+[//]: # (https://huggingface.co/spaces/Amazetl/BattyBirdNET-Analyze-Demo)
+
+[//]: # ()
+[//]: # (If you are from the UK, you can crosscheck e.g. with batdetect2)
+
+[//]: # ()
+[//]: # (https://huggingface.co/spaces/macaodha/batdetect2)
 
 ## Methods and data
 The detection works by transfer learning from the bird detection network BirdNET v2.4. This network operates on 48000Hz and 3 second sampling intervals. This will not work for bats as their calls go much higher in frequency rates. Since the network is designed to identify bird calls it is still usefull for cross training for bat calls once the frequency range is adjusted. There are several realistic candidates for such frequency rates, including
