@@ -236,9 +236,9 @@ if __name__ == "__main__":
     # Parse arguments
     parser = argparse.ArgumentParser(description="API endpoint server to analyze files remotely.")
     parser.add_argument(
-        "--host", default="0.0.0.0", help="Host name or IP address of API endpoint server. Defaults to '0.0.0.0'"
+        "--host", default="127.0.0.1", help="Host name or IP address of API endpoint server. Defaults to '127.0.0.1'"
     )
-    parser.add_argument("--port", type=int, default=8080, help="Port of API endpoint server. Defaults to 8080.")
+    parser.add_argument("--port", type=int, default=7667, help="Port of API endpoint server. Defaults to 7667.")
     parser.add_argument(
         "--spath", default="uploads/", help="Path to folder where uploaded files should be stored. Defaults to '/uploads'."
     )
@@ -249,7 +249,7 @@ if __name__ == "__main__":
         help="Locale for translated species common names. Values in ['af', 'de', 'it', ...] Defaults to 'en'.",
     )
     parser.add_argument("--area",
-                        default="EU",
+                        default="Bavaria",
                         help="Location. Values in ['Bavaria', 'EU', 'Scotland', 'UK' or 'USA']. Defaults to Bavaria.")
 
     args = parser.parse_args()
