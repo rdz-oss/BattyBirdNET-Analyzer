@@ -103,6 +103,7 @@ def handleRequest():
                 os.makedirs(save_path, exist_ok=True)
 
                 file_path = os.path.join(save_path, name + ext)
+                print(file_path)
             else:
                 save_path = ""
                 file_path_tmp = tempfile.NamedTemporaryFile(suffix=ext.lower(), delete=False)
