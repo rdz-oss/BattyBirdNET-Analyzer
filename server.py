@@ -109,6 +109,7 @@ def handleRequest():
                 file_path_tmp = tempfile.NamedTemporaryFile(suffix=ext.lower(), delete=False)
                 file_path_tmp.close()
                 file_path = file_path_tmp.name
+                print(file_path)
 
             upload.save(file_path, overwrite=True)
         else:
