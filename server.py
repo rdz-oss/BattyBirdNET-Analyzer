@@ -274,7 +274,7 @@ if __name__ == "__main__":
     # Set min_conf to 0.0, because we want all results
     cfg.MIN_CONFIDENCE = 0.0
 
-    output_file = tempfile.NamedTemporaryFile(suffix=".txt", delete=False)
+    output_file = tempfile.NamedTemporaryFile(suffix=".txt",dir=".", delete=False)
     output_file.close()
 
     # Set path for temporary result file
