@@ -291,6 +291,6 @@ if __name__ == "__main__":
     print(f"UP AND RUNNING! LISTENING ON {args.host}:{args.port}", flush=True)
 
     try:
-        bottle.run(host=args.host, port=args.port, quiet=True)
+        bottle.run(host=args.host, port=args.port, quiet=True, save=True)
     finally:
         os.unlink(output_file.name)
