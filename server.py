@@ -99,7 +99,7 @@ def handleRequest():
         if ext[1:].lower() in cfg.ALLOWED_FILETYPES:
             if mdata.get("save", False):
                 save_path = os.path.join(cfg.FILE_STORAGE_PATH, str(date.today()))
-
+                print(save_path)
                 os.makedirs(save_path, exist_ok=True)
 
                 file_path = os.path.join(save_path, name + ext)
