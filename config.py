@@ -127,7 +127,7 @@ TRANSLATED_LABELS: list[str] = []
 SPECIES_LIST: list[str] = []
 ERROR_LOG_FILE: str = 'error_log.txt'
 FILE_LIST = []
-FILE_STORAGE_PATH = ''
+FILE_STORAGE_PATH = '/tmp'
 
 
 ######################
