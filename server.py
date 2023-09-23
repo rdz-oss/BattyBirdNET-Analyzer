@@ -205,7 +205,7 @@ def set_analysis_location():
         cfg.CUSTOM_CLASSIFIER = cfg.BAT_CLASSIFIER_LOCATION + "/BattyBirdNET-Bavaria-144kHz.tflite"
         cfg.LABELS_FILE = cfg.BAT_CLASSIFIER_LOCATION + "/BattyBirdNET-Bavaria-144kHz_Labels.txt"
         cfg.LABELS = utils.readLines(cfg.LABELS_FILE)
-        args.locale = "de"
+        args.locale = "en"
 
     elif args.area == "EU":
         cfg.CUSTOM_CLASSIFIER = cfg.BAT_CLASSIFIER_LOCATION + "/BattyBirdNET-EU-144kHz.tflite"
@@ -276,7 +276,7 @@ if __name__ == "__main__":
     # Set min_conf to 0.0, because we want all results
     cfg.MIN_CONFIDENCE = 0.0
 
-    output_file = tempfile.NamedTemporaryFile(suffix=".txt",dir=".", delete=False)
+    output_file = tempfile.NamedTemporaryFile(suffix=".txt", delete=False)
     output_file.close()
 
     # Set path for temporary result file
@@ -291,6 +291,6 @@ if __name__ == "__main__":
     print(f"UP AND RUNNING! LISTENING ON {args.host}:{args.port}", flush=True)
 
     try:
-        bottle.run(host=args.host, port=args.port, quiet=True, save=True)
+        bottle.run(host=args.host, port=args.port, quiet=True)
     finally:
         os.unlink(output_file.name)

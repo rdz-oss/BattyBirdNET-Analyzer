@@ -63,8 +63,8 @@ if __name__ == "__main__":
 
     # Parse arguments
     parser = argparse.ArgumentParser(description="Client that queries an analyzer API endpoint server.")
-    parser.add_argument("--host", default="localhost", help="Host name or IP address of API endpoint server.")
-    parser.add_argument("--port", type=int, default=8080, help="Port of API endpoint server.")
+    parser.add_argument("--host", default="127.0.0.1", help="Host name or IP address of API endpoint server.")
+    parser.add_argument("--port", type=int, default=7667, help="Port of API endpoint server.")
     parser.add_argument("--i", default="example/soundscape.wav", help="Path to file that should be analyzed.")
     parser.add_argument("--o", default="", help="Path to result file. Leave blank to store with audio file.")
     parser.add_argument("--lat", type=float, default=-1, help="Recording location latitude. Set -1 to ignore.")
