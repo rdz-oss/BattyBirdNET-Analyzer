@@ -162,9 +162,9 @@ def handleRequest():
             if pmode not in ["avg", "max"]:
                 pmode = "avg"
 
-            num_results = min(99, max(1, int(mdata.get("num_results", 5))))
-
-            results = resultPooling(lines, num_results, pmode)
+            # num_results = min(99, max(1, int(mdata.get("num_results", 5))))
+            # results = resultPooling(lines, num_results, pmode)
+            results = lines
 
             # Prepare response
             data = {"msg": "success", "results": results, "meta": mdata}
@@ -274,7 +274,7 @@ if __name__ == "__main__":
     cfg.FILE_STORAGE_PATH = args.spath
 
     # Set min_conf to 0.0, because we want all results
-    cfg.MIN_CONFIDENCE = 0.0
+    # cfg.MIN_CONFIDENCE = 0.0
 
     output_file = tempfile.NamedTemporaryFile(suffix=".txt", delete=False)
     output_file.close()
@@ -283,7 +283,7 @@ if __name__ == "__main__":
     cfg.OUTPUT_PATH = output_file.name
 
     # Set result type
-    cfg.RESULT_TYPE = "audacity"
+    cfg.RESULT_TYPE = "csv"
     # Set number of TFLite threads
     cfg.TFLITE_THREADS = max(1, int(args.threads))
 
