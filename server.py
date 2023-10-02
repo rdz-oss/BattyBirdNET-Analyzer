@@ -150,12 +150,12 @@ def handleRequest():
             cfg.SPECIES_LIST = []
 
         # Analyze file
-        success = analyze.analyzeFile((file_path, cfg.get_config()))
+        success, results = analyze.analyzeFile((file_path, cfg.get_config()))
 
         # Parse results
         if success:
             # Open result file
-            lines = utils.readLines(cfg.OUTPUT_PATH)
+            # lines = utils.readLines(cfg.OUTPUT_PATH)
             pmode = mdata.get("pmode", "avg").lower()
 
             # Pool results
@@ -164,8 +164,7 @@ def handleRequest():
 
             # num_results = min(99, max(1, int(mdata.get("num_results", 5))))
             # results = resultPooling(lines, num_results, pmode)
-            results = lines
-
+            # results = lines
             # Prepare response
             data = {"msg": "success", "results": results, "meta": mdata}
 
@@ -202,8 +201,8 @@ def set_analysis_location():
         # args.locale = "en"
 
     if args.area == "Bavaria":
-        cfg.CUSTOM_CLASSIFIER = cfg.BAT_CLASSIFIER_LOCATION + "/BattyBirdNET-Bavaria-144kHz.tflite"
-        cfg.LABELS_FILE = cfg.BAT_CLASSIFIER_LOCATION + "/BattyBirdNET-Bavaria-144kHz_Labels.txt"
+        cfg.CUSTOM_CLASSIFIER = cfg.BAT_CLASSIFIER_LOCATION + "/BattyBirdNET-Bavaria-256kHz-100.tflite"
+        cfg.LABELS_FILE = cfg.BAT_CLASSIFIER_LOCATION + "/BattyBirdNET-Bavaria-256kHz-100_Labels.txt"
         cfg.LABELS = utils.readLines(cfg.LABELS_FILE)
         args.locale = "en"
 

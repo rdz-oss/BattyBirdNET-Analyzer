@@ -58,10 +58,10 @@ def saveResultFile(r: dict[str, list], path: str, afile_path: str):
             start, end = timestamp.split("-", 1)
 
             for c in r[timestamp]:
-                if c[1] > cfg.MIN_CONFIDENCE and (not cfg.SPECIES_LIST or c[0] in cfg.SPECIES_LIST):
+                if float(c[1]) > cfg.MIN_CONFIDENCE and (not cfg.SPECIES_LIST or c[0] in cfg.SPECIES_LIST):
                     selection_id += 1
                     label = cfg.TRANSLATED_LABELS[cfg.LABELS.index(c[0])]
-                    rstring += "{}\tSpectrogram 1\t1\t{}\t{}\t{}\t{}\t{}\t{}\t{:.4f}\n".format(
+                    rstring += "{}\tSpectrogram 1\t1\t{}\t{}\t{}\t{}\t{}\t{}\t{}\n".format(
                         selection_id,
                         start,
                         end,
@@ -81,9 +81,9 @@ def saveResultFile(r: dict[str, list], path: str, afile_path: str):
             rstring = ""
 
             for c in r[timestamp]:
-                if c[1] > cfg.MIN_CONFIDENCE and (not cfg.SPECIES_LIST or c[0] in cfg.SPECIES_LIST):
+                if float(c[1]) > cfg.MIN_CONFIDENCE and (not cfg.SPECIES_LIST or c[0] in cfg.SPECIES_LIST):
                     label = cfg.TRANSLATED_LABELS[cfg.LABELS.index(c[0])]
-                    rstring += "{}\t{}\t{:.4f}\n".format(timestamp.replace("-", "\t"), label.replace("_", ", "), c[1])
+                    rstring += "{}\t{}\t{}\n".format(timestamp.replace("-", "\t"), label.replace("_", ", "), c[1])
 
             # Write result string to file
             out_string += rstring
@@ -98,9 +98,9 @@ def saveResultFile(r: dict[str, list], path: str, afile_path: str):
             start, end = timestamp.split("-", 1)
 
             for c in r[timestamp]:
-                if c[1] > cfg.MIN_CONFIDENCE and (not cfg.SPECIES_LIST or c[0] in cfg.SPECIES_LIST):
+                if float(c[1]) > cfg.MIN_CONFIDENCE and (not cfg.SPECIES_LIST or c[0] in cfg.SPECIES_LIST):
                     label = cfg.TRANSLATED_LABELS[cfg.LABELS.index(c[0])]
-                    rstring += "\n{},{},{},{},{},{:.4f},{:.4f},{:.4f},{},{},{},{},{},{}".format(
+                    rstring += "\n{},{},{},{},{},{},{},{},{},{},{},{},{},{}".format(
                         afile_path,
                         start,
                         end,
@@ -133,9 +133,9 @@ def saveResultFile(r: dict[str, list], path: str, afile_path: str):
             start, end = timestamp.split("-", 1)
 
             for c in r[timestamp]:
-                if c[1] > cfg.MIN_CONFIDENCE and (not cfg.SPECIES_LIST or c[0] in cfg.SPECIES_LIST):
+                if float(c[1]) > cfg.MIN_CONFIDENCE and (not cfg.SPECIES_LIST or c[0] in cfg.SPECIES_LIST):
                     label = cfg.TRANSLATED_LABELS[cfg.LABELS.index(c[0])]
-                    rstring += "\n{},{},{},{},{},{},{},{:.4f},{:.4f},{:.4f},{},{},{}".format(
+                    rstring += "\n{},{},{},{},{},{},{},{},{},{},{},{},{}".format(
                         parent_folder.rstrip("/"),
                         folder_name,
                         filename,
@@ -167,9 +167,9 @@ def saveResultFile(r: dict[str, list], path: str, afile_path: str):
             for c in r[timestamp]:
                 start, end = timestamp.split("-", 1)
 
-                if c[1] > cfg.MIN_CONFIDENCE and (not cfg.SPECIES_LIST or c[0] in cfg.SPECIES_LIST):
+                if float(c[1]) > cfg.MIN_CONFIDENCE and (not cfg.SPECIES_LIST or c[0] in cfg.SPECIES_LIST):
                     label = cfg.TRANSLATED_LABELS[cfg.LABELS.index(c[0])]
-                    rstring += "{},{},{},{},{:.4f}\n".format(start, end, label.split("_", 1)[0], label.split("_", 1)[-1], c[1])
+                    rstring += "{},{},{},{},{}\n".format(start, end, label.split("_", 1)[0], label.split("_", 1)[-1], c[1])
 
             # Write result string to file
             out_string += rstring
@@ -245,6 +245,7 @@ def analyzeFile(item):
     # Get file path and restore cfg
     fpath: str = item[0]
     cfg.set_config(item[1])
+    results = {}
 
     # Start time
     start_time = datetime.datetime.now()
@@ -261,12 +262,11 @@ def analyzeFile(item):
         print(f"Error: Cannot open audio file {fpath}", flush=True)
         utils.writeErrorLog(ex)
 
-        return False
+        return False, results
 
     # Process each chunk
     try:
         start, end = 0, cfg.SIG_LENGTH
-        results = {}
         samples = []
         timestamps = []
 
@@ -296,12 +296,18 @@ def analyzeFile(item):
 
                 # Assign scores to labels
                 p_labels = zip(cfg.LABELS, pred)
-
                 # Sort by score
                 p_sorted = sorted(p_labels, key=operator.itemgetter(1), reverse=True)
-
+                p_sorted_ = list(p_sorted)
+                for i in range(len(p_sorted_)):
+                    p_sorted_[i] = list(p_sorted_[i])
+                    p_sorted_[i][1] = str(p_sorted_[i][1])
+                # for i in len(p_sorted):
+                #     p_sorted[i][1] = str(p_sorted[i][1])
+                #     print(p_sorted[i][1])
                 # Store top 5 results and advance indices
-                results[str(s_start) + "-" + str(s_end)] = p_sorted
+                results[str(s_start) + "-" + str(s_end)] = p_sorted_
+
 
             # Clear batch
             samples = []
@@ -312,7 +318,7 @@ def analyzeFile(item):
         print(f"Error: Cannot analyze audio file {fpath}.\n", flush=True)
         utils.writeErrorLog(ex)
 
-        return False
+        return False, results
 
     # Save as selection table
     try:
@@ -342,12 +348,12 @@ def analyzeFile(item):
         print(f"Error: Cannot save result for {fpath}.\n", flush=True)
         utils.writeErrorLog(ex)
 
-        return False
+        return False, results
 
     delta_time = (datetime.datetime.now() - start_time).total_seconds()
     print("Finished {} in {:.2f} seconds".format(fpath, delta_time), flush=True)
 
-    return True
+    return True, results
 
 
 if __name__ == "__main__":

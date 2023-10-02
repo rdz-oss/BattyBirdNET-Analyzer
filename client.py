@@ -37,6 +37,8 @@ def sendRequest(host: str, port: int, fpath: str, mdata: str):
 
     # Convert to dict
     data = json.loads(response.text)
+    # results = json.loads(data["results"])
+    # print(json.loads(data["results"]))
 
     return data
 
