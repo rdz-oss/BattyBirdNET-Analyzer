@@ -306,7 +306,7 @@ def analyzeFile(item):
                 #     p_sorted[i][1] = str(p_sorted[i][1])
                 #     print(p_sorted[i][1])
                 # Store top 5 results and advance indices
-                results[str(s_start) + "-" + str(s_end)] = p_sorted_
+                results[str(s_start) + ";" + str(s_end)] = p_sorted_
 
 
             # Clear batch
