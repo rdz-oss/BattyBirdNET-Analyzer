@@ -2,11 +2,6 @@ Barbastella barbastellus_Western barbastelle
 Eptesicus nilssonii_Northern bat
 Eptesicus serotinus_Serotine bat
 Hypsugo savii_Savis pipistrelle
-Miniopterus schreibersii_Common bent-wing bat
-Myotis alcathoe_Alcathoe bat
-Myotis bechsteinii_Bechsteins bat
-Myotis brandtii_Brandt bat
-Myotis dasycneme_Pond bat
 Myotis daubentonii_Daubentons bat
 Myotis emarginatus_Geoffroys bat
 Myotis myotis_Greater mouse-eared bat
