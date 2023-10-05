@@ -1,4 +1,4 @@
-# BattyBirdNET - Bat Sound Analyzer 
+# BatNET - Bat Sound Analyzer 
 
 **Note: The system is under heavy development and not (as yet) fit for production use. You are welcome to try it and send feedback.**
 ## Purpose
@@ -10,15 +10,15 @@ Key words: bat identification, bat detector, BirdNET-Analyzer, DNN, machine lear
 
 ### License
 
-Enjoy! Feel free to use BattyBirdNET for your acoustic analyses and research. If you do, please cite as:
+Enjoy! Feel free to use BatNET for your acoustic analyses and research. If you do, please cite as:
 ``` bibtex
 @misc{Zinck2023,
   author = {Zinck, R.D.},
-  title = {BattyBirdNET - Bat Sound Analyzer},
+  title = {BatNET - Bat Sound Analyzer},
   year = {2023},
   publisher = {GitHub},
   journal = {GitHub repository},
-  howpublished = {\url{https://github.com/rdz-oss/BattyBirdNET-Analyzer }}
+  howpublished = {\url{https://github.com/rdz-oss/BatNET-Analyzer }}
 }
 ```
 LICENSE: http://creativecommons.org/licenses/by-nc-sa/4.0/  
@@ -73,7 +73,7 @@ Also consider the references at the end of the page.
 [//]: # (however enable a 256kHz version &#40;for Bavaria&#41;.)
 
 [//]: # ()
-[//]: # (https://huggingface.co/spaces/Amazetl/BattyBirdNET-Analyze-Demo)
+[//]: # (https://huggingface.co/spaces/Amazetl/BatNET-Analyze-Demo)
 
 [//]: # ()
 [//]: # (If you are from the UK, you can crosscheck e.g. with batdetect2)
@@ -88,7 +88,7 @@ The detection works by transfer learning from the bird detection network BirdNET
 * 288000 Hz at 0.5 second intervalls - bat sounds uo to 144kHz considered
 * 360000 Hz at 0.4 second intervals - bat sounds up to 180kHz considered
 
-All of which seem plausible enough for detecting most European and North American bat species. It depends on the hardware (microphones) available to you and the calls of the bat species in your area. The above combinations arise form the expected input to the BirdNET artificial neural network ( 144000 = 48000 * 3). An advantage that comes with this is that not single calls, but all calls  that occur within a second are used to identify the bat allowing for more context/correlation than many traditional bat classifiers consider. In general there is a trade-off between this context and the frequency range you allow for. The value fo BattyBirdNET at 256kHz is set to a compromise for cost and range of many bat species and available microphones.
+All of which seem plausible enough for detecting most European and North American bat species. It depends on the hardware (microphones) available to you and the calls of the bat species in your area. The above combinations arise form the expected input to the BirdNET artificial neural network ( 144000 = 48000 * 3). An advantage that comes with this is that not single calls, but all calls  that occur within a second are used to identify the bat allowing for more context/correlation than many traditional bat classifiers consider. In general there is a trade-off between this context and the frequency range you allow for. The value fo BatNET at 256kHz is set to a compromise for cost and range of many bat species and available microphones.
 
 The data for North American bats comes from the NABAT machine learning data set. The data for Europe was assembled from the Animal Sound Archive Berlin, the ChiroVox database and the xeno-canto database. It contains echolocation as well as social and distress calls in different quantities for each species.
 
@@ -109,7 +109,7 @@ Help us reach the goal of at least 100  samples (3 second recordings) per specie
  
 ![Samples per species ](./assets/Bavaria-256kHz-100.png?raw=true "Samples per species in Bavaria-256kHz-100 data set.")
 
-Currently, you can download the data [ here ](https://cloud.h2887844.stratoserver.net/s/Txpq4GyembeWDa3) (subject to change) using the password "BattyBirdNET-data".
+Currently, you can download the data [ here ](https://cloud.h2887844.stratoserver.net/s/Txpq4GyembeWDa3) (subject to change) using the password "BatNET-data".
 There are 1700 samples at 256kHz summing up to (compressed) 5.5 GB, uncompressed about 8.6 GB.
 
 ## Classifiers
@@ -134,7 +134,7 @@ in bat_ident.py using the argument --kHz 144 .
 |**Scotland** | Covers 10 species. |  1200+ calls. | 
 | **UK** | Covers 16 species. | 1500+ calls. | 
 
-Some occasional 'guests' are considered but definitely not all possible ones. The performance of the classifiers depends mostly on the quality and size of the data set used in training. The amount of samples for each species vary. So does the context of the calls. The BattyBirdNETs training data set contains free fly, hunting, social calls, calls during release and in enclosures. The amount of these vary for each species. To avoid overfitting, the classifiers were trained with noise.
+Some occasional 'guests' are considered but definitely not all possible ones. The performance of the classifiers depends mostly on the quality and size of the data set used in training. The amount of samples for each species vary. So does the context of the calls. The BatNETs training data set contains free fly, hunting, social calls, calls during release and in enclosures. The amount of these vary for each species. To avoid overfitting, the classifiers were trained with noise.
 The UK, Sweden, Scotland, Bavaria classifiers are trained on subsets of this data set. For the US data, see the lik to the NABAT data site below.
 
 ## Install
@@ -153,7 +153,7 @@ python3 bat_ident.py
 is all you need to do to run an analysis on all autio files in that directory. Results will appear in a 'put-your-files-here/results' folder in .csv format. The audio files are analyzed and for each second one or two potential species are listed. These are the most likely bat species to made made the calls in that second.
 You can also use the more verbose analyze.py
 ``` sh
-python3 analyze.py --i put-your-files-here/ --o put-your-files-here/results --classifier checkpoints/bats/v1.0/BattyBirdNET-Bavaria-144kHz.tflite
+python3 analyze.py --i put-your-files-here/ --o put-your-files-here/results --classifier checkpoints/bats/v1.0/BatNET-Bavaria-144kHz.tflite
 ```
 There are several options available, most natably the area setting, e.g.
 ``` sh
