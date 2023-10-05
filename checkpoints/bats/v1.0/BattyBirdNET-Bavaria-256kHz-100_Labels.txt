@@ -10,7 +10,7 @@ Myotis emarginatus_Geoffroys bat
 Myotis myotis_Greater mouse-eared bat
 Myotis mystacinus_Whiskered bat
 Myotis nattereri_Natterers bat
-Noise Munich_Muenchner Rauschen
+Noise
 Nyctalus leisleri_Lesser noctule
 Nyctalus noctula_Common noctule
 Pipistrellus kuhlii_Kuhls pipistrelle
