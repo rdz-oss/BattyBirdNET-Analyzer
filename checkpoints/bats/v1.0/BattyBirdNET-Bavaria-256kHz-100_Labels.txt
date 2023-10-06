@@ -3,23 +3,23 @@ Eptesicus nilssonii_Northern bat
 Eptesicus serotinus_Serotine bat
 Hypsugo savii_Savis pipistrelle
 Myotis bechsteinii_Bechsteins bat
-Myotis brandtii_Brandt bat
 Myotis dasycneme_Pond bat
 Myotis daubentonii_Daubentons bat
 Myotis emarginatus_Geoffroys bat
 Myotis myotis_Greater mouse-eared bat
 Myotis mystacinus_Whiskered bat
 Myotis nattereri_Natterers bat
-Noise
 Nyctalus leisleri_Lesser noctule
 Nyctalus noctula_Common noctule
 Pipistrellus kuhlii_Kuhls pipistrelle
 Pipistrellus nathusii_Nathusius pipistrelle
 Pipistrellus pipistrellus_Common pipistrelle
 Pipistrellus pygmaeus_Soprano pipistrelle
-Plecotus spec._Long eared bat
+Plecotus auritus_Long eared bat
 Rhinolophus ferrumequinum_Greater horseshoe bat
 Rhinolophus hipposideros_Lesser horseshoe bat
 Tettigoniidea_Cricket
 Vespertilio murinus_Parti-coloured bat
+noise
 other
+silence
