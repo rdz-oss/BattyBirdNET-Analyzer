@@ -36,5 +36,6 @@ Tettigoniidea_Cricket
 audiomoth
 background
 noise
+noise-us
 other
 silence
