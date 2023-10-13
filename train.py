@@ -30,7 +30,7 @@ def _loadTrainingData():
     for i, label in enumerate(labels):
         # Get label vector
         label_vector = np.zeros((len(labels),), dtype="float32")
-        if not label.lower() in ["noise", "other", "background", "silence"]:
+        if not label.lower() in ["noise", "other", "background", "silence", "audiomoth"]:
             label_vector[i] = 1
 
         # Get list of files
