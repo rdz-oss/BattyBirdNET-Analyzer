@@ -346,7 +346,7 @@ def analyze_file(item):
 
 def set_analysis_location(kHz = 256):
 
-    if args.area not in ["Bavaria",  "USA"]:
+    if args.area not in ["Bavaria",  "Sweden", "UK", "USA"]:
         exit(code="Unknown location option or disabled during classifier improvement.")
     else:
         args.lat = -1
@@ -363,11 +363,11 @@ def set_analysis_location(kHz = 256):
             cfg.CUSTOM_CLASSIFIER = cfg.BAT_CLASSIFIER_LOCATION + "/BattyBirdNET-Bavaria-144kHz.tflite"
             cfg.LABELS_FILE = cfg.BAT_CLASSIFIER_LOCATION + "/BattyBirdNET-Bavaria-144kHz_Labels.txt"
         else:
-            cfg.CUSTOM_CLASSIFIER = cfg.BAT_CLASSIFIER_LOCATION + "/BattyBirdNET-Bavaria-256kHz-100.tflite"
-            cfg.LABELS_FILE = cfg.BAT_CLASSIFIER_LOCATION + "/BattyBirdNET-Bavaria-256kHz-100_Labels.txt"
+            cfg.CUSTOM_CLASSIFIER = cfg.BAT_CLASSIFIER_LOCATION + "/BattyBirdNET-Bavaria-256kHz.tflite"
+            cfg.LABELS_FILE = cfg.BAT_CLASSIFIER_LOCATION + "/BattyBirdNET-Bavaria-256kHz_Labels.txt"
 
         cfg.LABELS = utils.readLines(cfg.LABELS_FILE)
-        args.locale = "en"
+        # args.locale = "en"
 
     elif args.area == "EU":
         if args.kHz == 144:
@@ -463,7 +463,7 @@ def add_parser_arguments():
                              "Defaults to 256kHz.")
     parser.add_argument("--area",
                         default="Bavaria",
-                        help="Location. Values in ['Bavaria', 'EU', 'Sweden','Scotland', 'UK', 'USA', 'MarinCounty']. "
+                        help="Location. Values in ['Bavaria', 'EU', 'UK', 'USA']. "
                              "Defaults to Bavaria.")
 
     parser.add_argument("--sensitivity",
@@ -658,10 +658,3 @@ if __name__ == "__main__":
                     print("Spectrum in progres for: " + f)
                     cmd = ['python3', "batchspec.py", f, f]
                     subprocess.run(cmd)
-    # A few examples to test
-    # python3 analyze.py --i example/ --o example/ --slist example/ --min_conf 0.5 --threads 4
-    # python3 analyze.py --i example/soundscape.wav --o example/soundscape.BirdNET.selection.table.txt --slist example/species_list.txt --threads 8
-    # python3 analyze.py --i example/ --o example/ --lat 42.5 --lon -76.45 --week 4 --sensitivity 1.0 --rtype table --locale de
-
-
-

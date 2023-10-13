@@ -2,24 +2,26 @@ Barbastella barbastellus_Mopsfledermaus
 Eptesicus nilssonii_Nordfledermaus
 Eptesicus serotinus_Breitflügelfledermaus
 Hypsugo savii_Alpenfledermaus
-Miniopterus schreibersii_Langflügelfledermaus
-Myotis alcathoe_Nymphenfledermaus
-Myotis bechsteinii_Bechsteinfledermaus 
-Myotis brandtii_Große Bartfledermaus
+Myotis bechsteinii_Bechsteinfledermaus
 Myotis dasycneme_Teichfledermaus
-Myotis daubentonii_Wasserfledermaus
+Myotis daubentonii_Wasserfledermaus oder Kleine Bartfledermaus
 Myotis emarginatus_Wimperfledermaus
 Myotis myotis_Große Mausohr
-Myotis mystacinus_Kleine Bartfledermaus
+Myotis mystacinus_Kleine Bartfledermaus oder Wasserfledermaus
 Myotis nattereri_Fransenfledermaus
-RAUSCHEN
-Nyctalus leisleri_Kleiner Abendsegler 
+Nyctalus leisleri_Kleiner Abendsegler
 Nyctalus noctula_Großer Abendsegler
-Pipistrellus kuhlii_Weißrandfledermaus
-Pipistrellus nathusii_Rauhautfledermaus
+Pipistrellus kuhlii_Weißrandfledermaus oder Rauhautfledermaus
+Pipistrellus nathusii_Rauhautfledermaus oder Weißrandfledermaus
 Pipistrellus pipistrellus_Zwergfledermaus
 Pipistrellus pygmaeus_Mückenfledermaus
-Plecotus spec._Langohr
+Plecotus auritus_Braunes oder Graues Langohr
 Rhinolophus ferrumequinum_Große Hufeisennase
 Rhinolophus hipposideros_Kleine Hufeisennase
+Tettigoniidea_Insekt
 Vespertilio murinus_Zweifarbfledermaus
+audiomoth
+background
+noise
+other
+silence

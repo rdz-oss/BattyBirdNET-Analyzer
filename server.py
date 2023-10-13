@@ -11,8 +11,7 @@ from multiprocessing import freeze_support
 
 import bottle
 
-import analyze
-import bat_ident
+import analyze # TODO: Could use bat_ident in the future instead
 import config as cfg
 import species
 import utils
@@ -193,7 +192,7 @@ def handleRequest():
         if file_path_tmp:
             os.unlink(file_path_tmp.name)
 def set_analysis_location():
-    if args.area not in ["Bavaria", "EU", "Scotland", "UK", "USA"]:
+    if args.area not in ["Bavaria", "UK", "USA"]:
         exit(code="Unknown location option.")
     else:
         args.lat = -1
@@ -201,8 +200,8 @@ def set_analysis_location():
         # args.locale = "en"
 
     if args.area == "Bavaria":
-        cfg.CUSTOM_CLASSIFIER = cfg.BAT_CLASSIFIER_LOCATION + "/BattyBirdNET-Bavaria-256kHz-100.tflite"
-        cfg.LABELS_FILE = cfg.BAT_CLASSIFIER_LOCATION + "/BattyBirdNET-Bavaria-256kHz-100_Labels.txt"
+        cfg.CUSTOM_CLASSIFIER = cfg.BAT_CLASSIFIER_LOCATION + "/BattyBirdNET-Bavaria-256kHz.tflite"
+        cfg.LABELS_FILE = cfg.BAT_CLASSIFIER_LOCATION + "/BattyBirdNET-Bavaria-256kHz_Labels.txt"
         cfg.LABELS = utils.readLines(cfg.LABELS_FILE)
         args.locale = "en"
 

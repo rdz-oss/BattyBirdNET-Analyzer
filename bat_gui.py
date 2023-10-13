@@ -151,14 +151,14 @@ def runAnalysis(
     cfg.BAT_CLASSIFIER_LOCATION = os.path.join(script_dir, cfg.BAT_CLASSIFIER_LOCATION)
 
     if species_list_choice == "Bavaria":
-        cfg.CUSTOM_CLASSIFIER = cfg.BAT_CLASSIFIER_LOCATION + "/BattyBirdNET-Bavaria-256kHz-100.tflite"
-        cfg.LABELS_FILE = cfg.BAT_CLASSIFIER_LOCATION + "/BattyBirdNET-Bavaria-256kHz-100_Labels.txt"
+        cfg.CUSTOM_CLASSIFIER = cfg.BAT_CLASSIFIER_LOCATION + "/BattyBirdNET-Bavaria-256kHz.tflite"
+        cfg.LABELS_FILE = cfg.BAT_CLASSIFIER_LOCATION + "/BattyBirdNET-Bavaria-256kHz_Labels.txt"
         cfg.LABELS = utils.readLines(cfg.LABELS_FILE)
         cfg.LATITUDE = -1
         cfg.LONGITUDE = -1
         cfg.SPECIES_LIST_FILE = None
         cfg.SPECIES_LIST = []
-        locale = "de"
+        locale = "en"
 
     elif species_list_choice == "EU":
         cfg.CUSTOM_CLASSIFIER = cfg.BAT_CLASSIFIER_LOCATION + "/BattyBirdNET-EU-256kHz.tflite"

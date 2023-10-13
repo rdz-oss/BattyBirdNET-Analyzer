@@ -1,11 +1,9 @@
 Barbastella barbastellus_Western barbastelle
 Eptesicus nilssonii_Northern bat
 Eptesicus serotinus_Serotine bat
-Hypsugo savii_Savis pipistrelle
 Myotis bechsteinii_Bechsteins bat
 Myotis dasycneme_Pond bat
 Myotis daubentonii_Daubentons or Whiskered bat
-Myotis emarginatus_Geoffroys bat
 Myotis myotis_Greater mouse-eared bat
 Myotis mystacinus_Whiskered or Daubentons bat
 Myotis nattereri_Natterers bat
@@ -16,8 +14,6 @@ Pipistrellus nathusii_Nathusius or Kuhls pipistrelle
 Pipistrellus pipistrellus_Common pipistrelle
 Pipistrellus pygmaeus_Soprano pipistrelle
 Plecotus auritus_Brown or Grey long eared bat
-Rhinolophus ferrumequinum_Greater horseshoe bat
-Rhinolophus hipposideros_Lesser horseshoe bat
 Tettigoniidea_Cricket
 Vespertilio murinus_Parti-coloured bat
 audiomoth

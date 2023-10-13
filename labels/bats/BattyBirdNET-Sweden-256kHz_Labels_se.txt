@@ -2,18 +2,21 @@ Barbastella barbastellus_Barbastell
 Eptesicus nilssonii_Nordfladdermus
 Eptesicus serotinus_Sydfladdermus
 Myotis bechsteinii_Bechsteins fladdermus
-Myotis brandtii_Taigafladdermus
 Myotis dasycneme_Dammfladdermus
-Myotis daubentonii_Vattenfladdermus
+Myotis daubentonii_Vattenfladdermus eller Mustaschfladdermus
 Myotis myotis_Större musöra
-Myotis mystacinus_Mustaschfladdermus
+Myotis mystacinus_Mustaschfladdermus eller Taigafladdermus
 Myotis nattereri_Fransfladdermus
-NOISE
 Nyctalus leisleri_Mindre brunfladdermus
 Nyctalus noctula_Större brunfladdermus
-Pipistrellus kuhlii_Parkpipistrell
-Pipistrellus nathusii_Trollpipistrell
+Pipistrellus kuhlii_Parkpipistrell eller Trollpipistrell
+Pipistrellus nathusii_Trollpipistrell eller Parkpipistrell
 Pipistrellus pipistrellus_Sydpipistrell
 Pipistrellus pygmaeus_Dvärgpipistrell
-Plecotus spec._Brunlångöra
+Plecotus auritus_Brunlångöra
 Vespertilio murinus_Gråskimlig fladdermus
+audiomoth
+background
+noise
+other
+silence
