@@ -1,9 +1,7 @@
 Antrozous pallidus_Pallid bat
-Corynorhinus rafinesquii_Rafinesques big-eared bat
 Corynorhinus townsendii_Townsends big-eared bat
 Eptesicus fuscus_Big brown bat
 Euderma maculatum_Spotted bat
-Eumops floridanus_Florida bonneted
 Eumops perotis_Greater mastiff bat
 Idionycteris phyllotis_Allens big-eared bat
 Lasionycteris noctivagans_Silver-haired bat
