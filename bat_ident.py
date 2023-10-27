@@ -500,7 +500,6 @@ def add_parser_arguments():
                         type=float,
                         default=0.03,
                         help="Minimum species occurrence frequency threshold for location filter. "
-                             "Values in [0.01, 0.99]. Defaults to 0.03."
                         )
     parser.add_argument("--segment",
                         default="off",
@@ -509,6 +508,11 @@ def add_parser_arguments():
     parser.add_argument("--spectrum",
                         default="off",
                         help="Generate mel spectrograms files containing the detected segments. "
+                        )
+    parser.add_argument("--noisered",
+                        default="off",
+                        help="Reduce the microphone specific noise in visualized spectrum."
+                        "Values in [off, audiomoth, emtouch2, emtouch2-raspi]. Defaults to off."
                         )
     parser.add_argument("--i",
                         default=cfg.INPUT_PATH_SAMPLES,  # "put-your-files-here/",
@@ -655,6 +659,7 @@ if __name__ == "__main__":
             for dir_name in os.listdir(root_dir):
                 f = os.path.join(root_dir, dir_name)
                 if not os.path.isfile(f):
+
                     print("Spectrum in progres for: " + f)
-                    cmd = ['python3', "batchspec.py", f, f]
+                    cmd = ['python3', "batchspec.py", f, f, args.noisered, script_dir]
                     subprocess.run(cmd)

@@ -15,6 +15,8 @@ def _parse_args():
     parser.add_argument('dest_directory', help='Location to output spectrogram images. Defaults to CWD',
                         nargs='?',
                         default=os.getcwd())
+    parser.add_argument('noise_prof', help='Reduce microphone noise.')
+    parser.add_argument('script_dir', help='Directory from which called.')
     parser.add_argument('--sox_path', help='Path to SoX executable. Will use sox or sox.exe in PATH by default')
 
     return parser.parse_args()
@@ -43,9 +45,23 @@ def _get_sox_path(specified_sox_path):
         sys.exit(1)
 
 
-def main(source_directory, dest_directory, sox_path):
+def main(source_directory, dest_directory, sox_path, noise_prof='off', script_dir="."):
     source_directory = pathlib.Path(source_directory)
     dest_directory = pathlib.Path(dest_directory)
+    noise_prof_p = ""
+    level = '0.5'
+
+    if noise_prof == "audiomoth":
+        noise_prof_p = pathlib.Path( os.path.join(script_dir, "checkpoints/bats/mic-noise/noise-audiomoth-1-2.prof"))
+
+    if noise_prof == "emtouch2":
+        noise_prof_p = pathlib.Path(os.path.join(script_dir, "checkpoints/bats/mic-noise/noise-touch2.prof"))
+        level = '0.7'
+
+    if noise_prof == "emtouch2-raspi":
+        noise_prof_p = pathlib.Path(os.path.join(script_dir, "checkpoints/bats/mic-noise/noise-raspi-touch2.prof"))
+        level = '0.7'
+
 
     # Validate paths
     if not source_directory.is_dir():
@@ -59,9 +75,19 @@ def main(source_directory, dest_directory, sox_path):
 
     for file in audio_files:
         file_output_path = dest_directory / (file.stem + '.png')
+        file_output_path_red = dest_directory / (file.stem + '-noise.png')
 
         print('Processing {}'.format(file.name))
-        subprocess.run([sox_path, file.absolute(), '-n', 'spectrogram', '-o', file_output_path, '-X', '2000'])
+        file_output_path_n = dest_directory / (file.stem + 'noisered' + file.suffix)
+        absolute_file_path = file.absolute()
+
+        if noise_prof != "off":
+            subprocess.run([sox_path, file.absolute(), file_output_path_n, 'noisered', noise_prof_p , level])
+            subprocess.run([sox_path, file_output_path_n, '-n', 'spectrogram', '-o', file_output_path_red, '-X', '1000'])
+
+        subprocess.run([sox_path, file.absolute(), '-n', 'spectrogram', '-o', file_output_path, '-X', '1000'])
+
+
 
     print('DONE')
 
@@ -72,5 +98,7 @@ if __name__ == '__main__':
     source_directory = pathlib.Path(args.source_directory)
     dest_directory = pathlib.Path(args.dest_directory)
     sox_path = _get_sox_path(args.sox_path)
+    noise_prof = args.noise_prof
+    script_dir = args.script_dir
 
-    main(source_directory, dest_directory, sox_path)
+    main(source_directory, dest_directory, sox_path, noise_prof, script_dir)
