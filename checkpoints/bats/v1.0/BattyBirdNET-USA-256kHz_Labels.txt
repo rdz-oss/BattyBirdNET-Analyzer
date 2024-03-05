@@ -31,9 +31,7 @@ Parastrellus hesperus_Canyon bat
 Perimyotis subflavus_Tricolored bat
 Tadarida brasiliensis_Brazilian free-tailed bat
 Tettigoniidea_Cricket
-audiomoth
 background
 noise
-noise-us
 other
 silence
