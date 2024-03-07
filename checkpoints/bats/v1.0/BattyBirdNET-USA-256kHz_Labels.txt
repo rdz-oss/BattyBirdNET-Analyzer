@@ -33,5 +33,6 @@ Tadarida brasiliensis_Brazilian free-tailed bat
 Tettigoniidea_Cricket
 background
 noise
+noise-us
 other
 silence
