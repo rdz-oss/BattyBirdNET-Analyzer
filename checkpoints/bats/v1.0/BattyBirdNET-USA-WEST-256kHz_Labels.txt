@@ -1,0 +1,28 @@
+Antrozous pallidus_Pallid bat
+Corynorhinus townsendii_Townsends big-eared bat
+Eptesicus fuscus_Big brown bat
+Euderma maculatum_Spotted bat
+Eumops perotis_Greater mastiff bat
+Lasionycteris noctivagans_Silver-haired bat
+Lasiurus blossevillii_Western red bat
+Lasiurus cinereus_Hoary bat
+Lasiurus xanthinus_Western yellow bat
+Myotis californicus_California bat
+Myotis ciliolabrum_Western small-footed myotis
+Myotis evotis_Western long-eared bat
+Myotis lucifugus_Little brown bat
+Myotis septentrionalis_Northern long-eared bat
+Myotis thysanodes_Fringed bat
+Myotis velifer_Cave bat
+Myotis volans_Long-legged bat
+Myotis yumanensis_Yuma bat
+Nyctinomops femorosaccus_Pocketed free-tailed bat
+Nyctinomops macrotis_Big free-tailed bat
+Parastrellus hesperus_Canyon bat
+Tadarida brasiliensis_Brazilian free-tailed bat
+Tettigoniidea_Cricket
+background
+noise
+noise-us
+other
+silence
