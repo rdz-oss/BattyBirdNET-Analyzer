@@ -1,0 +1,22 @@
+Corynorhinus townsendii_Townsends big-eared bat
+Eptesicus fuscus_Big brown bat
+Lasionycteris noctivagans_Silver-haired bat
+Lasiurus borealis_Eastern red bat
+Lasiurus cinereus_Hoary bat
+Lasiurus intermedius_Northern yellow bat
+Lasiurus seminolus_Seminole bat
+Myotis austroriparius_Southeastern myotis
+Myotis grisescens_Gray bat
+Myotis leibii_Eastern small-footed bat
+Myotis lucifugus_Little brown bat
+Myotis septentrionalis_Northern long-eared bat
+Myotis sodalis_Indiana bat
+Nycticeius humeralis_Evening bat
+Perimyotis subflavus_Tricolored bat
+Tadarida brasiliensis_Brazilian free-tailed bat
+Tettigoniidea_Cricket
+background
+noise
+noise-us
+other
+silence

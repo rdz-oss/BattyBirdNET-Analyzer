@@ -346,7 +346,7 @@ def analyze_file(item):
 
 def set_analysis_location(kHz = 256):
 
-    if args.area not in ["Bavaria",  "Sweden", "UK", "USA"]:
+    if args.area not in ["Bavaria",  "Sweden", "UK", "USA","USA-EAST"]:
         exit(code="Unknown location option or disabled during classifier improvement.")
     else:
         args.lat = -1
@@ -420,6 +420,16 @@ def set_analysis_location(kHz = 256):
 
         cfg.LABELS = utils.readLines(cfg.LABELS_FILE)
 
+    elif args.area == "USA-EAST":
+        if args.kHz == 144:
+            cfg.CUSTOM_CLASSIFIER = cfg.BAT_CLASSIFIER_LOCATION + "/BattyBirdNET-USA-144kHz.tflite"
+            cfg.LABELS_FILE = cfg.BAT_CLASSIFIER_LOCATION + "/BattyBirdNET-USA-144kHz_Labels.txt"
+        else:
+            cfg.CUSTOM_CLASSIFIER = cfg.BAT_CLASSIFIER_LOCATION + "/BattyBirdNET-USA-EAST-256kHz.tflite"
+            cfg.LABELS_FILE = cfg.BAT_CLASSIFIER_LOCATION + "/BattyBirdNET-USA-EAST-256kHz_Labels.txt"
+
+        cfg.LABELS = utils.readLines(cfg.LABELS_FILE)
+
     elif args.area == "MarinCounty":
         if args.kHz == 144:
             cfg.CUSTOM_CLASSIFIER = cfg.BAT_CLASSIFIER_LOCATION + "/BattyBirdNET-MarinCounty-144kHz.tflite"
@@ -463,7 +473,7 @@ def add_parser_arguments():
                              "Defaults to 256kHz.")
     parser.add_argument("--area",
                         default="Bavaria",
-                        help="Location. Values in ['Bavaria', 'EU', 'UK', 'USA']. "
+                        help="Location. Values in ['Bavaria', 'EU', 'UK', 'USA', 'USA-EAST']. "
                              "Defaults to Bavaria.")
 
     parser.add_argument("--sensitivity",

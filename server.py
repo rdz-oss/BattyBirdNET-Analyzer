@@ -192,7 +192,7 @@ def handleRequest():
         if file_path_tmp:
             os.unlink(file_path_tmp.name)
 def set_analysis_location():
-    if args.area not in ["Bavaria", "UK", "USA"]:
+    if args.area not in ["Bavaria", "UK", "USA","USA-EAST"]:
         exit(code="Unknown location option.")
     else:
         args.lat = -1
@@ -225,6 +225,11 @@ def set_analysis_location():
         cfg.LABELS_FILE = cfg.BAT_CLASSIFIER_LOCATION + "/BattyBirdNET-USA-256kHz_Labels.txt"
         cfg.LABELS = utils.readLines(cfg.LABELS_FILE)
 
+    elif args.area == "USA-EAST":
+        cfg.CUSTOM_CLASSIFIER = cfg.BAT_CLASSIFIER_LOCATION + "/BattyBirdNET-USA-EAST-256kHz.tflite"
+        cfg.LABELS_FILE = cfg.BAT_CLASSIFIER_LOCATION + "/BattyBirdNET-USA-EAST-256kHz_Labels.txt"
+        cfg.LABELS = utils.readLines(cfg.LABELS_FILE)
+
     else:
         cfg.CUSTOM_CLASSIFIER = None
 
@@ -250,7 +255,7 @@ if __name__ == "__main__":
     )
     parser.add_argument("--area",
                         default="Bavaria",
-                        help="Location. Values in ['Bavaria', 'EU', 'Scotland', 'UK' or 'USA']. Defaults to Bavaria.")
+                        help="Location. Values in ['Bavaria', 'EU', 'Scotland', 'UK', 'USA', 'USA-EAST']. Defaults to Bavaria.")
 
     args = parser.parse_args()
     set_analysis_location()
