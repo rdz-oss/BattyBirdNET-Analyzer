@@ -18,10 +18,12 @@ Pipistrellus pygmaeus_Soprano pipistrelle
 Plecotus auritus_Brown or Grey long eared bat
 Rhinolophus ferrumequinum_Greater horseshoe bat
 Rhinolophus hipposideros_Lesser horseshoe bat
-Tettigoniidea_Cricket
 Vespertilio murinus_Parti-coloured bat
 audiomoth
 background
+electrical
+mechanical
 noise
 other
+rain
 silence
