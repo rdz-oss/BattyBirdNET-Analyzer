@@ -22,8 +22,10 @@ Vespertilio murinus_Parti-coloured bat
 audiomoth
 background
 electrical
+insect
 mechanical
 noise
 other
+pro
 rain
 silence
