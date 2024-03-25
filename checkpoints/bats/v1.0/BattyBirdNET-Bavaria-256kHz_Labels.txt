@@ -21,10 +21,10 @@ Rhinolophus hipposideros_Lesser horseshoe bat
 Vespertilio murinus_Parti-coloured bat
 audiomoth
 background
+bird
 electrical
 insect
 mechanical
-noise
 other
 pro
 rain
