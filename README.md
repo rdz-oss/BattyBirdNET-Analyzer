@@ -144,7 +144,7 @@ You can follow the same procedure as for the BirdNET-Analyzer [see here](./READM
 
 If you want to generate spectrograms, you need to install 'sox' for your platform and make sure it is in your systems PATH variable.
 
-To use the graphical UI, you will need to upse pip3 to install pywebview and gradle.
+To use the graphical UI, you will need to upse pip3 to install pywebview and gradio.
 
 ## Usage
 ### Clients analyze.py and bat_ident.py
@@ -184,9 +184,9 @@ python3 bat_ident.py --location Bavaria --i test_data/Bavaria --o test_data/Bava
 ```
 
 ### Graphical user interface
-Currently single file and batch file analysis are supported with English labels. You need to have pywebview and gradle installed, e.g. by
+Currently single file and batch file analysis are supported with English labels. You need to have pywebview and gradio installed, e.g. by
 ``` sh
-pip3 install pywebview gradle
+pip3 install pywebview gradio
 ```
 To start the GUI, use
 ``` sh
