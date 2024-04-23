@@ -346,7 +346,7 @@ def analyze_file(item):
 
 def set_analysis_location(kHz = 256):
 
-    if args.area not in ["Bavaria",  "South Wales", "Sweden", "UK", "USA","USA-EAST","USA-WEST"]:
+    if args.area not in ["Bavaria",  "South-Wales", "Sweden", "UK", "USA","USA-EAST","USA-WEST"]:
         exit(code="Unknown location option or disabled during classifier improvement.")
     else:
         args.lat = -1
@@ -400,7 +400,7 @@ def set_analysis_location(kHz = 256):
 
         cfg.LABELS = utils.readLines(cfg.LABELS_FILE)
 
-    elif args.area == "South Wales":
+    elif args.area == "South-Wales":
         if args.kHz == 144:
             cfg.CUSTOM_CLASSIFIER = cfg.BAT_CLASSIFIER_LOCATION + "/BattyBirdNET-SouthWales-144kHz.tflite"
             cfg.LABELS_FILE = cfg.BAT_CLASSIFIER_LOCATION + "/BattyBirdNET-SouthWales-144kHz_Labels.txt"
