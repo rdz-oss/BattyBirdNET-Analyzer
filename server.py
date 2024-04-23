@@ -192,7 +192,7 @@ def handleRequest():
         if file_path_tmp:
             os.unlink(file_path_tmp.name)
 def set_analysis_location():
-    if args.area not in ["Bavaria", "UK", "USA","USA-EAST","USA-WEST"]:
+    if args.area not in ["Bavaria", "South-Wales", "UK", "USA","USA-EAST","USA-WEST"]:
         exit(code="Unknown location option.")
     else:
         args.lat = -1
@@ -213,6 +213,11 @@ def set_analysis_location():
     elif args.area == "Scotland":
         cfg.CUSTOM_CLASSIFIER = cfg.BAT_CLASSIFIER_LOCATION + "/BattyBirdNET-Scotland-256kHz.tflite"
         cfg.LABELS_FILE = cfg.BAT_CLASSIFIER_LOCATION + "/BattyBirdNET-Scotland-256kHz_Labels.txt"
+        cfg.LABELS = utils.readLines(cfg.LABELS_FILE)
+
+    elif args.area == "South-Wales":
+        cfg.CUSTOM_CLASSIFIER = cfg.BAT_CLASSIFIER_LOCATION + "/BattyBirdNET-SouthWales-256kHz.tflite"
+        cfg.LABELS_FILE = cfg.BAT_CLASSIFIER_LOCATION + "/BattyBirdNET-SouthWales-256kHz_Labels.txt"
         cfg.LABELS = utils.readLines(cfg.LABELS_FILE)
 
     elif args.area == "UK":
