@@ -1,0 +1,22 @@
+Conocephalus fuscus_Long-winged bush-cricket
+Eptesicus serotinus_Serotine
+Leptophyes punctatissima_Speckled bush-cricket
+Myotis brandtii_Brandt's bat
+Myotis daubentonii_Daubenton's bat
+Myotis mystacinus_Whiskered bat
+Myotis nattereri_Natterer's bat
+Nyctalus leisleri_Leisler's bat
+Nyctalus noctula_Noctule
+Pholidoptera griseoaptera_Dark bush-cricket
+Pipistrellus nathusii_Nathusius' pipistrelle
+Pipistrellus pipistrellus_Common pipistrelle
+Pipistrellus pygmaeus_Soprano pipistrelle
+Plecotus auritus_Brown long-eared bat
+Pseudoips prasinana_Green silver-lines
+Rattus norvegicus_Brown rat
+Rhinolophus ferrumequinum_Greater horseshoe bat
+Roeseliana roeselii_Roesel's bush-cricket
+Sorex araneus_Common shrew
+Sorex minutus_Eurasian pygmy shrew
+Tettigonia viridissima_Great green bush-cricket
+noise
