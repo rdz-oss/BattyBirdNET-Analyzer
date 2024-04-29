@@ -193,7 +193,7 @@ def handleRequest():
             os.unlink(file_path_tmp.name)
 def set_analysis_location():
 
-    if args.area not in ["Bavaria", "UK","South-Wales", "USA","USA-EAST","USA-WEST","BIRDS"]:
+    if args.area not in ["Bavaria", "UK", "South-Wales" ,"USA","USA-EAST","USA-WEST","BIRDS"]:
         exit(code="Unknown location option.")
     else:
         args.lat = -1
