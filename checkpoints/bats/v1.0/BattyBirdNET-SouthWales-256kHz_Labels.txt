@@ -6,10 +6,10 @@ Conocephalus fuscus_Long-winged conehead
 Eptesicus serotinus_Serotine
 Leptophyes punctatissima_Speckled bush-cricket
 Metrioptera brachyptera_Bog bush-cricket
+Myotis bechsteinii_Bechstein's bat
 Myotis bechsteinii_Bechstein’s bat
 Myotis brandtii_Brandt's bat
 Myotis daubentonii_Daubenton's bat
-Myotis daubentonii_Daubenton’s bat
 Myotis myotis_Greater mouse-eared bat
 Myotis mystacinus_Whiskered bat
 Myotis nattereri_Natterer's bat
