@@ -41,7 +41,8 @@ def _loadTrainingData():
                                  "electrical",
                                  "insect",
                                  "pro",
-                                 "rain"]:
+                                 "rain",
+                                 "collected"]:
             label_vector[i] = 1
 
         # Get list of files
