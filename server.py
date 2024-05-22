@@ -193,7 +193,7 @@ def handleRequest():
             os.unlink(file_path_tmp.name)
 def set_analysis_location():
 
-    if args.area not in ["Bavaria", "South-Wales", "UK", "USA","USA-EAST","USA-WEST","BIRDS"]:
+    if args.area not in ["Bavaria", "South-Wales", "UK", "USA","USA-EAST","USA-WEST","BIRDS","CUSTOM_BIRD","CUSTOM_BAT"]:
         exit(code="Unknown location option.")
     else:
         args.lat = -1
@@ -249,6 +249,18 @@ def set_analysis_location():
         cfg.SIG_OVERLAP = cfg.SIG_LENGTH / 4.0
         cfg.SIG_MINLEN = cfg.SIG_LENGTH / 3.0
 
+    elif args.area == "CUSTOM_BIRD":
+        cfg.CUSTOM_CLASSIFIER = cfg.BAT_CLASSIFIER_LOCATION + "/CUSTOM-BIRD-48kHz.tflite"
+        cfg.LABELS_FILE = cfg.BAT_CLASSIFIER_LOCATION + "/CUSTOM-BIRD-48kHz_Labels.txt"
+        cfg.SAMPLE_RATE = 48000
+        cfg.SIG_LENGTH = 3
+        cfg.SIG_OVERLAP = cfg.SIG_LENGTH / 4.0
+        cfg.SIG_MINLEN = cfg.SIG_LENGTH / 3.0
+
+    elif args.area == "CUSTOM_BAT":
+        cfg.CUSTOM_CLASSIFIER = cfg.BAT_CLASSIFIER_LOCATION + "/CUSTOM-BAT-256kHz.tflite"
+        cfg.LABELS_FILE = cfg.BAT_CLASSIFIER_LOCATION + "/CUSTOM-BAT-256kHz_Labels.txt"
+        cfg.LABELS = utils.readLines(cfg.LABELS_FILE)
 
     else:
         cfg.CUSTOM_CLASSIFIER = None

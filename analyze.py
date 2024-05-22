@@ -299,9 +299,15 @@ def analyzeFile(item):
                 # Sort by score
                 p_sorted = sorted(p_labels, key=operator.itemgetter(1), reverse=True)
                 p_sorted_ = list(p_sorted)
+                # human_cutoff = max(10, int(len(p_sorted) * priv_thresh / 100.0))
+                # for i in range(min(10, len(p_sorted))):
+                #     if p_sorted[i][0] == 'Human_Human':
                 for i in range(len(p_sorted_)):
                     p_sorted_[i] = list(p_sorted_[i])
                     p_sorted_[i][1] = str(p_sorted_[i][1])
+                    # check for privacy pot.here: if a human is present in top %, then
+                    # set first entry to human_voclization. Filter that out with the
+                    # excluded species list in the Pi system
                 # for i in len(p_sorted):
                 #     p_sorted[i][1] = str(p_sorted[i][1])
                 #     print(p_sorted[i][1])
