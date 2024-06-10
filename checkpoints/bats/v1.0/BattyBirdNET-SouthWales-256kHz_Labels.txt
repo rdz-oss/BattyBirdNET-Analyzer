@@ -23,7 +23,6 @@ Rattus norvegicus_Brown rat
 Rhinolophus ferrumequinum_Greater horseshoe bat
 Rhinolophus hipposideros_Lesser horseshoe bat
 Sorex minutus_Eurasian pygmy shrew
-Sorex minutus_Pygmy shrew
 Tettigonia viridissima_Great green bush-cricket
 Vespertilio murinus_Parti-coloured bat
 noise
