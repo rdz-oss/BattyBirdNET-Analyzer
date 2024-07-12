@@ -22,6 +22,7 @@ Plecotus austriacus_Grey big-eared bat
 Rattus norvegicus_Brown rat
 Rhinolophus ferrumequinum_Greater horseshoe bat
 Rhinolophus hipposideros_Lesser horseshoe bat
+Sorex araneus_Common shrew
 Sorex minutus_Eurasian pygmy shrew
 Tettigonia viridissima_Great green bush-cricket
 Vespertilio murinus_Parti-coloured bat
