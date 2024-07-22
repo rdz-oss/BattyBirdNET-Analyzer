@@ -18,7 +18,7 @@ Pipistrellus nathusii_Nathusius' pipistrelle
 Pipistrellus pipistrellus_Common pipistrelle
 Pipistrellus pygmaeus_Soprano pipistrelle
 Plecotus auritus_Brown long-eared bat
-Plecotus austriacus_Grey big-eared bat
+Plecotus austriacus_Grey long-eared bat
 Rattus norvegicus_Brown rat
 Rhinolophus ferrumequinum_Greater horseshoe bat
 Rhinolophus hipposideros_Lesser horseshoe bat
