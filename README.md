@@ -10,7 +10,7 @@ With this software you can
 * Efficiently process a large number of recordings to detect sequences with bat calls, obtained e.g. from recording devices (audiomoth, any other).
 * Classifiers included for European and North American species.
 * You can generate files 'cut' to contain the detected calls, get a spectrogram visualization and a tentative identification.
-* Meta-data in GUANO format is added to the segmented files that can be then cross-validate with other software syetms to corroborate results.
+* Meta-data in GUANO format is added to the segmented files that can be then cross-validate with other software systems to corroborate results.
 * Train your own bat or other animal detection in normal or ultrasound using your own data or the one provided openly here as training sets.
 * Set up a streaming internet API service that returns identifications of bats
 * Use a graphical UI to do analysis of files on your PC (Linux, Windows) if you prefer that to the commandline.
@@ -28,7 +28,7 @@ BattyBirdNET-Analyzer comes with two types of classifiers:
 * Classifiers to be run 24/7 that ignore noise (crickets, rain, electrical noise, ..) and detect bat calls and identify species as well.
 * Classifiers that work on files in which it is already clear that there are bat calls contained, yet not known which species it/they are (to be added soon).
 
- ** There is a tradeoff in accuracy of species identification and being restitant to environmental noise. ** So you need to chose according to your purpose! If you want to run a system 24/7 to detetct bats in all sorts of background noise use the first type. Use the more accurate ones if you already have files in which you know a bat is singing for best results.
+ **There is a tradeoff in accuracy of species identification and being restitant to environmental noise.** So you need to chose according to your purpose! If you want to run a system 24/7 to detetct bats in all sorts of background noise use the first type. Use the more accurate ones if you already have files in which you know a bat is singing for best results.
 
 ### License
 
