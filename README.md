@@ -21,6 +21,15 @@ Used by the automated, real-time bat on device detector BattyBirdNET-Pi (https:/
 
 Key words: bat identification, bat detector, BirdNET-Analyzer, DNN, machine learning, transfer learning, biodiverity , monitoring
 
+
+## Two types of Classifiers
+
+BattyBirdNET-Analyzer comes with two types of classifiers:
+* Classifiers to be run 24/7 that ignore noise (crickets, rain, electrical noise, ..) and detect bat calls and identify species as well.
+* Classifiers that work on files in which it is already clear that there are bat calls contained, yet not known which species it/they are (to be added soon).
+
+ ** There is a tradeoff in accuracy of species identification and being restitant to environmental noise. ** So you need to chose according to your purpose! If you want to run a system 24/7 to detetct bats in all sorts of background noise use the first type. Use the more accurate ones if you already have files in which you know a bat is singing for best results.
+
 ### License
 
 Enjoy! Feel free to use BattyBirdNET for your acoustic analyses and research. If you do, please cite as:
