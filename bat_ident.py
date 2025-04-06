@@ -364,9 +364,9 @@ def set_analysis_location(kHz = 256):
 
 
     if args.area == "Bavaria":
-        if args.kHz == 144:
-            cfg.CUSTOM_CLASSIFIER = cfg.BAT_CLASSIFIER_LOCATION + "/BattyBirdNET-Bavaria-144kHz.tflite"
-            cfg.LABELS_FILE = cfg.BAT_CLASSIFIER_LOCATION + "/BattyBirdNET-Bavaria-144kHz_Labels.txt"
+        if args.no_noise == "on":
+            cfg.CUSTOM_CLASSIFIER = cfg.BAT_CLASSIFIER_LOCATION + "/BattyBirdNET-Bavaria-256kHz-high.tflite"
+            cfg.LABELS_FILE = cfg.BAT_CLASSIFIER_LOCATION + "/BattyBirdNET-Bavaria-256kHz-high_Labels.txt"
         else:
             cfg.CUSTOM_CLASSIFIER = cfg.BAT_CLASSIFIER_LOCATION + "/BattyBirdNET-Bavaria-256kHz.tflite"
             cfg.LABELS_FILE = cfg.BAT_CLASSIFIER_LOCATION + "/BattyBirdNET-Bavaria-256kHz_Labels.txt"
@@ -375,9 +375,9 @@ def set_analysis_location(kHz = 256):
         # args.locale = "en"
 
     elif args.area == "EU":
-        if args.kHz == 144:
-            cfg.CUSTOM_CLASSIFIER = cfg.BAT_CLASSIFIER_LOCATION + "/BattyBirdNET-EU-144kHz.tflite"
-            cfg.LABELS_FILE = cfg.BAT_CLASSIFIER_LOCATION + "/BattyBirdNET-EU-144kHz_Labels.txt"
+        if args.no_noise == "on":
+            cfg.CUSTOM_CLASSIFIER = cfg.BAT_CLASSIFIER_LOCATION + "/BattyBirdNET-EU-256kHz-high.tflite"
+            cfg.LABELS_FILE = cfg.BAT_CLASSIFIER_LOCATION + "/BattyBirdNET-EU-256kHz-high_Labels.txt"
         else:
             cfg.CUSTOM_CLASSIFIER = cfg.BAT_CLASSIFIER_LOCATION + "/BattyBirdNET-EU-256kHz.tflite"
             cfg.LABELS_FILE = cfg.BAT_CLASSIFIER_LOCATION + "/BattyBirdNET-EU-256kHz_Labels.txt"
@@ -385,9 +385,9 @@ def set_analysis_location(kHz = 256):
         cfg.LABELS = utils.readLines(cfg.LABELS_FILE)
 
     elif args.area == "Sweden":
-        if args.kHz == 144:
-            cfg.CUSTOM_CLASSIFIER = cfg.BAT_CLASSIFIER_LOCATION + "/BattyBirdNET-Sweden-144kHz.tflite"
-            cfg.LABELS_FILE = cfg.BAT_CLASSIFIER_LOCATION + "/BattyBirdNET-Sweden-144kHz_Labels.txt"
+        if args.no_noise == "on":
+            cfg.CUSTOM_CLASSIFIER = cfg.BAT_CLASSIFIER_LOCATION + "/BattyBirdNET-Sweden-256kHz-high.tflite"
+            cfg.LABELS_FILE = cfg.BAT_CLASSIFIER_LOCATION + "/BattyBirdNET-Sweden-256kHz-high_Labels.txt"
         else:
             cfg.CUSTOM_CLASSIFIER = cfg.BAT_CLASSIFIER_LOCATION + "/BattyBirdNET-Sweden-256kHz.tflite"
             cfg.LABELS_FILE = cfg.BAT_CLASSIFIER_LOCATION + "/BattyBirdNET-Sweden-256kHz_Labels.txt"
@@ -396,9 +396,9 @@ def set_analysis_location(kHz = 256):
         args.locale = "se"
 
     elif args.area == "Scotland":
-        if args.kHz == 144:
-            cfg.CUSTOM_CLASSIFIER = cfg.BAT_CLASSIFIER_LOCATION + "/BattyBirdNET-Scotland-144kHz.tflite"
-            cfg.LABELS_FILE = cfg.BAT_CLASSIFIER_LOCATION + "/BattyBirdNET-Scotland-144kHz_Labels.txt"
+        if args.no_noise == "on":
+            cfg.CUSTOM_CLASSIFIER = cfg.BAT_CLASSIFIER_LOCATION + "/BattyBirdNET-Scotland-256kHz-high.tflite"
+            cfg.LABELS_FILE = cfg.BAT_CLASSIFIER_LOCATION + "/BattyBirdNET-Scotland-256kHz-high_Labels.txt"
         else:
             cfg.CUSTOM_CLASSIFIER = cfg.BAT_CLASSIFIER_LOCATION + "/BattyBirdNET-Scotland-256kHz.tflite"
             cfg.LABELS_FILE = cfg.BAT_CLASSIFIER_LOCATION + "/BattyBirdNET-Scotland-256kHz_Labels.txt"
@@ -406,18 +406,18 @@ def set_analysis_location(kHz = 256):
         cfg.LABELS = utils.readLines(cfg.LABELS_FILE)
 
     elif args.area == "South-Wales":
-        if args.kHz == 144:
-            cfg.CUSTOM_CLASSIFIER = cfg.BAT_CLASSIFIER_LOCATION + "/BattyBirdNET-SouthWales-144kHz.tflite"
-            cfg.LABELS_FILE = cfg.BAT_CLASSIFIER_LOCATION + "/BattyBirdNET-SouthWales-144kHz_Labels.txt"
+        if args.no_noise == "on":
+            cfg.CUSTOM_CLASSIFIER = cfg.BAT_CLASSIFIER_LOCATION + "/BattyBirdNET-SouthWales-256kHz-high.tflite"
+            cfg.LABELS_FILE = cfg.BAT_CLASSIFIER_LOCATION + "/BattyBirdNET-SouthWales-256kHz-high_Labels.txt"
         else:
             cfg.CUSTOM_CLASSIFIER = cfg.BAT_CLASSIFIER_LOCATION + "/BattyBirdNET-SouthWales-256kHz.tflite"
             cfg.LABELS_FILE = cfg.BAT_CLASSIFIER_LOCATION + "/BattyBirdNET-SouthWales-256kHz_Labels.txt"
 
         cfg.LABELS = utils.readLines(cfg.LABELS_FILE)
     elif args.area == "UK":
-        if args.kHz == 144:
-            cfg.CUSTOM_CLASSIFIER = cfg.BAT_CLASSIFIER_LOCATION + "/BattyBirdNET-UK-144kHz.tflite"
-            cfg.LABELS_FILE = cfg.BAT_CLASSIFIER_LOCATION + "/BattyBirdNET-UK-144kHz_Labels.txt"
+        if args.no_noise == "on":
+            cfg.CUSTOM_CLASSIFIER = cfg.BAT_CLASSIFIER_LOCATION + "/BattyBirdNET-UK-256kHz-high.tflite"
+            cfg.LABELS_FILE = cfg.BAT_CLASSIFIER_LOCATION + "/BattyBirdNET-UK-256kHz-high_Labels.txt"
         else:
             cfg.CUSTOM_CLASSIFIER = cfg.BAT_CLASSIFIER_LOCATION + "/BattyBirdNET-UK-256kHz.tflite"
             cfg.LABELS_FILE = cfg.BAT_CLASSIFIER_LOCATION + "/BattyBirdNET-UK-256kHz_Labels.txt"
@@ -425,9 +425,9 @@ def set_analysis_location(kHz = 256):
         cfg.LABELS = utils.readLines(cfg.LABELS_FILE)
 
     elif args.area == "USA":
-        if args.kHz == 144:
-            cfg.CUSTOM_CLASSIFIER = cfg.BAT_CLASSIFIER_LOCATION + "/BattyBirdNET-USA-144kHz.tflite"
-            cfg.LABELS_FILE = cfg.BAT_CLASSIFIER_LOCATION + "/BattyBirdNET-USA-144kHz_Labels.txt"
+        if args.no_noise == "on":
+            cfg.CUSTOM_CLASSIFIER = cfg.BAT_CLASSIFIER_LOCATION + "/BattyBirdNET-USA-256kHz-high.tflite"
+            cfg.LABELS_FILE = cfg.BAT_CLASSIFIER_LOCATION + "/BattyBirdNET-USA-256kHz-high_Labels.txt"
         else:
             cfg.CUSTOM_CLASSIFIER = cfg.BAT_CLASSIFIER_LOCATION + "/BattyBirdNET-USA-256kHz.tflite"
             cfg.LABELS_FILE = cfg.BAT_CLASSIFIER_LOCATION + "/BattyBirdNET-USA-256kHz_Labels.txt"
@@ -435,9 +435,9 @@ def set_analysis_location(kHz = 256):
         cfg.LABELS = utils.readLines(cfg.LABELS_FILE)
 
     elif args.area == "USA-EAST":
-        if args.kHz == 144:
-            cfg.CUSTOM_CLASSIFIER = cfg.BAT_CLASSIFIER_LOCATION + "/BattyBirdNET-USA-144kHz.tflite"
-            cfg.LABELS_FILE = cfg.BAT_CLASSIFIER_LOCATION + "/BattyBirdNET-USA-144kHz_Labels.txt"
+        if args.no_noise == "on":
+            cfg.CUSTOM_CLASSIFIER = cfg.BAT_CLASSIFIER_LOCATION + "/BattyBirdNET-USA-EAST-256kHz-high.tflite"
+            cfg.LABELS_FILE = cfg.BAT_CLASSIFIER_LOCATION + "/BattyBirdNET-USA-EAST-256kHz-high_Labels.txt"
         else:
             cfg.CUSTOM_CLASSIFIER = cfg.BAT_CLASSIFIER_LOCATION + "/BattyBirdNET-USA-EAST-256kHz.tflite"
             cfg.LABELS_FILE = cfg.BAT_CLASSIFIER_LOCATION + "/BattyBirdNET-USA-EAST-256kHz_Labels.txt"
@@ -445,9 +445,9 @@ def set_analysis_location(kHz = 256):
         cfg.LABELS = utils.readLines(cfg.LABELS_FILE)
 
     elif args.area == "USA-WEST":
-        if args.kHz == 144:
-            cfg.CUSTOM_CLASSIFIER = cfg.BAT_CLASSIFIER_LOCATION + "/BattyBirdNET-USA-144kHz.tflite"
-            cfg.LABELS_FILE = cfg.BAT_CLASSIFIER_LOCATION + "/BattyBirdNET-USA-144kHz_Labels.txt"
+        if args.no_noise == "on":
+            cfg.CUSTOM_CLASSIFIER = cfg.BAT_CLASSIFIER_LOCATION + "/BattyBirdNET-USA-WEST-256kHz-high.tflite"
+            cfg.LABELS_FILE = cfg.BAT_CLASSIFIER_LOCATION + "/BattyBirdNET-USA-WEST-256kHz-high_Labels.txt"
         else:
             cfg.CUSTOM_CLASSIFIER = cfg.BAT_CLASSIFIER_LOCATION + "/BattyBirdNET-USA-WEST-256kHz.tflite"
             cfg.LABELS_FILE = cfg.BAT_CLASSIFIER_LOCATION + "/BattyBirdNET-USA-WEST-256kHz_Labels.txt"
@@ -455,13 +455,13 @@ def set_analysis_location(kHz = 256):
         cfg.LABELS = utils.readLines(cfg.LABELS_FILE)
 
     elif args.area == "MarinCounty":
-        if args.kHz == 144:
-            cfg.CUSTOM_CLASSIFIER = cfg.BAT_CLASSIFIER_LOCATION + "/BattyBirdNET-MarinCounty-144kHz.tflite"
-            cfg.LABELS_FILE = cfg.BAT_CLASSIFIER_LOCATION + "/BattyBirdNET-MarinCounty-144kHz_Labels.txt"
+        if args.no_noise == "on":
+            cfg.CUSTOM_CLASSIFIER = cfg.BAT_CLASSIFIER_LOCATION + "/BattyBirdNET-MarinCounty-256kHz-high.tflite"
+            cfg.LABELS_FILE = cfg.BAT_CLASSIFIER_LOCATION + "/BattyBirdNET-MarinCounty-256kHz-high_Labels.txt"
         else:
-            cfg.CUSTOM_CLASSIFIER = cfg.BAT_CLASSIFIER_LOCATION + "/BattyBirdNET-MarinCounty-144kHz.tflite"
-            cfg.LABELS_FILE = cfg.BAT_CLASSIFIER_LOCATION + "/BattyBirdNET-MarinCounty-144kHz_Labels.txt"
-            print("Marin County currently only on 144kHz")
+            cfg.CUSTOM_CLASSIFIER = cfg.BAT_CLASSIFIER_LOCATION + "/BattyBirdNET-MarinCounty-256kHz.tflite"
+            cfg.LABELS_FILE = cfg.BAT_CLASSIFIER_LOCATION + "/BattyBirdNET-MarinCounty-256kHz_Labels.txt"
+            print("Marin County currently only on 256kHz")
         cfg.LABELS = utils.readLines(cfg.LABELS_FILE)
 
     else:
@@ -499,6 +499,10 @@ def add_parser_arguments():
                         default="Bavaria",
                         help="Location. Values in ['Bavaria', 'EU', 'UK', 'USA', 'USA-EAST', 'USA-WEST']. "
                              "Defaults to Bavaria.")
+    parser.add_argument("--no_noise",
+                        default="off",
+                        help="off or on. Use for higher id accuracy if recording is already segmented and known to contain bat calls. "
+                             "Defaults to 'off'.")
 
     parser.add_argument("--sensitivity",
                         type=float,
