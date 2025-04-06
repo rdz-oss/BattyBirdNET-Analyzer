@@ -345,6 +345,9 @@ def analyze_file(item):
     return True
 
 def set_analysis_location(kHz = 256):
+    if args.classifier is not None:
+        set_custom_classifier()
+        return
 
     if args.area not in ["Bavaria",  "South-Wales", "Sweden", "UK", "USA","USA-EAST","USA-WEST"]:
         exit(code="Unknown location option or disabled during classifier improvement.")
@@ -357,6 +360,8 @@ def set_analysis_location(kHz = 256):
             cfg.SIG_OVERLAP = cfg.SIG_LENGTH / 4.0
             cfg.SIG_MINLEN = cfg.SIG_LENGTH / 3.0
         # args.locale = "en"
+
+
 
     if args.area == "Bavaria":
         if args.kHz == 144:

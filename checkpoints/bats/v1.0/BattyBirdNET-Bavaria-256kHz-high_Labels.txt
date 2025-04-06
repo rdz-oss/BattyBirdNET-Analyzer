@@ -2,24 +2,23 @@ Barbastella barbastellus_Western barbastelle
 Eptesicus nilssonii_Northern bat
 Eptesicus serotinus_Serotine bat
 Hypsugo savii_Savis pipistrelle
-Miniopterus schreibersii_Common bent-wing bat
-Myotis alcathoe_Alcathoe bat
 Myotis bechsteinii_Bechsteins bat
-Myotis brandtii_Brandt bat
 Myotis dasycneme_Pond bat
-Myotis daubentonii_Daubentons bat
+Myotis daubentonii_Daubentons or Whiskered bat
 Myotis emarginatus_Geoffroys bat
 Myotis myotis_Greater mouse-eared bat
-Myotis mystacinus_Whiskered bat
+Myotis mystacinus_Whiskered or Daubentons bat
 Myotis nattereri_Natterers bat
-NOISE
 Nyctalus leisleri_Lesser noctule
 Nyctalus noctula_Common noctule
-Pipistrellus kuhlii_Kuhls pipistrelle
-Pipistrellus nathusii_Nathusius pipistrelle
+Pipistrellus kuhlii_Kuhls or Nathusius pipistrelle
+Pipistrellus nathusii_Nathusius or Kuhls pipistrelle
 Pipistrellus pipistrellus_Common pipistrelle
 Pipistrellus pygmaeus_Soprano pipistrelle
-Plecotus spec._Long eared bat
+Plecotus auritus_Brown or Grey long eared bat
 Rhinolophus ferrumequinum_Greater horseshoe bat
 Rhinolophus hipposideros_Lesser horseshoe bat
+Rhinolophus hipposideros_Lesser horseshoe bat social
 Vespertilio murinus_Parti-coloured bat
+insect
+mechanical
