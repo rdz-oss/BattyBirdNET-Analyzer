@@ -26,7 +26,8 @@ Key words: bat identification, bat detector, BirdNET-Analyzer, DNN, machine lear
 
 BattyBirdNET-Analyzer comes with two types of classifiers:
 * Classifiers to be run 24/7 that ignore noise (crickets, rain, electrical noise, ..) and detect bat calls and identify species as well.
-* Classifiers that work on files in which it is already clear that there are bat calls contained, yet not known which species it/they are (to be added soon).
+* Classifiers that work on files in which it is already clear that there are bat calls contained, yet not known which species it/they are. Available for Bavaria and USA-EAST classifiers.
+Use the '--no_noise on' option when using bat_ident.py.
 
  **There is a tradeoff in accuracy of species identification and being unaffected by environmental noise.** So you need to chose according to your purpose! If you want to run a system 24/7 to detetct bats in all sorts of background noise use the first type. Use the more accurate ones if you already have files in which you know a bat is singing for best results.
 
@@ -134,6 +135,7 @@ python3 bat_ident.py --area Scotland
 that uses a more area specific subset of bats and hence can reduce some classification erros. You can set the above classifiers via the '--area' flag. Further, you can also set analysis related parameters such as
 
 ``` sh
+--no_noise  Defaults to off. Uses a classfier traine to ignore environmental noise. If you have no noise in the files, use 'on' for higher accuracy in identification.
 --min_conf  Minimum confidence threshold. Values in [0.01, 0.99]. Defaults to 0.1.
 --overlap   Overlap of prediction segments. Values in [0.0, 2.9]. Defaults to 0.0.
 --rtype     Specifies output format. Values in ['table', 'audacity', 'r',  'kaleidoscope', 'csv'].
