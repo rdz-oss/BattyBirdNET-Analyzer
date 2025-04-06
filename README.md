@@ -97,7 +97,7 @@ The cross training / transfer learning itself uses the framework provided by Bir
 This expects that your training data is contained in subfolders that have the following name structure 'Lantin name_Common name' such as e.g. 'Antrozous pallidus_Pallid bat'. The labels are parsed from the folder names. You can also have folders for 'noise' or 'background'.
 
 ### Data sets
-I provide the Bavaria and USA-EAST training sets (without the noise files) here. You can use the them for your own classifiers
+The Bavaria and USA-EAST training sets (without the noise files) are provided as is here. You can use the them for your own classifiers
 ad long as conditions of http://creativecommons.org/licenses/by-nc-sa/4.0/  are met.
 
 * [ Bavaria ](https://cloud.h2887844.stratoserver.net/s/5LHQSC7SWqtHSMG)
