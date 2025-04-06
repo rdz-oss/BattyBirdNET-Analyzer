@@ -97,18 +97,16 @@ The cross training / transfer learning itself uses the framework provided by Bir
 This expects that your training data is contained in subfolders that have the following name structure 'Lantin name_Common name' such as e.g. 'Antrozous pallidus_Pallid bat'. The labels are parsed from the folder names. You can also have folders for 'noise' or 'background'.
 
 ### Data sets
-The Bavaria data is under the http://creativecommons.org/licenses/by-nc-sa/4.0/  license. You are welcome to use it accordingly, e.g.
-for teaching and research,OSS software and systems as well as for other non-commercial purposes.
-The Bavaria data set also encompasses UK and nordic species. The data is a random selection of up to 100 samples per species
+I provide the Bavaria and USA-EAST training sets (without the noise files) here. You can use the them for your own classifiers
+ad long as conditions of http://creativecommons.org/licenses/by-nc-sa/4.0/  are met.
+* [ Bavaria ](https://cloud.h2887844.stratoserver.net/s/5LHQSC7SWqtHSMG)
+* [ USA-EAST ](https://cloud.h2887844.stratoserver.net/s/YrEap2SAt8fRAzm)
+You are welcome to use it accordingly, e.g. for teaching and research,OSS software and systems as well as for other non-commercial purposes.
+The Bavaria data set also encompasses UK and nordic species. The data is a random selection 
 from data from xeno-canto, chirovox, animal sound library berlin, as well as individuals (R. Zinck (GER), K. Richards (UK)).
 
 If you have data, consider contacting me as the classifiers can only be as good as the data sets they are trained with.
 Help us reach the goal of at least 100  samples (3 second recordings) per species!
-
-![Samples per species ](./assets/Bavaria-256kHz-100.png?raw=true "Samples per species in Bavaria-256kHz-100 data set.")
-
-Currently, you can download the data [ here ](https://cloud.h2887844.stratoserver.net/s/Txpq4GyembeWDa3) (subject to change) using the password "BattyBirdNET-data".
-There are 1700 samples at 256kHz summing up to (compressed) 5.5 GB, uncompressed about 8.6 GB.
 
 ## Install
 You can follow the same procedure as for the BirdNET-Analyzer [see here](./README_BIRDNET_ANALYZER.adoc). Just remember to use this repository.
