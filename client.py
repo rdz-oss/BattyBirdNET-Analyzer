@@ -23,7 +23,7 @@ def sendRequest(host: str, port: int, fpath: str, mdata: str):
     """
     url = f"http://{host}:{port}/analyze"
 
-    print(f"Requesting analysis for {fpath}")
+    # print(f"Requesting analysis for {fpath}")
 
     # Make payload
     multipart_form_data = {"audio": (fpath.rsplit(os.sep, 1)[-1], open(fpath, "rb")), "meta": (None, mdata)}
@@ -33,12 +33,12 @@ def sendRequest(host: str, port: int, fpath: str, mdata: str):
     response = requests.post(url, files=multipart_form_data)
     end_time = time.time()
 
-    print("Response: {}, Time: {:.4f}s".format(response.text, end_time - start_time), flush=True)
+    # print("Response: {}, Time: {:.4f}s".format(response.text, end_time - start_time), flush=True)
 
     # Convert to dict
     data = json.loads(response.text)
     # results = json.loads(data["results"])
-    # print(json.loads(data["results"]))
+    print(response.text)
 
     return data
 
