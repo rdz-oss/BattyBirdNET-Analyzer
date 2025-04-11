@@ -20,5 +20,5 @@ Rhinolophus ferrumequinum_Grand Rhinolophe
 Rhinolophus hipposideros_Petit Rhinolophe
 Rhinolophus hipposideros_Petit Rhinolophe social
 Vespertilio murinus_Sérotine bicolore
-insecte
-mécanique
+insect
+mechanical

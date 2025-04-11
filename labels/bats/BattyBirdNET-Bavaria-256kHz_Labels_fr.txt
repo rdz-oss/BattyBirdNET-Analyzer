@@ -20,12 +20,12 @@ Rhinolophus ferrumequinum_Grand Rhinolophe
 Rhinolophus hipposideros_Petit Rhinolophe
 Vespertilio murinus_Sérotine bicolore
 audiomoth
-bruit de fond
-oiseau
-collecté
-électrique
-insecte
-mécanique
-autre
+background
+bird
+collected
+electrical
+insect
+mechanical
+other
 pro
-pluie
+rain
