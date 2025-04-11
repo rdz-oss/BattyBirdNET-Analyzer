@@ -1,7 +1,7 @@
 Barbastella barbastellus_Barbastelle d'Europe
 Eptesicus nilssonii_Sérotine de Nilsson
-Eptesicus serotinus_Grande Sérotine
-Hypsugo savii_Pipistrelle de Savi
+Eptesicus serotinus_Sérotine commune
+Hypsugo savii_Vespère de Savi
 Myotis bechsteinii_Murin de Bechstein
 Myotis dasycneme_Murin des marais
 Myotis daubentonii_Murin de Daubenton
@@ -14,14 +14,18 @@ Nyctalus noctula_Noctule commune
 Pipistrellus kuhlii_Pipistrelle de Kuhl
 Pipistrellus nathusii_Pipistrelle de Nathusius
 Pipistrellus pipistrellus_Pipistrelle commune
-Pipistrellus pygmaeus_Pipistrelle soprane
+Pipistrellus pygmaeus_Pipistrelle pygmée
 Plecotus auritus_Oreillard roux
 Rhinolophus ferrumequinum_Grand Rhinolophe
 Rhinolophus hipposideros_Petit Rhinolophe
-Tettigoniidea_Insecte
-Vespertilio murinus_Vespertilion bicolore
+Vespertilio murinus_Sérotine bicolore
 audiomoth
-background
-noise
-other
-silence
+bruit de fond
+oiseau
+collecté
+électrique
+insecte
+mécanique
+autre
+pro
+pluie
