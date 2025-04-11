@@ -1,25 +1,24 @@
 Barbastella barbastellus_Barbastelle d'Europe
 Eptesicus nilssonii_Sérotine de Nilsson
-Eptesicus serotinus_Grande Sérotine
-Hypsugo savii_Pipistrelle de Savi
-Miniopterus schreibersii_Minioptère de Schreibers
-Myotis alcathoe_Murin d'Alcathoe
+Eptesicus serotinus_Sérotine commune
+Hypsugo savii_Vespère de Savi
 Myotis bechsteinii_Murin de Bechstein
-Myotis brandtii_Murin de Brandt
 Myotis dasycneme_Murin des marais
 Myotis daubentonii_Murin de Daubenton
 Myotis emarginatus_Murin à oreilles échancrées
 Myotis myotis_Grand Murin
 Myotis mystacinus_Murin à moustaches
 Myotis nattereri_Murin de Natterer
-bruit de fond
 Nyctalus leisleri_Noctule de Leisler
 Nyctalus noctula_Noctule commune
 Pipistrellus kuhlii_Pipistrelle de Kuhl
 Pipistrellus nathusii_Pipistrelle de Nathusius
 Pipistrellus pipistrellus_Pipistrelle commune
-Pipistrellus pygmaeus_Pipistrelle soprane
-Plecotus spec._Oreillard spec.
+Pipistrellus pygmaeus_Pipistrelle pygmée
+Plecotus auritus_Oreillard roux
 Rhinolophus ferrumequinum_Grand Rhinolophe
 Rhinolophus hipposideros_Petit Rhinolophe
-Vespertilio murinus_Vespertilion bicolore
+Rhinolophus hipposideros_Petit Rhinolophe social
+Vespertilio murinus_Sérotine bicolore
+insecte
+mécanique
