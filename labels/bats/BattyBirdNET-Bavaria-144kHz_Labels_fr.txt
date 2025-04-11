@@ -1,0 +1,27 @@
+Barbastella barbastellus_Barbastelle d'Europe
+Eptesicus nilssonii_Sérotine de Nilsson
+Eptesicus serotinus_Grande Sérotine
+Hypsugo savii_Pipistrelle de Savi
+Myotis bechsteinii_Murin de Bechstein
+Myotis dasycneme_Murin des marais
+Myotis daubentonii_Murin de Daubenton
+Myotis emarginatus_Murin à oreilles échancrées
+Myotis myotis_Grand Murin
+Myotis mystacinus_Murin à moustaches
+Myotis nattereri_Murin de Natterer
+Nyctalus leisleri_Noctule de Leisler
+Nyctalus noctula_Noctule commune
+Pipistrellus kuhlii_Pipistrelle de Kuhl
+Pipistrellus nathusii_Pipistrelle de Nathusius
+Pipistrellus pipistrellus_Pipistrelle commune
+Pipistrellus pygmaeus_Pipistrelle soprane
+Plecotus auritus_Oreillard roux
+Rhinolophus ferrumequinum_Grand Rhinolophe
+Rhinolophus hipposideros_Petit Rhinolophe
+Tettigoniidea_Insecte
+Vespertilio murinus_Vespertilion bicolore
+audiomoth
+background
+noise
+other
+silence
