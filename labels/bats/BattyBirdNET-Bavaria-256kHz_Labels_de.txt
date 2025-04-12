@@ -1,0 +1,32 @@
+Barbastella barbastellus_Mopsfledermaus
+Eptesicus nilssonii_Nordfledermaus
+Eptesicus serotinus_Breitflügelfledermaus
+Hypsugo savii_Alpenfledermaus
+Myotis bechsteinii_Bechsteinfledermaus
+Myotis dasycneme_Teichfledermaus
+Myotis daubentonii_Wasser- oder Bartfledermaus
+Myotis emarginatus_Wimperfledermaus
+Myotis myotis_Große Mausohr
+Myotis mystacinus_Kleine Bartfledermaus
+Myotis nattereri_Fransenfledermaus
+Nyctalus leisleri_Kleiner Abendsegler
+Nyctalus noctula_Großer Abendsegler
+Pipistrellus kuhlii_Kuhls or Nathusius pipistrelle
+Pipistrellus nathusii_Nathusius or Kuhls pipistrelle
+Pipistrellus pipistrellus_Zwergfledermaus
+Pipistrellus pygmaeus_Mückenfledermaus
+Plecotus auritus_Langohr
+Rhinolophus ferrumequinum_Große Hufeisennase
+Rhinolophus hipposideros_Kleine Hufeisennase
+Rhinolophus hipposideros_Kleine Hufeisennase sozial
+Vespertilio murinus_Zweifarbfledermaus
+audiomoth
+background
+bird
+collected
+electrical
+insect
+mechanical
+other
+pro
+rain
