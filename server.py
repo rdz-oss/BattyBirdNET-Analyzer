@@ -317,9 +317,11 @@ if __name__ == "__main__":
     cfg.CODES = analyze.loadCodes()
     cfg.LABELS = utils.readLines(cfg.LABELS_FILE)
 
-    # Load translated labels
+    # Load translated labels - use bat label path for bat classifiers, bird path for BIRDS
+    bat_areas = ["Bavaria", "EU", "Scotland", "South-Wales", "UK", "USA", "USA-EAST", "USA-WEST", "CUSTOM_BAT"]
+    translated_path = cfg.TRANSLATED_BAT_LABELS_PATH if args.area in bat_areas else cfg.TRANSLATED_LABELS_PATH
     lfile = os.path.join(
-        cfg.TRANSLATED_LABELS_PATH, os.path.basename(cfg.LABELS_FILE).replace(".txt", "_{}.txt".format(args.locale))
+        translated_path, os.path.basename(cfg.LABELS_FILE).replace(".txt", "_{}.txt".format(args.locale))
     )
 
     if not args.locale in ["en"] and os.path.isfile(lfile):
