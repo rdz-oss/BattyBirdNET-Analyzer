@@ -161,6 +161,15 @@ def handleRequest():
             if pmode not in ["avg", "max"]:
                 pmode = "avg"
 
+            # Apply translated species names to results if locale is not English
+            if cfg.TRANSLATED_LABELS is not cfg.LABELS:
+                for timestamp in results:
+                    for entry in results[timestamp]:
+                        try:
+                            entry[0] = cfg.TRANSLATED_LABELS[cfg.LABELS.index(entry[0])]
+                        except (ValueError, IndexError):
+                            pass
+
             # num_results = min(99, max(1, int(mdata.get("num_results", 5))))
             # results = resultPooling(lines, num_results, pmode)
             # results = lines
@@ -198,13 +207,11 @@ def set_analysis_location():
     else:
         args.lat = -1
         args.lon = -1
-        # args.locale = "en"
 
     if args.area == "Bavaria":
         cfg.CUSTOM_CLASSIFIER = cfg.BAT_CLASSIFIER_LOCATION + "/BattyBirdNET-Bavaria-256kHz.tflite"
         cfg.LABELS_FILE = cfg.BAT_CLASSIFIER_LOCATION + "/BattyBirdNET-Bavaria-256kHz_Labels.txt"
         cfg.LABELS = utils.readLines(cfg.LABELS_FILE)
-        args.locale = "en"
 
         if args.no_noise == "on":
             cfg.CUSTOM_CLASSIFIER = cfg.BAT_CLASSIFIER_LOCATION + "/BattyBirdNET-Bavaria-256kHz-high.tflite"
