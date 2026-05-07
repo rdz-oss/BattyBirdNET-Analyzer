@@ -43,7 +43,7 @@ def loadModel(class_output=True):
     # Do we have to load the tflite or protobuf model?
     if cfg.MODEL_PATH.endswith(".tflite"):
         # Load TFLite model and allocate tensors.
-        INTERPRETER = tflite.Interpreter(model_path=cfg.MODEL_PATH, num_threads=cfg.TFLITE_THREADS)
+        INTERPRETER = tflite.Interpreter(model_path=cfg.MODEL_PATH, num_threads=cfg.TFLITE_THREADS,experimental_preserve_all_tensors=True)
         INTERPRETER.allocate_tensors()
 
         # Get input and output tensors.
