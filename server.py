@@ -161,6 +161,15 @@ def handleRequest():
             if pmode not in ["avg", "max"]:
                 pmode = "avg"
 
+            # Apply translated species names to results if locale is not English
+            if cfg.TRANSLATED_LABELS is not cfg.LABELS:
+                for timestamp in results:
+                    for entry in results[timestamp]:
+                        try:
+                            entry[0] = cfg.TRANSLATED_LABELS[cfg.LABELS.index(entry[0])]
+                        except (ValueError, IndexError):
+                            pass
+
             # num_results = min(99, max(1, int(mdata.get("num_results", 5))))
             # results = resultPooling(lines, num_results, pmode)
             # results = lines
@@ -198,13 +207,11 @@ def set_analysis_location():
     else:
         args.lat = -1
         args.lon = -1
-        # args.locale = "en"
 
     if args.area == "Bavaria":
         cfg.CUSTOM_CLASSIFIER = cfg.BAT_CLASSIFIER_LOCATION + "/BattyBirdNET-Bavaria-256kHz.tflite"
         cfg.LABELS_FILE = cfg.BAT_CLASSIFIER_LOCATION + "/BattyBirdNET-Bavaria-256kHz_Labels.txt"
         cfg.LABELS = utils.readLines(cfg.LABELS_FILE)
-        args.locale = "en"
 
         if args.no_noise == "on":
             cfg.CUSTOM_CLASSIFIER = cfg.BAT_CLASSIFIER_LOCATION + "/BattyBirdNET-Bavaria-256kHz-high.tflite"
@@ -310,9 +317,11 @@ if __name__ == "__main__":
     cfg.CODES = analyze.loadCodes()
     cfg.LABELS = utils.readLines(cfg.LABELS_FILE)
 
-    # Load translated labels
+    # Load translated labels - use bat label path for bat classifiers, bird path for BIRDS
+    bat_areas = ["Bavaria", "EU", "Scotland", "South-Wales", "UK", "USA", "USA-EAST", "USA-WEST", "CUSTOM_BAT"]
+    translated_path = cfg.TRANSLATED_BAT_LABELS_PATH if args.area in bat_areas else cfg.TRANSLATED_LABELS_PATH
     lfile = os.path.join(
-        cfg.TRANSLATED_LABELS_PATH, os.path.basename(cfg.LABELS_FILE).replace(".txt", "_{}.txt".format(args.locale))
+        translated_path, os.path.basename(cfg.LABELS_FILE).replace(".txt", "_{}.txt".format(args.locale))
     )
 
     if not args.locale in ["en"] and os.path.isfile(lfile):
