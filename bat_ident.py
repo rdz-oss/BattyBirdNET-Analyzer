@@ -349,7 +349,7 @@ def set_analysis_location(kHz = 256):
         set_custom_classifier()
         return
 
-    if args.area not in ["Bavaria",  "South-Wales", "Sweden", "UK", "USA","USA-EAST","USA-WEST"]:
+    if args.area not in ["Bavaria", "EU", "South-Wales", "Sweden", "UK", "USA", "USA-EAST", "USA-WEST"]:
         exit(code="Unknown location option or disabled during classifier improvement.")
     else:
         args.lat = -1
