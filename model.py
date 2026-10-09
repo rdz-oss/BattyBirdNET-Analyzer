@@ -43,7 +43,13 @@ def loadModel(class_output=True):
     # Do we have to load the tflite or protobuf model?
     if cfg.MODEL_PATH.endswith(".tflite"):
         # Load TFLite model and allocate tensors.
-        INTERPRETER = tflite.Interpreter(model_path=cfg.MODEL_PATH, num_threads=cfg.TFLITE_THREADS,experimental_preserve_all_tensors=True)
+        # The BirdNET STFT layer has dynamic-sized tensors, so the default XNNPACK delegate
+        # can't be applied. Skip it to avoid the "dynamic-sized tensors" warning.
+        INTERPRETER = tflite.Interpreter(
+            model_path=cfg.MODEL_PATH,
+            num_threads=cfg.TFLITE_THREADS,
+            experimental_op_resolver_type=getattr(tflite, "experimental", tflite).OpResolverType.BUILTIN_WITHOUT_DEFAULT_DELEGATES,
+        )
         INTERPRETER.allocate_tensors()
 
         # Get input and output tensors.
